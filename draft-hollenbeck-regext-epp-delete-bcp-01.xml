@@ -103,7 +103,8 @@
                 also associated with domain objects sponsored by another client. It is advised not
                 to delete the host object due to its associated domain objects. However, the
                 associated domain objects cannot be directly updated because they are sponsored by
-                another client.</t>
+                another client. This situation affects all EPP operators that have implemented
+				support for host objects.</t>
             <t>Section 3.2.5 of RFC 5732 <xref target="RFC5732" /> describes host object renaming:</t>
             <t>"Host name changes can have an impact on associated objects that refer to the host
                 object. A host name change SHOULD NOT require additional updates of associated
@@ -113,9 +114,9 @@
                 The change can be provisioned by creating a new external host with a new name and
                 any needed new attributes, and subsequently updating the other objects sponsored by
                 the client."</t>
-            <t>Section 1.1 of RFC 5732 includes a description of external hosts. Note that the specific method
-			    used to rename the host object can introduce risks of lame delegation (see
-                Section 2.8 of RFC 1912 <xref target="RFC1912" />). If the new external host refers
+            <t>Section 1.1 of RFC 5732 includes a description of external hosts. Note that the specific
+			    method used to rename the host object can create DNS delegation failures and introduce
+				risks of loss of management control. If the new external host refers
                 to an unregistered domain, then a malicious actor may register the domain and create the
                 host object to gain control of DNS resolution for the domain previously associated with
                 "ns1.example.com". If the new external host offers an authoritative DNS service but
@@ -196,47 +197,63 @@
                 all domains delegated to it, allowing the operator of the name server to respond in
                 potentially malicious ways.</t>
         </section>
-        <section anchor="avoid-practices"
-            title="Practices to Avoid for Domain and Host Object Deletion">
-            <section anchor="avoid-external"
-                title="Avoid Renaming to External, Presumed Non-Existent Hosts">
-                <t>EPP clients MUST NOT rename host objects to presumably non-existent external host
-                    names (e.g., "ns1.example.com" to "ns1.example.org") or a non-existent parent domain in the authoritative repository (e.g., ".org"). EPP servers might not
-                    confirm that these hosts exist, are resolvable, or offer authoritative service
+        <section anchor="practice-analysis" title="Analysis of Practices for Domain and Host Object Deletion">
+            <section anchor="renaming-external" title="Renaming to External, Presumed Non-Existent Hosts">
+                <t>Add description.</t>
+                <section anchor="renaming-external-pros" title="Practice Benefits">
+                    <t>TBD</t>
+                </section>
+                <section anchor="renaming-external-cons" title="Practice Detriments">
+                    <t>EPP servers might not confirm that these hosts exist, are resolvable, or offer authoritative service
                     for associated domains. Research <xref target="risky-bizness" /> has described
                     how malicious actors have registered these parent domains and created child host objects to take
                     control of DNS resolution for associated domains.</t>
+                </section>
             </section>
-            <section anchor="avoid-alt" title="Avoid Renaming to Non-DNS Hosts">
-                <t>EPP clients MUST NOT rename host objects to ".alt" or other non-DNS labels.
-                    Researchers have suggested that clients rename host objects to use the ".alt"
+            <section anchor="renaming-alt" title="Renaming to Non-DNS Hosts">
+                <t>TBD</t>
+                <section anchor="renaming-alt-pros" title="Practice Benefits">
+                    <t>TBD</t>
+                </section>
+                <section anchor="renaming-alt-cons" title="Practice Detriments">
+                    <t>Researchers have suggested that clients rename host objects to use the ".alt"
                     pseudo-TLD <xref target="risky-bizness-irtf" />. However, the ".alt" pseudo-TLD is intended
                     for use in non-DNS contexts <xref target="I-D.ietf-dnsop-alt-tld" />. EPP
                     servers SHOULD NOT deliberately add name server entries for non-DNS labels. These
                     entries would mix DNS and non-DNS protocols, risk name collisions, create
                     confusion, and potentially result in unpredictable resolver behaviors.</t>
+                </section>
             </section>
-            <section anchor="avoid-non-provisioned"
-                title="Avoid Renaming to Non-Authoritative Hosts">
-                <t>EPP clients MUST NOT knowingly rename host objects to point to services that are not authoritative for affected child domains. Some domain registrars,
-                    acting as EPP clients, have maintained host objects with glue records pointing
+            <section anchor="renaming-non-provisioned" title="Renaming to Non-Authoritative Hosts">
+                <t>TBD</t>
+                <section anchor="renaming-non-provisioned-pros" title="Practice Benefits">
+                    <t>TBD</t>
+                </section>
+                <section anchor="renaming-non-provisioned-cons" title="Practice Detriments">
+                    <t>Some domain registrars, acting as EPP clients, have maintained host objects with glue records pointing
                     to prominent public recursive DNS services. Queries for the associated domains
                     result in SERVFAIL or other failure responses. Some recursive name server
                     implementations may aggressively re-query for these responses, potentially
                     resulting in large numbers of queries for unresolvable domains <xref target="I-D.ietf-dnsop-caching-resolution-failures" />.</t>
+                </section>
             </section>
-            <section anchor="avoid-as112" title='Avoid Renaming to "as112.arpa"'>
-                <t>EPP clients SHOULD NOT rename host objects to subdomains of "as112.arpa". Some
-                    domain registrars, acting as EPP clients, have begun renaming host objects to
+            <section anchor="renaming-as112" title='Renaming to "as112.arpa"'>
+                <t>TBD</t>
+                <section anchor="renaming-as112-pros" title="Practice Benefits">
+                    <t>TBD</t>
+                </section>
+                <section anchor="renaming-as112-cons" title="Practice Detriments">
+                    <t>Some domain registrars, acting as EPP clients, have begun renaming host objects to
                     subdomains of "as112.arpa" <xref target="risky-bizness-irtf" />. This is a misuse of AS112, which is for
                     reverse lookups on non-unique IPs, primarily so local admins can sinkhole
                     non-global traffic <xref target="RFC7535" />. Unexpected AS112 traffic has
                     previously caused problems with intrusion detection systems and firewalls <xref target="RFC6305" />.</t>
+                </section>
             </section>
-        </section>
-        <section anchor="best-practices" title="Best Current Practices for Domain and Host Object Deletion">
-            <section anchor="control-rename" title="Rename to a Host Object Maintained by the Client">
-                <t>EPP clients MAY rename to the host object to be deleted to a
+            <section anchor="control-rename" title="Renaming to a Host Object Maintained by the Client">
+                <t>TBD</t>
+                <section anchor="control-rename-pros" title="Practice Benefits">
+                    <t>EPP clients MAY rename to the host object to be deleted to a
                 sacrificial name server host object maintained by the client. This
                 requires that the client maintain the registration of the sacrificial
                 name server's superordinate domain. The client may consider long
@@ -245,11 +262,15 @@
                 host object. Failures to maintain these registrations have allowed
                 domain hijacks <xref target="risky-bizness" />.</t>
 				
-				<t>The sacrificial name server should run a DNS resolution service capable of
+				    <t>The sacrificial name server should run a DNS resolution service capable of
 				responding with an authoritative non-error, non-failure response for requests
 				made for associated domains. The service SHOULD provide responses that indicate
 				problems with a domain's delegation, such as non-existence or include controlled
 				interruption IP addresses <xref target="RFC8023" />.</t>
+                </section>
+                <section anchor="control-rename-cons" title="Practice Detriments">
+                    <t>TBD.</t>
+                </section>
             </section>
             <section anchor="explicit-delete" title="Allow Explicit Delete of Host Objects">
                 <t>The recommendations in RFC 5731 <xref target="RFC5731" /> are intended to
@@ -258,12 +279,15 @@
                     disassociate them from domain objects sponsored by other clients. This could
                     result in domains with no remaining name servers being removed from the zone or
                     domains with only one remaining name server.</t>
+                <section anchor="explicit-delete-pros" title="Practice Benefits">
+                    <t>TBD</t>
+                </section>
+                <section anchor="explicit-delete-cons" title="Practice Detriments">
+                    <t>TBD</t>
+                </section>
             </section>
-        </section>
-        <section anchor="discussion" title="Potential Practices for Domain and Host Object Deletion">
             <section anchor="new-service" title="Community Sacrificial Name Server Service">
-                <t>Consistent with the recommendations in RFC 5731 <xref target="RFC5731" />, a new
-                    community-wide service could be created explicitly intended for use for renaming host records.
+                <t>A new community-wide service could be created explicitly intended for use for renaming host records.
                     This would require maintenance of name servers capable of authoritatively
                     responding with NXDOMAIN or a controlled interruption IP addresses <xref target="RFC8023" />
 					for all queries without delegating domains or records.
@@ -271,8 +295,14 @@
 					processes (e.g., ".sacrificial"), as an IAB request that IANA delegate a second-level
 					domain (SLD) for ".arpa" (e.g., "sacrificial-nameserver.arpa"), or as a contracted
 					sinkhole service by ICANN or other DNS ecosystem actors.</t>
+                <section anchor="new-service-pros" title="Practice Benefits">
+                    <t>TBD</t>
+                </section>
+                <section anchor="new-service-cons" title="Practice Detriments">
+                    <t>TBD</t>
+                </section>
             </section>
-            <section anchor="options-allow-delete" title="Options for Allowed Delete of Associated Host Objects ">
+            <section anchor="options-allow-delete" title="Options for Allowed Delete of Associated Host Objects">
                 <t>As noted previously, EPP servers can allow clients to delete host objects and disassociate
 				them from domain objects. EPP servers can require that the EPP client explicitly request
 				the deletion of the host object before taking this action. This may require that the EPP server
@@ -280,7 +310,26 @@
 				client may receive a message that deletion of the host object would affect domain objects
 				sponsored by another client and may receive details about those objects. The sponsoring
 				clients of affected domain objects can also be informed of the change.</t>
+                <section anchor="options-allow-delete-pros" title="Practice Benefits">
+                    <t>TBD</t>
+                </section>
+                <section anchor="options-allow-delete-cons" title="Practice Detriments">
+                    <t>TBD</t>
+                </section>
             </section>
+            <section anchor="options-narrow-glue" title="Narrow Glue">
+                <t>TBD</t>
+                <section anchor="options-narrow-glue-pros" title="Practice Benefits">
+                    <t>TBD</t>
+                </section>
+                <section anchor="options-narrow-glue-cons" title="Practice Detriments">
+                    <t>TBD</t>
+                </section>
+            </section>
+        </section>
+		
+        <section anchor="recommendations" title="Best Practice Recommendations">
+            <t>TBD.</t>
         </section>
 		
         <section anchor="IANA" title="IANA Considerations">
@@ -307,7 +356,7 @@
         </section>
         <section anchor="acks" title="Acknowledgments">
             <t>The authors would like to thank the following people for their contributions to this
-                document: Matthew Thomas, Peter Thomassen.</t>
+                document: Gautam Akiwate, James Gould, James Mitchell, Matthew Thomas, Peter Thomassen.</t>
         </section>
     </middle>
     <back>
@@ -322,7 +371,6 @@
             </references>
             <references>
                 <name>Informative References</name>
-                <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.1912.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6305.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7535.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8023.xml" />
@@ -356,7 +404,7 @@
         <section title="Change Log">
             <ol>
                 <li>Initial version.</li>
-                <li>01: TBD.</li>
+                <li>01: Restructured practice sections to describe pros and cons.</li>
             </ol>
         </section>
     </back>
