@@ -417,16 +417,31 @@
                 </section>
                 <section anchor="additional-deletion-details" title="Additional Deletion Details">
                     <t>The EPP server may
-                        provide the EPP client with additional details of the affected objects. The
+                        provide the deleting EPP client with additional details of the affected
+                        objects. The
                         deleting EPP
                         client may receive a message that deletion of the host object would affect
                         domain objects
                         sponsored by another client and may receive details about those objects.</t>
                     <section anchor="additional-deletion-details-pros" title="Practice Benefits">
-                        <t></t>
+                        <t>
+                            The deleting EPP client would be able to better understand and assess
+                            the potential harms of a host object deletion.
+                            Depending on the content of the message, the deleting EPP client might
+                            choose additional actions, such as delaying the deletion until manual
+                            approval can be obtained, renaming the host objects, or informing
+                            affected EPP clients.
+                        </t>
                     </section>
                     <section anchor="additional-deletion-details-cons" title="Practice Detriments">
-                        <t>TBD</t>
+                        <t>
+                            This change would require additional development on the part of EPP
+                            servers and clients. There may be scalability concerns if large numbers
+                            of domain objects are updated in a single transaction. The EPP server
+                            must
+                            determine the relevant information to provide for the EPP client's
+                            assessment.
+                        </t>
                     </section>
                 </section>
                 <section anchor="inform-affected-client" title="Inform Affected Clients">
