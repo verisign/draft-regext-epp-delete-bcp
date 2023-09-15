@@ -270,13 +270,14 @@
                     </t>
                 </section>
                 <section anchor="renaming-alt-cons" title="Practice Detriments">
-                    <t>The ".alt" pseudo-TLD is intended for use in non-DNS contexts <xref
-                            target="I-D.ietf-dnsop-alt-tld" />. Some EPP servers may restrict TLDs
-                        to valid IANA-delegated TLDs. These entries would mix DNS and non-DNS
-                        protocols, risk name collisions, create confusion, and potentially result in
-                        unpredictable resolver behaviors. These identifiers may be registered in
-                        non-DNS namespaces, potentially leading to hijacking vulnerabilities based
-                        in other systems. </t>
+                    <t>The ".alt" pseudo-TLD is to be used "to signify that this is an alternative
+                        (non-DNS) namespace and should not be looked up in a DNS context" <xref
+                            target="RFC9476" />. Some EPP servers may restrict TLDs to valid
+                        IANA-delegated TLDs. These entries would mix DNS and non-DNS protocols, risk
+                        name collisions, create confusion, and potentially result in unpredictable
+                        resolver behaviors. These identifiers may be registered in non-DNS
+                        namespaces, potentially leading to hijacking vulnerabilities based in other
+                        systems. </t>
                 </section>
             </section>
             <section anchor="renaming-non-provisioned" title="Renaming to Non-Authoritative Hosts">
@@ -411,7 +412,9 @@
                     </section>
                     <section anchor="explicit-deletion-request-cons" title="Practice Detriments">
                         <t>
-                            This would require an extension and additional logic.
+                            This change would require additional development on the part of EPP
+                            servers and clients. It may only be relevant if the EPP client is also
+                            provided additional deletion details.
                         </t>
                     </section>
                 </section>
@@ -563,6 +566,7 @@
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5731.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5732.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml" />
+                <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9476.xml" />
             </references>
             <references>
                 <name>Informative References</name>
@@ -590,8 +594,6 @@
                         <date year="2022" month="Nov" />
                     </front>
                 </reference>
-                <xi:include
-                    href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-alt-tld.xml" />
                 <xi:include
                     href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-caching-resolution-failures.xml" />
             </references>
