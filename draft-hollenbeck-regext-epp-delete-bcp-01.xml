@@ -241,7 +241,8 @@
                     no check for existence is typically performed.
                 </t>
                 <section anchor="renaming-external-pros" title="Practice Benefits">
-                    <t>This is convenient for the deleting EPP client. The deleting EPP client is
+                    <t>The primary benefit is convenience for the deleting EPP client. The deleting
+                        EPP client is
                         not required to
                         maintain an authoritative DNS service or receive traffic. Dependent domains
                         may no longer resolve
@@ -262,7 +263,8 @@
                     pseudo-TLD <xref target="risky-bizness-irtf" /> or another non-DNS pseudo-TLD. </t>
                 <section anchor="renaming-alt-pros" title="Practice Benefits">
                     <t>
-                        This is a convenient for the deleting EPP client. The deleting EPP client is
+                        The primary benefit is convenience for the deleting EPP client. The deleting
+                        EPP client is
                         not required to
                         maintain an authoritative DNS service or receive traffic. Dependent domains
                         cannot be hijacked through the registration of these identifiers and
@@ -285,7 +287,8 @@
                     with glue records pointing to prominent public recursive DNS services.
                 </t>
                 <section anchor="renaming-non-provisioned-pros" title="Practice Benefits">
-                    <t>This is a convenient for the deleting EPP client. The deleting EPP client is
+                    <t>The primary benefit is convenience for the deleting EPP client. The deleting
+                        EPP client is
                         not required to
                         maintain an authoritative DNS service or receive traffic. </t>
                 </section>
@@ -303,7 +306,8 @@
                         target="risky-bizness-irtf" />.</t>
                 <section anchor="renaming-as112-pros" title="Practice Benefits">
                     <t>
-                        This is a convenient for the deleting EPP client. The deleting EPP client is
+                        The primary benefit is convenience for the deleting EPP client. The deleting
+                        EPP client is
                         not required to
                         maintain an authoritative DNS service or receive traffic. These subdomains
                         are
