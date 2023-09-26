@@ -18,7 +18,7 @@
 <rfc
     xmlns:xi="http://www.w3.org/2001/XInclude"
     category="bcp"
-    docName="draft-hollenbeck-regext-epp-delete-bcp-01"
+    docName="draft-hollenbeck-regext-epp-delete-bcp-02"
     ipr="trust200902"
     obsoletes=""
     updates=""
@@ -647,6 +647,10 @@
                 <li>Restructured practice sections to describe pros and cons, combined "allow delete" practices.</li>
                 <li>Added Gautam Akiwate as co-author.</li>
                 <li>Added narrow/wide glue explanation.</li>
+            </ol>
+            <t>02:</t>
+            <ol>
+                <li>TBD</li>
             </ol>
         </section>
     </back>
