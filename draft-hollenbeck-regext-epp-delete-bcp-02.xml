@@ -255,22 +255,33 @@
                         more difficult to detect.</t>
                 </section>
             </section>
-            <section anchor="renaming-alt" title="Renaming to Non-DNS Hosts">
-                <t>Researchers have suggested that clients rename host objects to use the ".alt"
-                    pseudo-TLD <xref target="risky-bizness-irtf" /> or another non-DNS pseudo-TLD. 
-                    This practice has not been observed in use.
-                </t>
-                <section anchor="renaming-alt-pros" title="Practice Benefits">
-                    <t>
-                        The primary benefit is convenience for the deleting EPP client. The deleting
+            <section anchor="renaming-non-functional" title="Renaming to Non-Functional TLD">
+            	<t>Clients may rename host objects to use a TLD that cannot resolve in the DNS. Several variations have been suggested.
+            	This practice has not been observed in use.
+            	</t>
+            	<section anchor="renaming-non-functional-reserved" title="Renaming to Reserved TLD">
+            		<t>Clients may rename host objects to use ".invalid" or another reserved (<xref target="RFC2606" />) TLD as suggested in <xref target="risky-bizness" />.</t>
+            	</section>
+            	<section anchor="renaming-non-functional-reserved-pros" title="Practice Benefits">
+            		<t>The primary benefit is convenience for the deleting EPP client. These TLDs are already reserved and will not resolve. The deleting EPP client is not required to maintain an authoritative DNS service or receive traffic. Dependent domains cannot be hijacked.</t>
+            	</section>
+            	<section anchor="renaming-non-functional-reserved-cons" title="Practice Detriments">
+            		<t>These TLDs are reserved for experimentation or testing. Their use is confusing and does not signal the client's intent. Their use may be prevented by policy.</t>
+            	</section>
+
+            	<section anchor="renaming-non-functional-alt" title="Renaming to Pseudo-TLD">
+            		<t>Clients may rename host objects to use ".alt" or another non-DNS pseudo-TLD as suggested in <xref target="risky-bizness-irtf" />.</t>
+            	</section>
+            	<section anchor="renaming-non-functional-alt-pros" title="Practice Benefits">
+            		<t>The primary benefit is convenience for the deleting EPP client. The deleting
                         EPP client is
                         not required to
                         maintain an authoritative DNS service or receive traffic. Dependent domains
                         cannot be hijacked through the registration of these identifiers and
                         delegation in the DNS.
                     </t>
-                </section>
-                <section anchor="renaming-alt-cons" title="Practice Detriments">
+            	</section>
+            	<section anchor="renaming-non-functional-alt-cons" title="Practice Detriments">
                     <t>The ".alt" pseudo-TLD is to be used "to signify that this is an alternative
                         (non-DNS) namespace and should not be looked up in a DNS context" <xref
                             target="RFC9476" />. Some EPP servers may restrict TLDs to valid
@@ -279,7 +290,8 @@
                         resolver behaviors. These identifiers may be registered in non-DNS
                         namespaces, potentially leading to hijacking vulnerabilities based in other
                         systems. </t>
-                </section>
+            	</section>
+
             </section>
             <section anchor="renaming-non-provisioned" title="Renaming to Non-Authoritative Hosts">
                 <t>Some domain registrars, acting as EPP clients, have maintained host objects
@@ -618,6 +630,7 @@
             <references>
                 <name>Normative References</name>
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml" />
+                <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2606.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5731.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5732.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml" />
