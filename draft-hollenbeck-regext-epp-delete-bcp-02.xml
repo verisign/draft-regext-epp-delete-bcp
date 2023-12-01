@@ -235,6 +235,7 @@
                     The
                     external host is presumed to be non-existent by the deleting EPP client but
                     no check for existence is typically performed.
+                    This practice has been observed in use.
                 </t>
                 <section anchor="renaming-external-pros" title="Practice Benefits">
                     <t>The primary benefit is convenience for the deleting EPP client. The deleting
@@ -256,7 +257,9 @@
             </section>
             <section anchor="renaming-alt" title="Renaming to Non-DNS Hosts">
                 <t>Researchers have suggested that clients rename host objects to use the ".alt"
-                    pseudo-TLD <xref target="risky-bizness-irtf" /> or another non-DNS pseudo-TLD. </t>
+                    pseudo-TLD <xref target="risky-bizness-irtf" /> or another non-DNS pseudo-TLD. 
+                    This practice has not been observed in use.
+                </t>
                 <section anchor="renaming-alt-pros" title="Practice Benefits">
                     <t>
                         The primary benefit is convenience for the deleting EPP client. The deleting
@@ -281,6 +284,7 @@
             <section anchor="renaming-non-provisioned" title="Renaming to Non-Authoritative Hosts">
                 <t>Some domain registrars, acting as EPP clients, have maintained host objects
                     with glue records pointing to prominent public recursive DNS services.
+                    This practice has been observed in use.
                 </t>
                 <section anchor="renaming-non-provisioned-pros" title="Practice Benefits">
                     <t>The primary benefit is convenience for the deleting EPP client. The deleting
@@ -297,9 +301,11 @@
                 </section>
             </section>
             <section anchor="renaming-as112" title='Renaming to "as112.arpa"'>
-                <t>Some domain registrars, acting as EPP clients, have begun renaming host objects
+                <t>Some domain registrars, acting as EPP clients, have rename host objects
                     to subdomains of "as112.arpa," such as "empty.as112.arpa" <xref
-                        target="risky-bizness-irtf" />.</t>
+                        target="risky-bizness-irtf" />.
+                    This practice has been observed in use.
+                </t>
                 <section anchor="renaming-as112-pros" title="Practice Benefits">
                     <t>
                         The primary benefit is convenience for the deleting EPP client. The deleting
@@ -324,7 +330,9 @@
                 <t> Deleting EPP clients rename host objects to a sacrificial name server host
                     object maintained by the client. The sacrificial name server should run a DNS
                     resolution service capable of responding with an authoritative non-error,
-                    non-failure response for requests made for associated domains. </t>
+                    non-failure response for requests made for associated domains. 
+                    This practice has been observed in use.
+                </t>
                 <section anchor="control-rename-pros" title="Practice Benefits">
                     <t> Associated domains are not able to be hijacked, remain in the zone, and have
                         valid DNS records and a responsive DNS service. The service may provide
@@ -350,7 +358,9 @@
                     ICANN or IETF processes (e.g., ".sacrificial"), as an IAB request that IANA
                     delegate a second-level domain (SLD) for ".arpa" (e.g.,
                     "sacrificial-nameserver.arpa"), or as a contracted sinkhole service by ICANN or
-                    other DNS ecosystem actors.</t>
+                    other DNS ecosystem actors.
+                    This practice has not been observed in use.
+                </t>
                 <section anchor="new-service-pros" title="Practice Benefits">
                     <t>
                         This is a convenient for the deleting EPP client. The deleting EPP client is
@@ -376,7 +386,9 @@
                 <t>The recommendations in RFC 5731 <xref target="RFC5731" /> are intended to
                     maintain consistency. However, they are not requirements. EPP servers may relax
                     their constraints and allow sponsoring clients to delete host objects and
-                    disassociate them from domain objects sponsored by other clients. </t>
+                    disassociate them from domain objects sponsored by other clients. 
+                    This practice has been observed in use.
+                </t>
                 <section anchor="explicit-delete-pros" title="Practice Benefits">
                     <t>
                         This is a convenient for the deleting EPP client. The deleting EPP client is
@@ -400,7 +412,9 @@
                     disassociate them from domain objects. </t>
                 <section anchor="explicit-deletion-request" title="Explicit Deletion Request">
                     <t>EPP servers may require that the EPP client explicitly request
-                        the deletion of the host object before taking this action.</t>
+                        the deletion of the host object before taking this action.
+                        This practice has not been observed in use.
+                    </t>
                     <section anchor="explicit-deletion-request-pros" title="Practice Benefits">
                         <t>
                             This would give EPP clients greater flexibility with respect to
@@ -419,7 +433,9 @@
                 <section anchor="additional-deletion-details" title="Additional Deletion Details">
                     <t>The EPP server may provide the deleting EPP client with additional details of the affected
                         objects. The deleting EPP client may receive a message that deletion of the host object would affect
-                        domain objects sponsored by another client and may receive details about those objects.</t>
+                        domain objects sponsored by another client and may receive details about those objects.
+                        This practice has not been observed in use.
+                    </t>
                     <section anchor="additional-deletion-details-pros" title="Practice Benefits">
                         <t>
                             The deleting EPP client would be able to better understand and assess
@@ -444,6 +460,7 @@
                 <section anchor="inform-affected-client" title="Inform Affected Clients">
                     <t> The sponsoring clients of affected domain objects may also be informed of
                         the change.
+                        This practice has not been observed in use.
                     </t>
                     <section anchor="inform-affected-client-pros" title="Practice Benefits">
                         <t>Updates would help achieve the goals of client-server data consistency
@@ -481,7 +498,9 @@
 					subordinate hosts objects and the associations at the end of the
 					pending delete period in RFC 3915.  Due to the potential large
 					number of associations, the server can asynchronously update (e.g.,
-					add and remove from DNS) and purge the associations.</t>
+					add and remove from DNS) and purge the associations.
+                    This practice has not been observed in use.
+					</t>
                     <section anchor="delete-with-restore-pros" title="Practice Benefits">
                         <t>This practice enables the clients to directly delete the domains that
 						they need to without the requirement to rename the subordinate host
