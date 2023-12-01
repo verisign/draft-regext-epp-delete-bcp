@@ -438,14 +438,15 @@
                         <t>
                             This change would require additional development on the part of EPP
                             servers and clients. It may only be relevant if the EPP client is also
-                            provided additional deletion details.
+                            provided additional deletion details about the affected domains. 
                         </t>
                     </section>
                 </section>
                 <section anchor="additional-deletion-details" title="Additional Deletion Details">
                     <t>The EPP server may provide the deleting EPP client with additional details of the affected
-                        objects. The deleting EPP client may receive a message that deletion of the host object would affect
-                        domain objects sponsored by another client and may receive details about those objects.
+                        objects. The deleting EPP client may receive a response (e.g., using msg, reason, msgQ elements of the EPP response <xref target="RFC5730" />)
+                        that deletion of the host object would affect
+                        domain objects sponsored by another client and may receive details about those objects (e.g., using the EPP poll command). 
                         This practice has not been observed in use.
                     </t>
                     <section anchor="additional-deletion-details-pros" title="Practice Benefits">
@@ -471,7 +472,7 @@
                 </section>
                 <section anchor="inform-affected-client" title="Inform Affected Clients">
                     <t> The sponsoring clients of affected domain objects may also be informed of
-                        the change.
+                        the change (e.g., through the EPP Change Poll extension <xref target="RFC8590" />).
                         This practice has not been observed in use.
                     </t>
                     <section anchor="inform-affected-client-pros" title="Practice Benefits">
@@ -631,6 +632,7 @@
                 <name>Normative References</name>
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2606.xml" />
+                <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5730.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5731.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5732.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml" />
@@ -642,6 +644,7 @@
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6305.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7535.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8023.xml" />
+                <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8590.xml" />
                 <reference anchor="risky-bizness" target="https://doi.org/10.1145/3487552.3487816">
                     <front>
                         <title>Risky BIZness: Risks Derived from Registrar Name Management</title>
