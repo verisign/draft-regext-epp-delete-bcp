@@ -241,15 +241,14 @@
                     <t>The primary benefit is convenience for the deleting EPP client. The deleting
                         EPP client is
                         not required to
-                        maintain an authoritative DNS service or receive traffic. Dependent domains
-                        may no longer resolve
-                        if all their hosts are renamed. </t>
+                        maintain an authoritative DNS service or receive traffic.</t>
                 </section>
                 <section anchor="renaming-external-cons" title="Practice Detriments">
                     <t>Malicious actors have registered these parent domains and created child host
                         objects to take control of DNS resolution for associated domains <xref
                             target="risky-bizness" />. </t>
                     <t>Sponsoring clients of the associated domains are not informed of the change.
+                        Associated domains may no longer resolve if all their hosts are renamed.
                         Associated domains may still resolve if they continue to be associated with
                         existent hosts, in which case their partial vulnerability to hijacking is
                         more difficult to detect.</t>
