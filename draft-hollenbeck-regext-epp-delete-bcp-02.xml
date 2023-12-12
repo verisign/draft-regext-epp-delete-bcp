@@ -171,6 +171,26 @@
                     hijacking, as a malicious actor may re-register the domain object, potentially
                     controlling resolution for the host objects and for their associated domain
                     objects.</t>
+                <section anchor="dns-glue" title="Impact of Glue Policies">
+                <t>Glue policies enforced at EPP servers also impact considerations of deleting
+                    domain and host objects. A common policy, also referred to
+                    as the "wide" glue policy, allows publishing of glue records
+                    for any name server residing in the same EPP zone. For
+                    instance, an EPP client can publish A/AAAA records for an
+                    existing delegation ns3.example.com even if the
+                    superordinate domain object example.com is not delegated to
+                    it. The existence of these glue records was one rationale to
+                    prohibit deletion of domain objects with linked subordinate
+                    host objects, since the domains using ns3.example.com may
+                    rely on the glue records provided by the EPP server.</t>
+                <t>To prevent this dependence, EPP servers can adopt a more restrictive glue
+                    policy, also referred to as a "narrow" glue policy,
+                    wherein only glue records for host objects that are in the NS object set for the
+                    superordinate domain are published. For
+                    instance, an EPP client can only publish A/AAAA records for ns3.example.com if
+                    and only if example.com is delegated to it. The more restrictive glue policy
+                    can reduce the need for deleting host objects.</t>
+                </section>
             </section>
             <section anchor="client-server-cons" title="Client-Server Consistency Considerations">
                 <t>A server that implicitly deletes subordinate host objects in response to a
@@ -258,7 +278,9 @@
                 <t>Clients may rename host objects to a special use TLD that cannot resolve in the DNS. Several variations have been suggested.
                     This practice has not been observed in use.</t>
                 <section anchor="renaming-special-use-reserved" title="Renaming to Reserved TLD">
-                    <t>Clients may rename host objects to use ".invalid" or another reserved special-use (<xref target="RFC6761" />) TLD as suggested in <xref target="risky-bizness" />.</t>
+                    <t>Clients may rename host objects to use ".invalid" or
+                        another reserved special-use (<xref target="RFC6761" />) TLD
+                        as suggested in <xref target="risky-bizness" />.</t>
                     <section anchor="renaming-special-use-reserved-pros" title="Practice Benefits">
                         <t>The primary benefit is convenience for the deleting
                             EPP client. These TLDs are already reserved and will not
@@ -267,7 +289,10 @@
                             traffic. Dependent domains cannot be hijacked.</t>
                     </section>
                     <section anchor="renaming-special-use-reserved-cons" title="Practice Detriments">
-                        <t>These TLDs are reserved for experimentation or testing. Their use is confusing and does not signal the client's intent. Their use may be prevented by policy.</t>
+                        <t>These TLDs are reserved for experimentation or
+                        testing. Their use is confusing and does not signal the
+                        client's intent. Their use may be prevented by
+                        policy.</t> 
                     </section>
                 </section>
 
@@ -538,56 +563,30 @@
                 </section>
             </section>
             </section>
-
-
             <section anchor="options-narrow-glue" title="Narrow Glue">
-                <t>
-                    Different EPP servers may enforce different glue policies. One common policy,
-                    also referred to as the "wide" glue policy,
-                    allows publishing of glue records for any name server residing in the same EPP
-                    zone. For instance, an EPP client can
-                    publish A/AAAA records for an existing delegation ns3.example.com even if the
-                    superordinate domain object example.com
-                    is not delegated to it. The existence of these glue records was one rationale to
-                    prohibit deletion of domain objects with linked
-                    subordinate host objects, since the domains using ns3.example.com may rely on
-                    the glue records provided by the EPP server.
-                </t>
-                <t>
-                    To prevent this dependence, EPP servers can adopt a more restrictive glue
-                    policy, also referred to as a "narrow" glue policy,
-                    wherein only glue records for host objects that are in the NS object set for the
-                    superordinate domain are published. For
-                    instance, an EPP client can only publish A/AAAA records for ns3.example.com if
-                    and only if example.com is delegated to it.
-                </t>
+                <t>EPP servers can adopt a "narrow" glue policy to reduce the need for renaming or deletion
+                of host objects.</t>
                 <section anchor="options-narrow-glue-pros" title="Practice Benefits">
-                    <t>
-                        While the adoption of narrow glue policy does not prevent creation of
-                        sacrificial nameservers it reduces the number of
+                    <t>While the adoption of narrow glue policy does not prevent creation of
+                        sacrificial nameservers, it reduces the number of
                         domains that may be exposed as a result of a domain object deletion.
                         Furthermore, the narrow glue policy makes explicit
                         the dependence and thus prevents domains from implicitly relying on glue
                         records in the parent zone thereby limiting the
                         potential impact of allowing these domains to be deleted and reducing the
-                        overall state stored in the EPP server.
-
-                    </t>
+                        overall state stored in the EPP server.</t>
                 </section>
                 <section anchor="options-narrow-glue-cons" title="Practice Detriments">
-                    <t>
-                        That said, the adoption of narrow glue policy can mean significant updates
+                    <t>The adoption of narrow glue policy can require significant updates
                         to EPP server and client implementations.
                         Domains that are configured to implicitly depend on the wide glue may not
                         resolve correctly on removal of the wide
                         glue. Moreover, the removal of glue can affect the resolution performance of
                         domains that previously used the wide
-                        glue but now need additional queries to be resolved.
-                    </t>
+                        glue but now need additional queries to be resolved.</t>
                 </section>
             </section>
         </section>
-
         <section anchor="recommendations" title="Best Practice Recommendations">
             <section anchor="recommendations-current" title="Best Current Practices">
                 <t>
