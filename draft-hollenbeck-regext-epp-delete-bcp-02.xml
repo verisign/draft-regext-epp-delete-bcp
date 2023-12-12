@@ -244,9 +244,9 @@
                         maintain an authoritative DNS service or receive traffic.</t>
                 </section>
                 <section anchor="renaming-external-cons" title="Practice Detriments">
-                    <t>Malicious actors have registered these parent domains and created child host
-                        objects to take control of DNS resolution for associated domains <xref
-                            target="risky-bizness" />. </t>
+                    <t>Malicious actors have registered these parent domains and
+                        created child host objects to take control of DNS resolution
+                        for associated domains <xref target="risky-bizness" />.</t>
                     <t>Sponsoring clients of the associated domains are not informed of the change.
                         Associated domains may no longer resolve if all their hosts are renamed.
                         Associated domains may still resolve if they continue to be associated with
@@ -254,32 +254,34 @@
                         more difficult to detect.</t>
                 </section>
             </section>
-            <section anchor="renaming-non-functional" title="Renaming to Non-Functional TLD">
-                <t>Clients may rename host objects to use a TLD that cannot resolve in the DNS. Several variations have been suggested.
-                This practice has not been observed in use.
-                </t>
-                <section anchor="renaming-non-functional-reserved" title="Renaming to Reserved TLD">
-                    <t>Clients may rename host objects to use ".invalid" or another reserved (<xref target="RFC2606" />) TLD as suggested in <xref target="risky-bizness" />.</t>
-                    <section anchor="renaming-non-functional-reserved-pros" title="Practice Benefits">
-                        <t>The primary benefit is convenience for the deleting EPP client. These TLDs are already reserved and will not resolve. The deleting EPP client is not required to maintain an authoritative DNS service or receive traffic. Dependent domains cannot be hijacked.</t>
+            <section anchor="renaming-special-use" title="Renaming to Special Use TLD">
+                <t>Clients may rename host objects to a special use TLD that cannot resolve in the DNS. Several variations have been suggested.
+                    This practice has not been observed in use.</t>
+                <section anchor="renaming-special-use-reserved" title="Renaming to Reserved TLD">
+                    <t>Clients may rename host objects to use ".invalid" or another reserved special-use (<xref target="RFC6761" />) TLD as suggested in <xref target="risky-bizness" />.</t>
+                    <section anchor="renaming-special-use-reserved-pros" title="Practice Benefits">
+                        <t>The primary benefit is convenience for the deleting
+                            EPP client. These TLDs are already reserved and will not
+                            resolve. The deleting EPP client is not required to
+                            maintain an authoritative DNS service or receive
+                            traffic. Dependent domains cannot be hijacked.</t>
                     </section>
-                    <section anchor="renaming-non-functional-reserved-cons" title="Practice Detriments">
+                    <section anchor="renaming-special-use-reserved-cons" title="Practice Detriments">
                         <t>These TLDs are reserved for experimentation or testing. Their use is confusing and does not signal the client's intent. Their use may be prevented by policy.</t>
                     </section>
                 </section>
 
-                <section anchor="renaming-non-functional-alt" title="Renaming to Pseudo-TLD">
+                <section anchor="renaming-special-use-alt" title="Renaming to Pseudo-TLD">
                     <t>Clients may rename host objects to use ".alt" or another non-DNS pseudo-TLD as suggested in <xref target="risky-bizness-irtf" />.</t>
-                    <section anchor="renaming-non-functional-alt-pros" title="Practice Benefits">
-                        <t>The primary benefit is convenience for the deleting EPP client. The deleting
-                            EPP client is
-                            not required to
-                            maintain an authoritative DNS service or receive traffic. Dependent domains
-                            cannot be hijacked through the registration of these identifiers and
-                            delegation in the DNS.
-                        </t>
+                    <section anchor="renaming-special-use-alt-pros" title="Practice Benefits">
+                        <t>The primary benefit is convenience for the deleting
+                            EPP client. The deleting EPP client is not required to
+                            maintain an authoritative DNS service or receive
+                            traffic. Dependent domains cannot be hijacked through
+                            the registration of these identifiers and delegation in
+                            the DNS.  </t>
                     </section>
-                    <section anchor="renaming-non-functional-alt-cons" title="Practice Detriments">
+                    <section anchor="renaming-special-use-alt-cons" title="Practice Detriments">
                         <t>The ".alt" pseudo-TLD is to be used "to signify that this is an alternative
                             (non-DNS) namespace and should not be looked up in a DNS context" <xref
                                 target="RFC9476" />. Some EPP servers may restrict TLDs to valid
@@ -370,12 +372,9 @@
                     ICANN or IETF processes (e.g., ".sacrificial"), as an IAB request that IANA
                     delegate a second-level domain (SLD) for ".arpa" (e.g.,
                     "sacrificial-nameserver.arpa"), or as a contracted sinkhole service by ICANN or
-                    other DNS ecosystem actors.
-                    This practice has not been observed in use.
-                </t>
+                    other DNS ecosystem actors. This practice has not been observed in use.</t>
                 <section anchor="new-service-pros" title="Practice Benefits">
-                    <t>
-                        This is a convenient for the deleting EPP client. The deleting EPP client is
+                    <t>This is a convenient for the deleting EPP client. The deleting EPP client is
                         not required to
                         maintain an authoritative DNS service or receive traffic. The associated
                         domains are not vulnerable to hijacking.
@@ -385,13 +384,10 @@
                         affected associated domains that result in significant traffic and attempt
                         to contact registrars and registrants.
                         Economies of scale would allow reduced overall costs to the industry (in
-                        contrast to each client running an independent service).
-                    </t>
+                        contrast to each client running an independent service).</t>
                 </section>
                 <section anchor="new-service-cons" title="Practice Detriments">
-                    <t>
-                        Some entity must maintain the infrastructure for the service.
-                    </t>
+                    <t>Some entity must maintain the infrastructure for the service.</t>
                 </section>
             </section>
             <section anchor="explicit-delete" title="Allow Explicit Delete of Host Objects">
@@ -595,7 +591,7 @@
         <section anchor="recommendations" title="Best Practice Recommendations">
             <section anchor="recommendations-current" title="Best Current Practices">
                 <t>
-                    EPP clients MAY rename to the host object to be deleted to a
+                    EPP clients MAY rename the host object to be deleted to a
                     sacrificial name server host object maintained by the client.  This
                     requires that the client maintain the registration of the sacrificial
                     name server's superordinate domain.  The client may consider long
@@ -671,10 +667,10 @@
             <references>
                 <name>Normative References</name>
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml" />
-                <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2606.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5730.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5731.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5732.xml" />
+                <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6761.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9476.xml" />
             </references>
