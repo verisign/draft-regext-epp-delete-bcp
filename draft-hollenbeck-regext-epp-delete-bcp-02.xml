@@ -339,8 +339,7 @@
                     <t> Queries for the associated domains result in SERVFAIL or other failure
                         responses. Some recursive name server implementations may aggressively
                         re-query for these responses, potentially resulting in large numbers of
-                        queries for unresolvable domains <xref
-                            target="I-D.ietf-dnsop-caching-resolution-failures" />.</t>
+                        queries for unresolvable domains <xref target="RFC9520" />.</t>
                 </section>
             </section>
             <section anchor="renaming-as112" title='Renaming to "as112.arpa"'>
@@ -621,10 +620,11 @@
                 </section>
                 <section anchor="recommendations-proposed-rename-reserved" title="Rename to New Reserved TLD">
                     <t>
-                        Clients would rename hosts to use a new reserved TLD (e.g., .sacrificial).
-                        Use of this TLD would communicate the client's intention to create a sacrificial host.
-                        Resolver software could safely ignore the TLD.
-                        Requests to the root for this TLD would not result in DNS failures.
+                        Clients would rename hosts to use a well-understood special-use or reserved domain. The 
+                        domain may be a special-use SLD (e.g., sacrificial.invalid) or a new reserved TLD (e.g., .sacrificial).
+                        Use of this domain would communicate the client's intention to create a sacrificial host.
+                        Resolver software could safely ignore the domain.
+                        Requests to the root for this domain would result in NODATA response <xref target="RFC2308" />.
                     </t>
                 </section>
             </section>
@@ -679,11 +679,13 @@
             </references>
             <references>
                 <name>Informative References</name>
+		<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2308.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.3915.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6305.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7535.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8023.xml" />
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8590.xml" />
+		<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9520.xml" />
                 <reference anchor="risky-bizness" target="https://doi.org/10.1145/3487552.3487816">
                     <front>
                         <title>Risky BIZness: Risks Derived from Registrar Name Management</title>
@@ -705,8 +707,6 @@
                         <date year="2022" month="Nov" />
                     </front>
                 </reference>
-                <xi:include
-                    href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-caching-resolution-failures.xml" />
             </references>
         </references>
         <section title="Change Log">
