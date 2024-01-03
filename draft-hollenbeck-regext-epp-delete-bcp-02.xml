@@ -623,8 +623,8 @@
                         Clients would rename hosts to use a special-use domain. 
                         The domain may be a special-use SLD (e.g., sacrificial.invalid) or a new reserved TLD (e.g., .sacrificial).
                         Use of this domain would communicate the client's intention to create a sacrificial host.
-                        IANA would add this domain to the "Special-Use Domain Name" registry. 
-                        In terms of the questions in <xref target="RFC6761" />:
+                        IANA would add this domain to the "Special-Use Domain Name" registry if such a new TLD is created using either
+						IETF or ICANN processes. In terms of the questions in <xref target="RFC6761" />:
                     </t>
                     <ol type="1" spacing="normal" indent="adaptive" start="1">
                         <li derivedCounter="1.">
@@ -738,8 +738,7 @@
                 </reference>
             </references>
         </references>
-        <section title="Change Log">
-            <t>RFC Editor: Please remove this section before publication.</t>
+        <section title="Change Log" removeInRFC="true">
             <t>This section lists substantial changes to the document as it is being worked on.</t>
             <t>00:</t>
             <ol>
@@ -753,7 +752,9 @@
             </ol>
             <t>02:</t>
             <ol>
-                <li>TBD</li>
+              <li>Refinement of operational practice descriptions.</li>
+              <li>Refinement of glue practice descriptions.</li>
+              <li>Added specific practice recommendations.</li>
             </ol>
         </section>
     </back>
