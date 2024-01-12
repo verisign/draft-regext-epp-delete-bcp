@@ -259,31 +259,10 @@
                             more difficult to detect.</t>
                     </section>
                 </section>
-                <section anchor="renaming-special-use" title="Renaming to Special Use TLD">
-                    <t>Clients may rename host objects to a special use TLD that cannot resolve in the DNS. Several variations have been suggested.
-                        This practice has not been observed in use.</t>
-                    <section anchor="renaming-special-use-reserved" title="Renaming to Reserved TLD">
-                        <t>Clients may rename host objects to use ".invalid" or
-                            another reserved special-use (<xref target="RFC6761" />) TLD
-                            as suggested in <xref target="risky-bizness" />.</t>
-                        <section anchor="renaming-special-use-reserved-pros" title="Practice Benefits">
-                            <t>The primary benefit is convenience for the deleting
-                                EPP client. These TLDs are already reserved and will not
-                                resolve. The deleting EPP client is not required to
-                                maintain an authoritative DNS service or receive
-                                traffic. Dependent domains cannot be hijacked.</t>
-                        </section>
-                        <section anchor="renaming-special-use-reserved-cons" title="Practice Detriments">
-                            <t>These TLDs are reserved for experimentation or
-                                testing. Their use is confusing and does not signal the
-                                client's intent. Their use may be prevented by
-                                policy.</t>
-                        </section>
-                    </section>
 
-                    <section anchor="renaming-special-use-alt" title="Renaming to Pseudo-TLD">
+                    <section anchor="renaming-pseudo-tld" title="Renaming to Pseudo-TLD">
                         <t>Clients may rename host objects to use ".alt" or another non-DNS pseudo-TLD as suggested in <xref target="risky-bizness-irtf" />.</t>
-                        <section anchor="renaming-special-use-alt-pros" title="Practice Benefits">
+                        <section anchor="renaming-pseudo-tld-pros" title="Practice Benefits">
                             <t>The primary benefit is convenience for the deleting
                                 EPP client. The deleting EPP client is not required to
                                 maintain an authoritative DNS service or receive
@@ -291,7 +270,7 @@
                                 the registration of these identifiers and delegation in
                                 the DNS.  </t>
                         </section>
-                        <section anchor="renaming-special-use-alt-cons" title="Practice Detriments">
+                        <section anchor="renaming-pseudo-tld-cons" title="Practice Detriments">
                             <t>The ".alt" pseudo-TLD is to be used "to signify that this is an alternative
                                 (non-DNS) namespace and should not be looked up in a DNS context" <xref
                                     target="RFC9476" />. Some EPP servers may restrict TLDs to valid
@@ -301,9 +280,95 @@
                                 namespaces, potentially leading to hijacking vulnerabilities based in other
                                 systems. </t>
                         </section>
-
+                       
                     </section>
-
+                
+                
+                <section anchor="renaming-existing-special-use" title="Renaming to Existing Special Use TLD">
+                    <t>Clients may rename host objects to a special use TLD that cannot resolve in the DNS. Several variations have been suggested.
+                        This practice has not been observed in use.</t>
+                    <section anchor="renaming-existing-special-use-reserved" title="Renaming to Reserved TLD">
+                        <t>Clients may rename host objects to use ".invalid" or
+                            another reserved special-use (<xref target="RFC6761" />) TLD
+                            as suggested in <xref target="risky-bizness" />.</t>
+                        <section anchor="renaming-existing-special-use-pros" title="Practice Benefits">
+                            <t>The primary benefit is convenience for the deleting
+                                EPP client. These TLDs are already reserved and will not
+                                resolve. The deleting EPP client is not required to
+                                maintain an authoritative DNS service or receive
+                                traffic. Dependent domains cannot be hijacked.</t>
+                        </section>
+                        <section anchor="renaming-existing-special-use-cons" title="Practice Detriments">
+                            <t>These TLDs are reserved for experimentation or
+                                testing. Their use is confusing and does not signal the
+                                client's intent. Their use may be prevented by
+                                policy.</t>
+                        </section>
+                    </section>
+                </section>
+                <section anchor="renaming-new-special-use" title="Renaming to New Special-Use Domain">
+                    <t>
+                        Clients would rename hosts to use a special-use domain.
+                        The domain may be a special-use SLD (e.g., sacrificial.invalid) or a new reserved TLD (e.g., .sacrificial).
+                        Use of this domain would communicate the client's intention to create a sacrificial host.
+                        IANA would add this domain to the "Special-Use Domain Name" registry if such a new TLD is created using either
+                        IETF or ICANN processes. In terms of the questions in <xref target="RFC6761" />:
+                    
+                        Clients would rename hosts to use a special-use domain.
+                        The domain may be a special-use SLD (e.g., sacrificial.invalid) or a new reserved TLD (e.g., .sacrificial).
+                        Use of this domain would communicate the client's intention to create a sacrificial host.
+                        IANA would add this domain to the "Special-Use Domain Name" registry if such a new TLD is created using either
+                        IETF or ICANN processes. 
+                        This practice has not been observed in use.
+                        In terms of the questions from <xref target="RFC6761" />:
+                    </t>
+                    <ol type="1" spacing="normal" indent="adaptive" start="1">
+                        <li derivedCounter="1.">
+                            These names are not expected to be visible to human users.
+                            However, the purpose of these domains is expected to be semantically recognizable to human users.
+                        </li>
+                        <li derivedCounter="2.">
+                            Application software is not expected to recognize these names
+                            as special or treat them differently than other allowed domain names.
+                        </li>
+                        <li derivedCounter="3.">
+                            Name resolution APIs and libraries are not expected to recognize
+                            these names as special or treat them differently than other allowed domain names.
+                        </li>
+                        <li derivedCounter="4.">
+                            Caching name servers are not expected to recognize these names
+                            as special or treat them differently than other allowed domain names.
+                        </li>
+                        <li derivedCounter="5.">
+                            Authoritative name servers are not expected to recognize
+                            these names as special or treat them differently than other allowed domain names.
+                            Requests to the root for this domain would result in NXDOMAIN response <xref target="RFC8499" />.
+                        </li>
+                        <li derivedCounter="6.">
+                            DNS server operators will treat this domain and its subdomains as they would any other allowed names in the DNS.
+                        </li>
+                        <li derivedCounter="7.">
+                            DNS Registries/Registrars will not be able to register this domain and must deny requests to register it or its subdomains.
+                        </li>
+                    </ol>
+                        <section anchor="renaming-new-special-use-pros" title="Practice Benefits">
+                            <t>
+                            	This option would offer clarity concerning the intentions of registrars that rename hosts. 
+                            	It would also enable registrars of affected domains ease of detection of renamed hosts.
+                            	This option is also convenient for the deleting EPP client. 
+                            	The deleting EPP client is not required to
+                                maintain an authoritative DNS service or receive
+                                traffic. 
+                                Dependent domains cannot be hijacked through
+                                the registration of these identifiers and delegation in
+                                the DNS. 
+                            </t>
+                        </section>
+                        <section anchor="renaming-new-special-use-cons" title="Practice Detriments">
+                            <t>
+                            	This would require cooperation and policy changes for registrars and registries. 
+                            </t>
+                        </section>                    
                 </section>
                 <section anchor="renaming-non-provisioned" title="Renaming to Non-Authoritative Hosts">
                     <t>Some domain registrars, acting as EPP clients, have maintained host objects
@@ -372,6 +437,7 @@
                                 target="risky-bizness" />. </t>
                     </section>
                 </section>
+                
                 <section anchor="new-service" title="Renaming to Community Sacrificial Name Server Service">
                     <t>A new community-wide service could be created explicitly intended for use for
                         renaming host records. This would require maintenance of name servers capable of
@@ -399,6 +465,8 @@
                         <t>Some entity must maintain the infrastructure for the service.</t>
                     </section>
                 </section>
+                
+                
             </section>
             <section anchor="delete-overall" title="Deletion of Hosts">
                 <section anchor="explicit-delete" title="Allow Explicit Delete of Host Objects">
@@ -427,7 +495,10 @@
                     </section>
                     <section anchor="options-allow-delete"
                         title="Options for Allowed Delete of Associated Host Objects">
-                        <t>As noted previously, EPP servers can allow clients to delete host objects and
+                        <t>                        EPP servers would allow clients to explicitly delete hosts with dependent domains.
+                        Hosts would be deleted with restore capability, as explained above.
+
+                        As noted previously, EPP servers can allow clients to delete host objects and
                             disassociate them from domain objects. </t>
                         <section anchor="explicit-deletion-request" title="Explicit Deletion Request">
                             <t>EPP servers may require that the EPP client explicitly request
@@ -575,47 +646,16 @@
             <section anchor="recommendations-proposed" title="Best Proposed Practices">
                 <section anchor="recommendations-proposed-delete-safely" title="Safe Host Deletion">
                     <t>
-                        EPP servers would allow clients to explicitly delete hosts with dependent domains.
-                        Hosts would be deleted with restore capability, as explained above.
+                    	Deletion with restore (see <xref target="delete-with-restore" format="counter" />) 
+                    	should be allowed with explicit client requests (see <xref target="explicit-deletion-request" format="counter" />). 
+                    	Deletion should include additional deletion details to the client (see <xref target="additional-deletion-details" format="counter" />). 
+						Affected clients should be informed of changes (see <xref target="inform-affected-client" format="counter" />). )                    	
                     </t>
                 </section>
                 <section anchor="recommendations-proposed-rename-reserved" title="Rename to New Special-Use Domain">
                     <t>
-                        Clients would rename hosts to use a special-use domain.
-                        The domain may be a special-use SLD (e.g., sacrificial.invalid) or a new reserved TLD (e.g., .sacrificial).
-                        Use of this domain would communicate the client's intention to create a sacrificial host.
-                        IANA would add this domain to the "Special-Use Domain Name" registry if such a new TLD is created using either
-                        IETF or ICANN processes. In terms of the questions in <xref target="RFC6761" />:
+                    	See section <xref target="renaming-new-special-use" format="counter" />.
                     </t>
-                    <ol type="1" spacing="normal" indent="adaptive" start="1">
-                        <li derivedCounter="1.">
-                            These names are not expected to be visible to human users.
-                            However, the purpose of these domains is expected to be semantically recognizable to human users.
-                        </li>
-                        <li derivedCounter="2.">
-                            Application software is not expected to recognize these names
-                            as special or treat them differently than other allowed domain names.
-                        </li>
-                        <li derivedCounter="3.">
-                            Name resolution APIs and libraries are not expected to recognize
-                            these names as special or treat them differently than other allowed domain names.
-                        </li>
-                        <li derivedCounter="4.">
-                            Caching name servers are not expected to recognize these names
-                            as special or treat them differently than other allowed domain names.
-                        </li>
-                        <li derivedCounter="5.">
-                            Authoritative name servers are not expected to recognize
-                            these names as special or treat them differently than other allowed domain names.
-                            Requests to the root for this domain would result in NXDOMAIN response <xref target="RFC8499" />.
-                        </li>
-                        <li derivedCounter="6.">
-                            DNS server operators will treat this domain and its subdomains as they would any other allowed names in the DNS.
-                        </li>
-                        <li derivedCounter="7.">
-                            DNS Registries/Registrars will not be able to register this domain and must deny requests to register it or its subdomains.
-                        </li>
-                    </ol>
                 </section>
             </section>
         </section>
