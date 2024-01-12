@@ -334,12 +334,6 @@
                         The domain may be a special-use SLD (e.g., sacrificial.invalid) or a new reserved TLD (e.g., .sacrificial).
                         Use of this domain would communicate the client's intention to create a sacrificial host.
                         IANA would add this domain to the "Special-Use Domain Name" registry if such a new TLD is created using either
-                        IETF or ICANN processes. In terms of the questions in <xref target="RFC6761" />:
-                    
-                        Clients would rename hosts to use a special-use domain.
-                        The domain may be a special-use SLD (e.g., sacrificial.invalid) or a new reserved TLD (e.g., .sacrificial).
-                        Use of this domain would communicate the client's intention to create a sacrificial host.
-                        IANA would add this domain to the "Special-Use Domain Name" registry if such a new TLD is created using either
                         IETF or ICANN processes. 
                         This practice has not been observed in use.
                         In terms of the questions from <xref target="RFC6761" />:
@@ -427,11 +421,6 @@
                     <bcp14>SHOULD</bcp14> provide responses that indicate problems with a domain's
                     delegation, such as non-existence or include controlled interruption
                     IP addresses <xref target="RFC8023" />.
-					</t>
-                    <t> Deleting EPP clients rename host objects to a sacrificial name server host
-                        object maintained by the client. The sacrificial name server should run a DNS
-                        resolution service capable of responding with an authoritative non-error,
-                        non-failure response for requests made for associated domains.
                         This practice has been observed in use.
                     </t>
                     <section anchor="control-rename-pros" title="Practice Benefits">
