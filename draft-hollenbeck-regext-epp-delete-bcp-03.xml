@@ -415,6 +415,22 @@
                 </section>
                 <section anchor="control-rename"
                     title="Renaming to a Host Object Maintained by the Client">
+                    <t>
+                                        EPP clients MAY rename the host object to be deleted to a
+                    sacrificial name server host object maintained by the client.  This
+                    requires that the client maintain the registration of the sacrificial
+                    name server's superordinate domain.  The client may consider long
+                    registration periods and the use of registrar and registry lock
+                    services to maintain and protect the superordinate domain and the
+                    host object.  Failures to maintain these registrations have allowed
+                    domain hijacks [risky-bizness].
+                    The sacrificial name server should run a DNS resolution service
+                    capable of responding with an authoritative non-error, non-failure
+                    response for requests made for associated domains.  The service
+                    <bcp14>SHOULD</bcp14> provide responses that indicate problems with a domain's
+                    delegation, such as non-existence or include controlled interruption
+                    IP addresses <xref target="RFC8023" />.
+					</t>
                     <t> Deleting EPP clients rename host objects to a sacrificial name server host
                         object maintained by the client. The sacrificial name server should run a DNS
                         resolution service capable of responding with an authoritative non-error,
@@ -625,22 +641,7 @@
         <section anchor="recommendations" title="Best Practice Recommendations">
             <section anchor="recommendations-current" title="Best Current Practices">
                 <t>
-                    EPP clients MAY rename the host object to be deleted to a
-                    sacrificial name server host object maintained by the client.  This
-                    requires that the client maintain the registration of the sacrificial
-                    name server's superordinate domain.  The client may consider long
-                    registration periods and the use of registrar and registry lock
-                    services to maintain and protect the superordinate domain and the
-                    host object.  Failures to maintain these registrations have allowed
-                    domain hijacks [risky-bizness].
-                </t>
-                <t>
-                    The sacrificial name server should run a DNS resolution service
-                    capable of responding with an authoritative non-error, non-failure
-                    response for requests made for associated domains.  The service
-                    <bcp14>SHOULD</bcp14> provide responses that indicate problems with a domain's
-                    delegation, such as non-existence or include controlled interruption
-                    IP addresses <xref target="RFC8023" />.
+                	Host objects <bcp14>MAY</bcp14> rename to a host object maintained by the client <xref target="control-rename" format="counter" />.
                 </t>
             </section>
             <section anchor="recommendations-proposed" title="Best Proposed Practices">
