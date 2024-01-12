@@ -280,10 +280,7 @@
                                 namespaces, potentially leading to hijacking vulnerabilities based in other
                                 systems. </t>
                         </section>
-                       
                     </section>
-                
-                
                 <section anchor="renaming-existing-special-use" title="Renaming to Existing Special Use TLD">
                     <t>Clients may rename host objects to a special use TLD that cannot resolve in the DNS. Several variations have been suggested.
                         This practice has not been observed in use.</t>
@@ -304,6 +301,31 @@
                                 client's intent. Their use may be prevented by
                                 policy.</t>
                         </section>
+                    </section>
+                </section>
+                <section anchor="renaming-as112" title='Renaming to "as112.arpa"'>
+                    <t>Some domain registrars, acting as EPP clients, have rename host objects
+                        to subdomains of "as112.arpa," such as "empty.as112.arpa" <xref
+                            target="risky-bizness-irtf" />.
+                        This practice has been observed in use.
+                    </t>
+                    <section anchor="renaming-as112-pros" title="Practice Benefits">
+                        <t>
+                            The primary benefit is convenience for the deleting EPP client. The deleting
+                            EPP client is
+                            not required to
+                            maintain an authoritative DNS service or receive traffic. These subdomains
+                            are
+                            valid DNS names designed to sinkhole traffic.
+                        </t>
+                    </section>
+                    <section anchor="renaming-as112-cons" title="Practice Detriments">
+                        <t> This is a misuse of AS112, which is for reverse lookups on non-unique IPs,
+                            primarily so local admins can sinkhole non-global traffic <xref
+                                target="RFC7535" />. Unexpected AS112 traffic has previously caused
+                            problems with intrusion detection systems and firewalls <xref
+                                target="RFC6305" />. Local administrators can potentially hijack
+                            requests. AS112 infrastructure must be maintained. </t>
                     </section>
                 </section>
                 <section anchor="renaming-new-special-use" title="Renaming to New Special-Use Domain">
@@ -386,31 +408,6 @@
                             responses. Some recursive name server implementations may aggressively
                             re-query for these responses, potentially resulting in large numbers of
                             queries for unresolvable domains <xref target="RFC9520" />.</t>
-                    </section>
-                </section>
-                <section anchor="renaming-as112" title='Renaming to "as112.arpa"'>
-                    <t>Some domain registrars, acting as EPP clients, have rename host objects
-                        to subdomains of "as112.arpa," such as "empty.as112.arpa" <xref
-                            target="risky-bizness-irtf" />.
-                        This practice has been observed in use.
-                    </t>
-                    <section anchor="renaming-as112-pros" title="Practice Benefits">
-                        <t>
-                            The primary benefit is convenience for the deleting EPP client. The deleting
-                            EPP client is
-                            not required to
-                            maintain an authoritative DNS service or receive traffic. These subdomains
-                            are
-                            valid DNS names designed to sinkhole traffic.
-                        </t>
-                    </section>
-                    <section anchor="renaming-as112-cons" title="Practice Detriments">
-                        <t> This is a misuse of AS112, which is for reverse lookups on non-unique IPs,
-                            primarily so local admins can sinkhole non-global traffic <xref
-                                target="RFC7535" />. Unexpected AS112 traffic has previously caused
-                            problems with intrusion detection systems and firewalls <xref
-                                target="RFC6305" />. Local administrators can potentially hijack
-                            requests. AS112 infrastructure must be maintained. </t>
                     </section>
                 </section>
                 <section anchor="control-rename"
@@ -641,7 +638,7 @@
         <section anchor="recommendations" title="Best Practice Recommendations">
             <section anchor="recommendations-current" title="Best Current Practices">
                 <t>
-                	Host objects <bcp14>MAY</bcp14> rename to a host object maintained by the client <xref target="control-rename" format="counter" />.
+                	Host objects <bcp14>SHOULD</bcp14> rename to a host object maintained by the client (see section <xref target="control-rename" format="counter" />).
                 </t>
             </section>
             <section anchor="recommendations-proposed" title="Best Proposed Practices">
@@ -650,7 +647,7 @@
                     	Deletion with restore (see <xref target="delete-with-restore" format="counter" />) 
                     	should be allowed with explicit client requests (see <xref target="explicit-deletion-request" format="counter" />). 
                     	Deletion should include additional deletion details to the client (see <xref target="additional-deletion-details" format="counter" />). 
-						Affected clients should be informed of changes (see <xref target="inform-affected-client" format="counter" />). )                    	
+						Affected clients should be informed of changes (see <xref target="inform-affected-client" format="counter" />).
                     </t>
                 </section>
                 <section anchor="recommendations-proposed-rename-reserved" title="Rename to New Special-Use Domain">
