@@ -482,14 +482,14 @@
                 
             </section>
             <section anchor="delete-overall" title="Deletion of Hosts">
-                <section anchor="explicit-delete" title="Allow Explicit Delete of Host Objects">
+                <section anchor="automatic-delete" title="Delete affected Host Objects">
                     <t>The recommendations in RFC 5731 <xref target="RFC5731" /> are intended to
                         maintain consistency. However, they are not requirements. EPP servers may relax
                         their constraints and allow sponsoring clients to delete host objects and
                         disassociate them from domain objects sponsored by other clients.
                         This practice has been observed in use.
                     </t>
-                    <section anchor="explicit-delete-pros" title="Practice Benefits">
+                    <section anchor="automatic-delete-pros" title="Practice Benefits">
                         <t>
                             This is a convenient for the deleting EPP client. The deleting EPP client is
                             not required to
@@ -497,11 +497,29 @@
                             domains are not vulnerable to hijacking.
                         </t>
                     </section>
-                    <section anchor="explicit-delete-cons" title="Practice Detriments">
+                    <section anchor="automatic-delete-cons" title="Practice Detriments">
                         <t>This could
                             result in domains with no remaining name servers being removed from the zone
                             or
                             domains with only one remaining name server.
+                            Deletions could potentially affect large numbers of associated domains,
+                            placing strain on domain registries.
+                        </t>
+                    </section>
+                </section>
+                <section anchor="explicit-delete" title="Allow Explicit Delete of Host Objects">
+                    <t>Sponsoring clients may delete host objects and disassociate them from domain objects sponsored by other clients. 
+                    They would be required to explicitly delete these objects.
+                    </t>
+                    <section anchor="explicit-delete-pros" title="Practice Benefits">
+                        <t>
+                        	Registries would not be required to unilaterally take responsbility for deletion. 
+							The deleting EPP client is not required to maintain an authoritative DNS service or receive traffic. 
+							The associated domains are not vulnerable to hijacking.
+                        </t>
+                    </section>
+                    <section anchor="explicit-delete-cons" title="Practice Detriments">
+                        <t>This could result in domains with no remaining name servers being removed from the zone or domains with only one remaining name server.
                             Deletions could potentially affect large numbers of associated domains,
                             placing strain on domain registries.
                         </t>
