@@ -311,7 +311,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP     January 2024
 
 5.1.1.  Practice Benefits
 
-   Affected domains remain delegated in the zone.
+   Affected domains remain delegated in the zone.  Registrars and
+   registrants of affected domains may be able to determine the
+   intention of the change.
 
 5.1.2.  Practice Detriments
 
@@ -325,8 +327,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP     January 2024
    domain object.  The external host is presumed to be non-existent by
    the deleting EPP client but no check for existence is typically
    performed.  This practice has been observed in use.
-
-
 
 
 
