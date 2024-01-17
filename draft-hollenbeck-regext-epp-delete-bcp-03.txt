@@ -82,7 +82,7 @@ Table of Contents
        5.1.2.  Practice Detriments . . . . . . . . . . . . . . . . .   6
        5.1.3.  Renaming to External, Presumed Non-Existent Hosts . .   7
        5.1.4.  Renaming to Pseudo-TLD  . . . . . . . . . . . . . . .   7
-       5.1.5.  Renaming to Existing Special Use TLD  . . . . . . . .   8
+       5.1.5.  Renaming to Existing Special-Use TLD  . . . . . . . .   8
        5.1.6.  Renaming to "as112.arpa"  . . . . . . . . . . . . . .   8
        5.1.7.  Renaming to a Special-Use Domain  . . . . . . . . . .   9
        5.1.8.  Renaming to Non-Authoritative Hosts . . . . . . . . .  10
@@ -396,9 +396,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP     January 2024
 
    vulnerabilities based in other systems.
 
-5.1.5.  Renaming to Existing Special Use TLD
+5.1.5.  Renaming to Existing Special-Use TLD
 
-   Clients may rename host objects to a special use TLD that cannot
+   Clients may rename host objects to a special-use TLD that cannot
    resolve in the DNS.  Several variations have been suggested.  This
    practice has not been observed in use.
 
@@ -452,14 +452,14 @@ Internet-Draft   Domain and Host Object Deletion in EPP     January 2024
 
 5.1.7.  Renaming to a Special-Use Domain
 
-   Clients would rename hosts to use a special-use domain.  The domain
-   may be a special-use SLD (e.g., sacrificial.invalid) or a new
-   reserved TLD (e.g., .sacrificial).  Use of this domain would
-   communicate the client's intention to create a sacrificial host.
-   IANA would add this domain to the "Special-Use Domain Name" registry
-   if such a new TLD is created using either IETF or ICANN processes.
-   This practice has not been observed in use.  In terms of the
-   questions from [RFC6761]:
+   Clients would rename hosts to a special-use domain or subdomain
+   thereof.  The domain may be a special-use SLD (e.g.,
+   sacrificial.invalid) or a new reserved TLD (e.g., .sacrificial).  Use
+   of this domain would communicate the client's intention to create a
+   sacrificial host.  IANA would add this domain to the "Special-Use
+   Domain Name" registry if such a new TLD is created using either IETF
+   or ICANN processes.  This practice has not been observed in use.  In
+   terms of the questions from [RFC6761]:
 
    1.  These names are not expected to be visible to human users.
        However, the purpose of these domains is expected to be
@@ -589,7 +589,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP     January 2024
    This is a convenient for the deleting EPP client.  The deleting EPP
    client is not required to maintain an authoritative DNS service or
    receive traffic.  The associated domains are not vulnerable to
-   hijacking.  This would provide an well-understood, industry-standard
+   hijacking.  This would provide a well-understood, industry-standard
    solution, allowing registrars and registrants to easily identify
    associated domains that have been affected.  Infrastructure operators
    could monitor traffic to identify affected associated domains that
@@ -804,7 +804,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP     January 2024
 5.2.2.5.2.  Practice Detriments
 
    By making it easier for a client to explicitly delete a domain having
-   subordinates hosts with associations, there is higher risk of
+   subordinate hosts with associations, there is higher risk of
    inadvertent side effects in a single delete command.  There is
    existing risk in EPP of inadvertent side effects, such as adding the
    "clientHold" status to the domain that will impact the DNS resolution

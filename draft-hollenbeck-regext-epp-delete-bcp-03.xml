@@ -296,8 +296,8 @@
                                 systems. </t>
                         </section>
                     </section>
-                <section anchor="renaming-existing-special-use" title="Renaming to Existing Special Use TLD">
-                    <t>Clients may rename host objects to a special use TLD that cannot resolve in the DNS. Several variations have been suggested.
+                <section anchor="renaming-existing-special-use" title="Renaming to Existing Special-Use TLD">
+                    <t>Clients may rename host objects to a special-use TLD that cannot resolve in the DNS. Several variations have been suggested.
                         This practice has not been observed in use.</t>
                     <section anchor="renaming-existing-special-use-reserved" title="Renaming to Reserved TLD">
                         <t>Clients may rename host objects to use ".invalid" or
@@ -345,7 +345,7 @@
                 </section>
                 <section anchor="renaming-new-special-use" title="Renaming to a Special-Use Domain">
                     <t>
-                        Clients would rename hosts to use a special-use domain.
+                        Clients would rename hosts to a special-use domain or subdomain thereof.
                         The domain may be a special-use SLD (e.g., sacrificial.invalid) or a new reserved TLD (e.g., .sacrificial).
                         Use of this domain would communicate the client's intention to create a sacrificial host.
                         IANA would add this domain to the "Special-Use Domain Name" registry if such a new TLD is created using either
@@ -468,7 +468,7 @@
                             not required to
                             maintain an authoritative DNS service or receive traffic. The associated
                             domains are not vulnerable to hijacking.
-                            This would provide an well-understood, industry-standard solution, allowing
+                            This would provide a well-understood, industry-standard solution, allowing
                             registrars and registrants to easily identify associated domains that have
                             been affected. Infrastructure operators could monitor traffic to identify
                             affected associated domains that result in significant traffic and attempt
@@ -641,7 +641,7 @@
                         </section>
                         <section anchor="delete-with-restore-cons" title="Practice Detriments">
                             <t>
-                                By making it easier for a client to explicitly delete a domain having subordinates hosts
+                                By making it easier for a client to explicitly delete a domain having subordinate hosts
                                 with associations, there is higher risk of inadvertent side effects in a single delete command.
                                 There is existing risk in EPP of inadvertent side effects, such as adding the "clientHold"
                                 status to the domain that will impact the DNS resolution of the subordinate hosts and the
