@@ -228,11 +228,17 @@
         </section>
         <section anchor="practice-analysis"
             title="Analysis of Practices for Domain and Host Object Deletion">
-            <t>Different EPP servers can employ a range of practices for domain
+            <t>EPP servers can employ a range of practices for domain
                 and host object deletion. Notably, the scope of any practice
                 discussed here is the EPP server that adopts the practice and the
-                domains managed by it. </t>
+                domains managed by it. The practices described in this document fall into two broad
+				categories: renaming objects to use "sacrificial" hosts, and allowing objects to be
+				deleted even if there are existing data relationships. These practice categories are
+				described in the following sections.</t>
             <section anchor="renaming-overall" title="Renaming to Sacrificial Hosts">
+                <t>"Sacrificial" hosts are hosts whose name is intended to remove an existing relationship
+				between domain and host objects. The first group of practices is based on EPP server support
+				for renaming host objects using sacrificial hosts.</t>
 				<section anchor="renaming-overall-pros" title="Practice Benefits">
 					<t>Affected domains remain delegated in the zone. Registrars and 
 					registrants of affected domains may be able to determine the intention 
@@ -337,14 +343,13 @@
                             requests. AS112 infrastructure must be maintained. </t>
                     </section>
                 </section>
-                <section anchor="renaming-new-special-use" title="Renaming to New Special-Use Domain">
+                <section anchor="renaming-new-special-use" title="Renaming to a Special-Use Domain">
                     <t>
                         Clients would rename hosts to use a special-use domain.
                         The domain may be a special-use SLD (e.g., sacrificial.invalid) or a new reserved TLD (e.g., .sacrificial).
                         Use of this domain would communicate the client's intention to create a sacrificial host.
                         IANA would add this domain to the "Special-Use Domain Name" registry if such a new TLD is created using either
-                        IETF or ICANN processes. 
-                        This practice has not been observed in use.
+                        IETF or ICANN processes. This practice has not been observed in use.
                         In terms of the questions from <xref target="RFC6761" />:
                     </t>
                     <ol type="1" spacing="normal" indent="adaptive" start="1">
@@ -479,7 +484,9 @@
                 
             </section>
             <section anchor="delete-overall" title="Deletion of Hosts">
-                <section anchor="automatic-delete" title="Delete affected Host Objects">
+                <t>The second group of practices is based on EPP server support for allowing objects to be deleted
+				even if there are existing data relationships.</t>
+				<section anchor="automatic-delete" title="Delete affected Host Objects">
                     <t>The recommendations in RFC 5731 <xref target="RFC5731" /> are intended to
                         maintain consistency. However, they are not requirements. EPP servers may relax
                         their constraints and allow sponsoring clients to delete host objects and
@@ -488,7 +495,7 @@
                     </t>
                     <section anchor="automatic-delete-pros" title="Practice Benefits">
                         <t>
-                            This is a convenient for the deleting EPP client. The deleting EPP client is
+                            This is convenient for the deleting EPP client. The deleting EPP client is
                             not required to
                             maintain an authoritative DNS service or receive traffic. The associated
                             domains are not vulnerable to hijacking.
@@ -510,7 +517,7 @@
                     </t>
                     <section anchor="explicit-delete-pros" title="Practice Benefits">
                         <t>
-                        	Registries would not be required to unilaterally take responsbility for deletion. 
+                        	Registries would not be required to unilaterally take responsibility for deletion. 
 							The deleting EPP client is not required to maintain an authoritative DNS service or receive traffic. 
 							The associated domains are not vulnerable to hijacking.
                         </t>
@@ -523,9 +530,8 @@
                     </section>
                     <section anchor="options-allow-delete"
                         title="Options for Allowed Delete of Associated Host Objects">
-                        <t>                        EPP servers would allow clients to explicitly delete hosts with dependent domains.
+                        <t>EPP servers would allow clients to explicitly delete hosts with dependent domains.
                         Hosts would be deleted with restore capability, as explained above.
-
                         As noted previously, EPP servers can allow clients to delete host objects and
                             disassociate them from domain objects. </t>
                         <section anchor="explicit-deletion-request" title="Explicit Deletion Request">
@@ -558,7 +564,7 @@
                             <section anchor="additional-deletion-details-pros" title="Practice Benefits">
                                 <t>
                                     The deleting EPP client would be able to better understand and assess
-                                    the potential harms of a host object deletion.
+                                    the potential harms of host object deletion.
                                     Depending on the content of the message, the deleting EPP client might
                                     choose additional actions, such as delaying the deletion until manual
                                     approval can be obtained, renaming the host objects, or informing
@@ -653,21 +659,21 @@
         <section anchor="recommendations" title="Best Practice Recommendations">
             <section anchor="recommendations-current" title="Best Current Practices">
                 <t>
-                	Host objects <bcp14>SHOULD</bcp14> rename to a host object maintained by the client (see section <xref target="control-rename" format="counter" />).
+                	Host objects <bcp14>SHOULD</bcp14> be renamed to a sacrificial name server host object maintained by the client (see section <xref target="control-rename" format="counter" />).
                 </t>
             </section>
             <section anchor="recommendations-proposed" title="Best Proposed Practices">
                 <section anchor="recommendations-proposed-delete-safely" title="Safe Host Deletion">
                     <t>
                     	Deletion with restore (see <xref target="delete-with-restore" format="counter" />) 
-                    	should be allowed with explicit client requests (see <xref target="explicit-deletion-request" format="counter" />). 
-                    	Deletion should include additional deletion details to the client (see <xref target="additional-deletion-details" format="counter" />). 
-						Affected clients should be informed of changes (see <xref target="inform-affected-client" format="counter" />).
+                    	<bcp14>SHOULD</bcp14> be allowed with explicit client requests (see <xref target="explicit-deletion-request" format="counter" />). 
+                    	Deletion <bcp14>SHOULD</bcp14> include additional deletion details to the client (see <xref target="additional-deletion-details" format="counter" />). 
+						Affected clients <bcp14>SHOULD</bcp14> be informed of changes (see <xref target="inform-affected-client" format="counter" />).
                     </t>
                 </section>
-                <section anchor="recommendations-proposed-rename-reserved" title="Rename to New Special-Use Domain">
+                <section anchor="recommendations-proposed-rename-reserved" title="Rename to a Special-Use Domain">
                     <t>
-                    	See section <xref target="renaming-new-special-use" format="counter" />.
+                    	Host objects <bcp14>SHOULD</bcp14> be renamed to a sacrificial name server host object that uses a special-use domain (see <xref target="renaming-new-special-use" format="counter" />).
                     </t>
                 </section>
             </section>
@@ -772,7 +778,8 @@
             </ol>
             <t>03:</t>
             <ol>
-                <li>Removed wide/narrow glue section</li>
+                <li>Removed wide/narrow glue section.</li>
+                <li>Refinement of practice descriptions and recommendations.</li>
             </ol>
         </section>
     </back>
