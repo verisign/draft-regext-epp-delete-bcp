@@ -18,7 +18,7 @@
 <rfc
     xmlns:xi="http://www.w3.org/2001/XInclude"
     category="bcp"
-    docName="draft-ietf-regext-epp-delete-bcp-00"
+    docName="draft-ietf-regext-epp-delete-bcp-01"
     ipr="trust200902"
     obsoletes=""
     updates=""
@@ -276,14 +276,14 @@
                 </section>
 
                     <section anchor="renaming-pseudo-tld" title="Renaming to Pseudo-TLD">
-                        <t>Clients may rename host objects to use ".alt" or another non-DNS pseudo-TLD as suggested in <xref target="risky-bizness-irtf" />.</t>
+                        <t>Clients may rename host objects to use ".alt" or another non-DNS pseudo-TLD as suggested in <xref target="risky-bizness-irtf" />. This practice has not been observed in use.</t>
                         <section anchor="renaming-pseudo-tld-pros" title="Practice Benefits">
                             <t>The primary benefit is convenience for the deleting
                                 EPP client. The deleting EPP client is not required to
                                 maintain an authoritative DNS service or receive
                                 traffic. Dependent domains cannot be hijacked through
                                 the registration of these identifiers and delegation in
-                                the DNS.  </t>
+                                the DNS.</t>
                         </section>
                         <section anchor="renaming-pseudo-tld-cons" title="Practice Detriments">
                             <t>The ".alt" pseudo-TLD is to be used "to signify that this is an alternative
@@ -513,7 +513,7 @@
                 </section>
                 <section anchor="explicit-delete" title="Allow Explicit Delete of Host Objects">
                     <t>Sponsoring clients may delete host objects and disassociate them from domain objects sponsored by other clients. 
-                    They would be required to explicitly delete these objects.
+                    They would be required to explicitly delete these objects. This practice has been observed in use.
                     </t>
                     <section anchor="explicit-delete-pros" title="Practice Benefits">
                         <t>
@@ -586,7 +586,7 @@
                     <section anchor="inform-affected-client" title="Inform Affected Clients">
                         <t> The sponsoring clients of affected domain objects may also be informed of
                             the change (e.g., through the EPP Change Poll extension <xref target="RFC8590" />).
-                            This practice has not been observed in use.
+                            This practice has been observed in use.
                         </t>
                         <section anchor="inform-affected-client-pros" title="Practice Benefits">
                             <t>Updates would help achieve the goals of client-server data consistency
@@ -709,7 +709,7 @@
         </section>
         <section anchor="acks" title="Acknowledgments">
             <t>The authors would like to thank the following people for their contributions to this
-                document: James Gould, James Mitchell, Matthew Thomas, Peter
+                document: James Gould, Pawel Kowalik, Mario Loffredo, James Mitchell, Matthew Thomas, Peter
                 Thomassen.</t>
         </section>
     </middle>
@@ -763,6 +763,10 @@
             <t>00:</t>
             <ol>
                 <li>Initial working group version.</li>
+            </ol>
+            <t>01:</t>
+            <ol>
+                <li>Addressed feedback received during the WG adoption request. Re-included text to indicate if approaches have been observed in practice or not.</li>
             </ol>
         </section>
     </back>
