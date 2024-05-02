@@ -18,7 +18,7 @@
 <rfc
     xmlns:xi="http://www.w3.org/2001/XInclude"
     category="bcp"
-    docName="draft-ietf-regext-epp-delete-bcp-01"
+    docName="draft-ietf-regext-epp-delete-bcp-02"
     ipr="trust200902"
     obsoletes=""
     updates=""
@@ -526,7 +526,7 @@
                     <section anchor="options-allow-delete"
                         title="Options for Allowed Delete of Associated Host Objects">
                         <t>EPP servers would allow clients to explicitly delete hosts with dependent domains.
-                        Hosts would be deleted with restore capability, as explained above.
+                        Hosts would be deleted with restore capability, as described in <xref target="delete-with-restore" />.
                         As noted previously, EPP servers can allow clients to delete host objects and
                             disassociate them from domain objects. </t>
                         <section anchor="explicit-deletion-request" title="Explicit Deletion Request">
@@ -700,10 +700,21 @@
                 periodically scan
                 sponsored domains for association with sacrificial name servers and alert end users
                 concerning those domains.</t>
+				
+			<t>An attacker controlling one nameserver can use DNSSEC to take over the victim domain
+			completely if the victim domain does not use DNSSEC. Suppose the registry operator or
+			registrar processes child-side CDS/CDNSKEY records for automated DS maintenance but neglects
+			to check them for consistency across the domain's nameservers. In that case, the domain will
+			eventually end up with DS records derived from the attacker's CDS/CDNSKEY records. This
+			scenario requires some statistical luck, as the parent zone's CDS/CDNSKEY query, or sometimes
+			queries, need to hit the attacker's nameserver. After a successful query, validating resolvers
+			will no longer accept responses from the remaining legitimate nameservers. Subsequently, if
+			the parent supports CSYNC, the attacker may use it to update the delegation's NS records,
+			replacing the remaining legitimate nameservers entirely with ones under the attacker's control.</t>
         </section>
         <section anchor="acks" title="Acknowledgments">
             <t>The authors would like to thank the following people for their contributions to this
-                document: James Gould, Pawel Kowalik, Mario Loffredo, James Mitchell, Matthew Thomas, Peter
+                document: Brian Dickson, James Gould, Pawel Kowalik, Mario Loffredo, James Mitchell, Matthew Thomas, Peter
                 Thomassen.</t>
         </section>
     </middle>
@@ -761,6 +772,15 @@
             <t>01:</t>
             <ol>
                 <li>Addressed feedback received during the WG adoption request. Re-included text to indicate if approaches have been observed in practice or not.</li>
+            </ol>
+            <t>02:</t>
+            <ol>
+                <li>Section 1: Added sentence to bridge between renaming host objects and deletion dilemma.</li>
+                <li>Section 1: Noted that renaming a host object to a name of an external host is an operation that might not be possible to reverse.</li>
+                <li>Section 4: Added mention of "sacrificial" hosts. "ns1.example.org" is a sacrificial host.</li>
+				<li>Section 5.1: Added  text to give some more context on "sacrificial" hosts.</li>
+				<li>Section 8: Added text describing DNSSEC risk.</li>
+				<li>Acknowledged Brian Dickson.</li>
             </ol>
         </section>
     </back>

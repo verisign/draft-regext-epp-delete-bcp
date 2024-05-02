@@ -5,15 +5,15 @@
 REGEXT Working Group                                       S. Hollenbeck
 Internet-Draft                                             Verisign Labs
 Intended status: Best Current Practice                        W. Carroll
-Expires: 29 October 2024                                        Verisign
+Expires: 3 November 2024                                        Verisign
                                                               G. Akiwate
                                                      Stanford University
-                                                           27 April 2024
+                                                              2 May 2024
 
 
 Best Practices for Deletion of Domain and Host Objects in the Extensible
                       Provisioning Protocol (EPP)
-                  draft-ietf-regext-epp-delete-bcp-01
+                  draft-ietf-regext-epp-delete-bcp-02
 
 Abstract
 
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 October 2024.
+   This Internet-Draft will expire on 3 November 2024.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Hollenbeck, et al.       Expires 29 October 2024                [Page 1]
+Hollenbeck, et al.       Expires 3 November 2024                [Page 1]
 
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -99,19 +99,19 @@ Table of Contents
        6.2.2.  Rename to a Special-Use Domain  . . . . . . . . . . .  16
    7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  16
    8.  Security Considerations . . . . . . . . . . . . . . . . . . .  16
-   9.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  16
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  16
-     10.1.  Normative References . . . . . . . . . . . . . . . . . .  16
+   9.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  17
+   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  17
+     10.1.  Normative References . . . . . . . . . . . . . . . . . .  17
      10.2.  Informative References . . . . . . . . . . . . . . . . .  17
    Appendix A.  Change Log . . . . . . . . . . . . . . . . . . . . .  18
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  18
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  19
 
 
 
 
-Hollenbeck, et al.       Expires 29 October 2024                [Page 2]
+Hollenbeck, et al.       Expires 3 November 2024                [Page 2]
 
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
 
 
 1.  Introduction
@@ -165,9 +165,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
 
 
 
-Hollenbeck, et al.       Expires 29 October 2024                [Page 3]
+Hollenbeck, et al.       Expires 3 November 2024                [Page 3]
 
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
 
 
    Section 1.1 of RFC 5732 includes a description of external hosts.
@@ -221,9 +221,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
 
 
 
-Hollenbeck, et al.       Expires 29 October 2024                [Page 4]
+Hollenbeck, et al.       Expires 3 November 2024                [Page 4]
 
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
 
 
 3.2.  Client-Server Consistency Considerations
@@ -277,9 +277,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
 
 
 
-Hollenbeck, et al.       Expires 29 October 2024                [Page 5]
+Hollenbeck, et al.       Expires 3 November 2024                [Page 5]
 
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
 
 
    can modify domain object "domain2.example", and if they do not do so
@@ -333,9 +333,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
 
 
 
-Hollenbeck, et al.       Expires 29 October 2024                [Page 6]
+Hollenbeck, et al.       Expires 3 November 2024                [Page 6]
 
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
 
 
 5.1.3.  Renaming to External, Presumed Non-Existent Hosts
@@ -389,9 +389,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
 
 
 
-Hollenbeck, et al.       Expires 29 October 2024                [Page 7]
+Hollenbeck, et al.       Expires 3 November 2024                [Page 7]
 
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
 
 
    registered in non-DNS namespaces, potentially leading to hijacking
@@ -445,9 +445,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
 
 
 
-Hollenbeck, et al.       Expires 29 October 2024                [Page 8]
+Hollenbeck, et al.       Expires 3 November 2024                [Page 8]
 
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
 
 
 5.1.7.  Renaming to a Special-Use Domain
@@ -501,9 +501,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
 
 
 
-Hollenbeck, et al.       Expires 29 October 2024                [Page 9]
+Hollenbeck, et al.       Expires 3 November 2024                [Page 9]
 
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
 
 
 5.1.7.2.  Practice Detriments
@@ -557,9 +557,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
 
 
 
-Hollenbeck, et al.       Expires 29 October 2024               [Page 10]
+Hollenbeck, et al.       Expires 3 November 2024               [Page 10]
 
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
 
 
 5.1.9.2.  Practice Detriments
@@ -613,9 +613,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
 
 
 
-Hollenbeck, et al.       Expires 29 October 2024               [Page 11]
+Hollenbeck, et al.       Expires 3 November 2024               [Page 11]
 
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
 
 
 5.2.1.  Delete affected Host Objects
@@ -669,18 +669,18 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
 
 
 
-Hollenbeck, et al.       Expires 29 October 2024               [Page 12]
+Hollenbeck, et al.       Expires 3 November 2024               [Page 12]
 
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
 
 
 5.2.2.3.  Options for Allowed Delete of Associated Host Objects
 
    EPP servers would allow clients to explicitly delete hosts with
    dependent domains.  Hosts would be deleted with restore capability,
-   as explained above.  As noted previously, EPP servers can allow
-   clients to delete host objects and disassociate them from domain
-   objects.
+   as described in Section 5.2.2.5.  As noted previously, EPP servers
+   can allow clients to delete host objects and disassociate them from
+   domain objects.
 
 5.2.2.3.1.  Explicit Deletion Request
 
@@ -725,9 +725,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
 
 
 
-Hollenbeck, et al.       Expires 29 October 2024               [Page 13]
+Hollenbeck, et al.       Expires 3 November 2024               [Page 13]
 
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
 
 
 5.2.2.3.2.2.  Practice Detriments
@@ -781,9 +781,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
 
 
 
-Hollenbeck, et al.       Expires 29 October 2024               [Page 14]
+Hollenbeck, et al.       Expires 3 November 2024               [Page 14]
 
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
 
 
    end of the pending delete period in RFC 3915.  Due to the potential
@@ -837,9 +837,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
 
 
 
-Hollenbeck, et al.       Expires 29 October 2024               [Page 15]
+Hollenbeck, et al.       Expires 3 November 2024               [Page 15]
 
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
 
 
 6.2.2.  Rename to a Special-Use Domain
@@ -874,11 +874,36 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
    periodically scan sponsored domains for association with sacrificial
    name servers and alert end users concerning those domains.
 
+   An attacker controlling one nameserver can use DNSSEC to take over
+   the victim domain completely if the victim domain does not use
+   DNSSEC.  Suppose the registry operator or registrar processes child-
+   side CDS/CDNSKEY records for automated DS maintenance but neglects to
+   check them for consistency across the domain's nameservers.  In that
+   case, the domain will eventually end up with DS records derived from
+   the attacker's CDS/CDNSKEY records.  This scenario requires some
+   statistical luck, as the parent zone's CDS/CDNSKEY query, or
+   sometimes queries, need to hit the attacker's nameserver.  After a
+   successful query, validating resolvers will no longer accept
+   responses from the remaining legitimate nameservers.  Subsequently,
+   if the parent supports CSYNC, the attacker may use it to update the
+   delegation's NS records, replacing the remaining legitimate
+   nameservers entirely with ones under the attacker's control.
+
+
+
+
+
+Hollenbeck, et al.       Expires 3 November 2024               [Page 16]
+
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
+
+
 9.  Acknowledgments
 
    The authors would like to thank the following people for their
-   contributions to this document: James Gould, Pawel Kowalik, Mario
-   Loffredo, James Mitchell, Matthew Thomas, Peter Thomassen.
+   contributions to this document: Brian Dickson, James Gould, Pawel
+   Kowalik, Mario Loffredo, James Mitchell, Matthew Thomas, Peter
+   Thomassen.
 
 10.  References
 
@@ -888,15 +913,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
-
-
-
-
-
-Hollenbeck, et al.       Expires 29 October 2024               [Page 16]
-
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
-
 
    [RFC5730]  Hollenbeck, S., "Extensible Provisioning Protocol (EPP)",
               STD 69, RFC 5730, DOI 10.17487/RFC5730, August 2009,
@@ -930,6 +946,14 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
               DOI 10.17487/RFC3915, September 2004,
               <https://www.rfc-editor.org/info/rfc3915>.
 
+
+
+
+Hollenbeck, et al.       Expires 3 November 2024               [Page 17]
+
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
+
+
    [RFC6305]  Abley, J. and W. Maton, "I'm Being Attacked by
               PRISONER.IANA.ORG!", RFC 6305, DOI 10.17487/RFC6305, July
               2011, <https://www.rfc-editor.org/info/rfc6305>.
@@ -943,16 +967,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
               Workshop and Prize on Root Causes and Mitigation of Name
               Collisions", RFC 8023, DOI 10.17487/RFC8023, November
               2016, <https://www.rfc-editor.org/info/rfc8023>.
-
-
-
-
-
-
-Hollenbeck, et al.       Expires 29 October 2024               [Page 17]
-
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
-
 
    [RFC8499]  Hoffman, P., Sullivan, A., and K. Fujiwara, "DNS
               Terminology", RFC 8499, DOI 10.17487/RFC8499, January
@@ -989,6 +1003,13 @@ Appendix A.  Change Log
    This section lists substantial changes to the document as it is being
    worked on.
 
+
+
+Hollenbeck, et al.       Expires 3 November 2024               [Page 18]
+
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
+
+
    00:
 
    1.  Initial working group version.
@@ -999,16 +1020,26 @@ Appendix A.  Change Log
        included text to indicate if approaches have been observed in
        practice or not.
 
+   02:
+
+   1.  Section 1: Added sentence to bridge between renaming host objects
+       and deletion dilemma.
+
+   2.  Section 1: Noted that renaming a host object to a name of an
+       external host is an operation that might not be possible to
+       reverse.
+
+   3.  Section 4: Added mention of "sacrificial" hosts.
+       "ns1.example.org" is a sacrificial host.
+
+   4.  Section 5.1: Added text to give some more context on
+       "sacrificial" hosts.
+
+   5.  Section 8: Added text describing DNSSEC risk.
+
+   6.  Acknowledged Brian Dickson.
+
 Authors' Addresses
-
-
-
-
-
-Hollenbeck, et al.       Expires 29 October 2024               [Page 18]
-
-Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
-
 
    Scott Hollenbeck
    Verisign Labs
@@ -1027,6 +1058,12 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
    Phone: +1 703 948-3200
    Email: wicarroll@verisign.com
    URI:   https://verisign.com
+
+
+
+Hollenbeck, et al.       Expires 3 November 2024               [Page 19]
+
+Internet-Draft   Domain and Host Object Deletion in EPP         May 2024
 
 
    Gautam Akiwate
@@ -1061,4 +1098,23 @@ Internet-Draft   Domain and Host Object Deletion in EPP       April 2024
 
 
 
-Hollenbeck, et al.       Expires 29 October 2024               [Page 19]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hollenbeck, et al.       Expires 3 November 2024               [Page 20]
