@@ -689,28 +689,22 @@
                 host objects.</t>
 
             <t>Child domains that depend on host objects associated with domain objects sponsored by
-                another
-                EPP client for DNS resolution may be protected from hijacking through the use of
-                DNSSEC. Their
-                resolution may be protected from the effects of deletion by using host objects
-                associated with
-                multiple domain objects. DNSSEC and multiple host objects may interfere with the use
-                of controlled
-                interruption IP addresses to alert registrants to DNS changes. EPP clients can
-                periodically scan
-                sponsored domains for association with sacrificial name servers and alert end users
-                concerning those domains.</t>
+                another EPP client for DNS resolution may be protected from hijacking through the use
+                of DNSSEC. Their resolution may be protected from the effects of deletion by using
+                host objects associated with multiple domain objects. DNSSEC and multiple
+                host objects may interfere with the use of controlled interruption IP addresses to alert
+                registrants to DNS changes. EPP clients can periodically scan sponsored domains for
+                association with sacrificial name servers and alert end users concerning those domains.</t>
 				
-			<t>An attacker controlling one nameserver can use DNSSEC to take over the victim domain
-			completely if the victim domain does not use DNSSEC. Suppose the registry operator or
-			registrar processes child-side CDS/CDNSKEY records for automated DS maintenance but neglects
-			to check them for consistency across the domain's nameservers. In that case, the domain will
-			eventually end up with DS records derived from the attacker's CDS/CDNSKEY records. This
-			scenario requires some statistical luck, as the parent zone's CDS/CDNSKEY query, or sometimes
-			queries, need to hit the attacker's nameserver. After a successful query, validating resolvers
-			will no longer accept responses from the remaining legitimate nameservers. Subsequently, if
-			the parent supports CSYNC, the attacker may use it to update the delegation's NS records,
-			replacing the remaining legitimate nameservers entirely with ones under the attacker's control.</t>
+			<t>In absence of DNSSEC use by the victim, an attacker who gains control of a
+                single nameserver can use DNSSEC to instead take over the victim domain completely
+                if the registry operator and registrar process for automated DS maintenance neglects
+                to check all nameservers for consistency in CDS/CDNSKEY records. In this scenario,
+                the domain will end up with DS records derived from the attacker CDS/CDNSKEY records
+                if, by chance, the queries happen to hit the attacker controlled nameserver. Subsequently, validating
+                resolvers will no longer accept responses from the legitimate nameservers. Moreover, with
+                the use of CSYNC an attacker may update the domain NS records removing the legitimate
+                nameservers entirely.</t>
         </section>
         <section anchor="acks" title="Acknowledgments">
             <t>The authors would like to thank the following people for their contributions to this
@@ -778,9 +772,9 @@
                 <li>Section 1: Added sentence to bridge between renaming host objects and deletion dilemma.</li>
                 <li>Section 1: Noted that renaming a host object to a name of an external host is an operation that might not be possible to reverse.</li>
                 <li>Section 4: Added mention of "sacrificial" hosts. "ns1.example.org" is a sacrificial host.</li>
-				<li>Section 5.1: Added  text to give some more context on "sacrificial" hosts.</li>
-				<li>Section 8: Added text describing DNSSEC risk.</li>
-				<li>Acknowledged Brian Dickson.</li>
+                <li>Section 5.1: Added  text to give some more context on "sacrificial" hosts.</li>
+                <li>Section 8: Added text describing DNSSEC risk.</li>
+                <li>Acknowledged Brian Dickson.</li>
             </ol>
         </section>
     </back>
