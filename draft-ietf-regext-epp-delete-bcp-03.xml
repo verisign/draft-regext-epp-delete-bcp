@@ -18,7 +18,7 @@
 <rfc
     xmlns:xi="http://www.w3.org/2001/XInclude"
     category="bcp"
-    docName="draft-ietf-regext-epp-delete-bcp-02"
+    docName="draft-ietf-regext-epp-delete-bcp-03"
     ipr="trust200902"
     obsoletes=""
     updates=""
@@ -166,7 +166,8 @@
                     objects to exist after deletion of their superordinate domain object invites
                     hijacking, as a malicious actor may re-register the domain object, potentially
                     controlling resolution for the host objects and for their associated domain
-                    objects.</t>
+                    objects. It also creates orphan glue as described in SAC048
+					(<eref target="https://itp.cdn.icann.org/en/files/security-and-stability-advisory-committee-ssac-reports/sac-048-en.pdf"/>).</t>
             </section>
             <section anchor="client-server-cons" title="Client-Server Consistency Considerations">
                 <t>A server that implicitly deletes subordinate host objects in response to a
@@ -174,7 +175,8 @@
                     which the EPP client and the EPP server have different views of what remains
                     registered after processing a &lt;delete&gt; command. The text in RFCs 5731 and
                     5732 was written to encourage clients to take singular, discrete steps to delete
-                    objects in a way that maintains client-server data consistency.</t>
+                    objects in a way that maintains client-server data consistency. Experience
+					suggests that this inconsistency poses little operational risk.</t>
             </section>
             <section anchor="relational-cons" title="Relational Consistency Considerations">
                 <t>Implementations of EPP can have dependencies on the hierarchical domain
@@ -414,7 +416,7 @@
                     </section>
                 </section>
                 <section anchor="control-rename"
-                    title="Renaming to a Host Object Maintained by the Client">
+                    title="Renaming to Sacrificial Name Server Host Objects Maintained by the Client">
                     <t>EPP clients MAY rename the host object to be deleted to a
                     sacrificial name server host object maintained by the client.  This
                     requires that the client maintain the registration of the sacrificial
@@ -651,10 +653,13 @@
             </section>
         </section>
         <section anchor="recommendations" title="Best Practice Recommendations">
-            <section anchor="recommendations-current" title="Best Current Practices">
-                <t>
-                    Host objects <bcp14>SHOULD</bcp14> be renamed to a sacrificial name server host object maintained by the client (see section <xref target="control-rename" format="counter" />).
-                </t>
+            <t>The practices in this section are described as "best practices" because they address the operational risk with minimal
+			undesired side effects. The "Best Current Practice" recommendation has been observed in operation. The "Best Proposed Practices"
+			have not been observed in operation. The analysis presented in this document suggests that they could become best practices
+			if deployed.</t>
+            <section anchor="recommendations-current" title="Best Current Practice">
+                <t>Host objects <bcp14>SHOULD</bcp14> be renamed to a sacrificial name server host object maintained by the client
+				(see section <xref target="control-rename" format="counter" />).</t>
             </section>
             <section anchor="recommendations-proposed" title="Best Proposed Practices">
                 <section anchor="recommendations-proposed-delete-safely" title="Safe Host Deletion">
@@ -775,6 +780,13 @@
                 <li>Section 5.1: Added  text to give some more context on "sacrificial" hosts.</li>
                 <li>Section 8: Added text describing DNSSEC risk.</li>
                 <li>Acknowledged Brian Dickson.</li>
+            </ol>
+            <t>03:</t>
+            <ol>
+                <li>Added reference to SAC048 in <xref target="dns-cons"/>.</li>
+                <li>Added note about minimal risk in <xref target="client-server-cons"/>.</li>
+                <li>Added context to the best practice recommendations in <xref target="recommendations"/>.</li>
+                <li>Added "Sacrificial Name Server" to the title of <xref target="control-rename"/>.</li>
             </ol>
         </section>
     </back>
