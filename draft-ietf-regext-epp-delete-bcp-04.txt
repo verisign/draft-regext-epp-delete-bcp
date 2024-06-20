@@ -103,7 +103,7 @@ Table of Contents
      10.1.  Normative References . . . . . . . . . . . . . . . . . .  18
      10.2.  Informative References . . . . . . . . . . . . . . . . .  18
    Appendix A.  Change Log . . . . . . . . . . . . . . . . . . . . .  19
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  20
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  21
 
 
 
@@ -1111,8 +1111,8 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    4.  Added a specific recommendation to use "sacrificial.invalid" in
        Section 6.
 
-Authors' Addresses
-
+   5.  Reorganized practice description sections into subsections of
+       practices to avoid, best practices, and potential practices.
 
 
 
@@ -1121,6 +1121,8 @@ Hollenbeck, et al.      Expires 22 December 2024               [Page 20]
 
 Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
+
+Authors' Addresses
 
    Scott Hollenbeck
    Verisign Labs
@@ -1149,8 +1151,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    Phone: +1 650 723-2300
    Email: gakiwate@cs.stanford.edu
    URI:   https://cs.stanford.edu/~gakiwate/
-
-
 
 
 
