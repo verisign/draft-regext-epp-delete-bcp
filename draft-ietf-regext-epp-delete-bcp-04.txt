@@ -83,29 +83,29 @@ Table of Contents
    4.  Host Object Renaming Risk . . . . . . . . . . . . . . . . . .   5
    5.  Analysis of Practices for Domain and Host Object Deletion . .   6
      5.1.  Renaming to Sacrificial Hosts . . . . . . . . . . . . . .   6
-       5.1.1.  Practice Benefits . . . . . . . . . . . . . . . . . .   7
+       5.1.1.  Practice Benefits . . . . . . . . . . . . . . . . . .   6
        5.1.2.  Practice Detriments . . . . . . . . . . . . . . . . .   7
-       5.1.3.  Renaming to External, Presumed Non-Existent Hosts . .   7
-       5.1.4.  Renaming to Pseudo-TLD  . . . . . . . . . . . . . . .   7
-       5.1.5.  Renaming to Existing Special-Use TLD  . . . . . . . .   8
-       5.1.6.  Renaming to "as112.arpa"  . . . . . . . . . . . . . .   8
-       5.1.7.  Renaming to a Special-Use Domain  . . . . . . . . . .   9
-       5.1.8.  Renaming to Non-Authoritative Hosts . . . . . . . . .  10
-       5.1.9.  Renaming to Sacrificial Name Server Host Objects
-               Maintained by the Client  . . . . . . . . . . . . . .  11
-       5.1.10. Renaming to Community Sacrificial Name Server
-               Service . . . . . . . . . . . . . . . . . . . . . . .  11
+       5.1.3.  Renaming Practices to Avoid . . . . . . . . . . . . .   7
+       5.1.4.  Renaming Best Practices . . . . . . . . . . . . . . .   9
+       5.1.5.  Renaming Potential Practices  . . . . . . . . . . . .   9
      5.2.  Deletion of Hosts . . . . . . . . . . . . . . . . . . . .  12
-       5.2.1.  Delete affected Host Objects  . . . . . . . . . . . .  12
-       5.2.2.  Allow Explicit Delete of Host Objects . . . . . . . .  13
+       5.2.1.  Deletion Practices to Avoid . . . . . . . . . . . . .  12
+       5.2.2.  Deletion Potential Practices  . . . . . . . . . . . .  13
    6.  Best Practice Recommendations . . . . . . . . . . . . . . . .  16
      6.1.  Best Current Practice . . . . . . . . . . . . . . . . . .  16
      6.2.  Best Proposed Practices . . . . . . . . . . . . . . . . .  16
        6.2.1.  Safe Host Deletion  . . . . . . . . . . . . . . . . .  16
        6.2.2.  Rename to a Special-Use Domain  . . . . . . . . . . .  16
-   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  16
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  16
+   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  17
+   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  17
    9.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  17
+   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  17
+     10.1.  Normative References . . . . . . . . . . . . . . . . . .  18
+     10.2.  Informative References . . . . . . . . . . . . . . . . .  18
+   Appendix A.  Change Log . . . . . . . . . . . . . . . . . . . . .  19
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  20
+
+
 
 
 
@@ -113,12 +113,6 @@ Hollenbeck, et al.      Expires 22 December 2024                [Page 2]
 
 Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
-
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  17
-     10.1.  Normative References . . . . . . . . . . . . . . . . . .  17
-     10.2.  Informative References . . . . . . . . . . . . . . . . .  18
-   Appendix A.  Change Log . . . . . . . . . . . . . . . . . . . . .  19
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  20
 
 1.  Introduction
 
@@ -162,6 +156,12 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    associations, with one exception: changing an external host object
    that has associations with objects that are sponsored by a different
    client.  Attempts to update such hosts directly MUST fail with EPP
+   error code 2305.  The change can be provisioned by creating a new
+   external host with a new name and any needed new attributes, and
+   subsequently updating the other objects sponsored by the client."
+
+
+
 
 
 
@@ -169,10 +169,6 @@ Hollenbeck, et al.      Expires 22 December 2024                [Page 3]
 
 Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
-
-   error code 2305.  The change can be provisioned by creating a new
-   external host with a new name and any needed new attributes, and
-   subsequently updating the other objects sponsored by the client."
 
    Section 1.1 of RFC 5732 includes a description of external hosts.
    Some EPP clients have developed operational practices that use host
@@ -218,6 +214,10 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    encourage clients to take singular, discrete steps to delete objects
    in a way that avoids breaking DNS resolution functionality.
    Additionally, allowing host objects to exist after deletion of their
+   superordinate domain object invites hijacking, as a malicious actor
+   may re-register the domain object, potentially controlling resolution
+   for the host objects and for their associated domain objects.  It
+   also creates orphan glue as described in SAC048
 
 
 
@@ -226,10 +226,6 @@ Hollenbeck, et al.      Expires 22 December 2024                [Page 4]
 Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
 
-   superordinate domain object invites hijacking, as a malicious actor
-   may re-register the domain object, potentially controlling resolution
-   for the host objects and for their associated domain objects.  It
-   also creates orphan glue as described in SAC048
    (https://itp.cdn.icann.org/en/files/security-and-stability-advisory-
    committee-ssac-reports/sac-048-en.pdf).
 
@@ -273,6 +269,10 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    Subordinate host object "ns1.domain1.example" is registered and
    associated with domain object "domain1.example" by ClientX.
 
+   Host object "ns1.domain1.example" is associated with domain object
+   "domain2.example" by ClientY.
+
+
 
 
 
@@ -281,9 +281,6 @@ Hollenbeck, et al.      Expires 22 December 2024                [Page 5]
 
 Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
-
-   Host object "ns1.domain1.example" is associated with domain object
-   "domain2.example" by ClientY.
 
    ClientX wishes to delete domain object "domain1.example".  It can
    modify domain object "domain1.example" to remove the association of
@@ -327,8 +324,11 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    first group of deletion practices use sacrificial hosts leveraging
    existing EPP server support for renaming host objects.
 
+5.1.1.  Practice Benefits
 
-
+   Affected domains remain delegated in the zone.  Registrars and
+   registrants of affected domains may be able to determine the
+   intention of the change.
 
 
 
@@ -338,18 +338,14 @@ Hollenbeck, et al.      Expires 22 December 2024                [Page 6]
 Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
 
-5.1.1.  Practice Benefits
-
-   Affected domains remain delegated in the zone.  Registrars and
-   registrants of affected domains may be able to determine the
-   intention of the change.
-
 5.1.2.  Practice Detriments
 
    Zones are crowded with irrelevant records.  Registrars and
    registrants of affected domains are required to clean them up.
 
-5.1.3.  Renaming to External, Presumed Non-Existent Hosts
+5.1.3.  Renaming Practices to Avoid
+
+5.1.3.1.  Renaming to External, Presumed Non-Existent Hosts
 
    As described above, this practice renames subordinate host objects to
    an external host in order to allow the deletion of the superordinate
@@ -357,13 +353,13 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    the deleting EPP client but no check for existence is typically
    performed.  This practice has been observed in use.
 
-5.1.3.1.  Practice Benefits
+5.1.3.1.1.  Practice Benefits
 
    The primary benefit is convenience for the deleting EPP client.  The
    deleting EPP client is not required to maintain an authoritative DNS
    service or receive traffic.
 
-5.1.3.2.  Practice Detriments
+5.1.3.1.2.  Practice Detriments
 
    Malicious actors have registered these parent domains and created
    child host objects to take control of DNS resolution for associated
@@ -375,15 +371,19 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    to be associated with existent hosts, in which case their partial
    vulnerability to hijacking is more difficult to detect.
 
-5.1.4.  Renaming to Pseudo-TLD
+5.1.3.2.  Renaming to Pseudo-TLD
 
    Clients may rename host objects to use ".alt" or another non-DNS
    pseudo-TLD as suggested in [risky-bizness-irtf].  This practice has
    not been observed in use.
 
+5.1.3.2.1.  Practice Benefits
 
-
-
+   The primary benefit is convenience for the deleting EPP client.  The
+   deleting EPP client is not required to maintain an authoritative DNS
+   service or receive traffic.  Dependent domains cannot be hijacked
+   through the registration of these identifiers and delegation in the
+   DNS.
 
 
 
@@ -394,15 +394,7 @@ Hollenbeck, et al.      Expires 22 December 2024                [Page 7]
 Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
 
-5.1.4.1.  Practice Benefits
-
-   The primary benefit is convenience for the deleting EPP client.  The
-   deleting EPP client is not required to maintain an authoritative DNS
-   service or receive traffic.  Dependent domains cannot be hijacked
-   through the registration of these identifiers and delegation in the
-   DNS.
-
-5.1.4.2.  Practice Detriments
+5.1.3.2.2.  Practice Detriments
 
    The ".alt" pseudo-TLD is to be used "to signify that this is an
    alternative (non-DNS) namespace and should not be looked up in a DNS
@@ -413,51 +405,20 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    registered in non-DNS namespaces, potentially leading to hijacking
    vulnerabilities based in other systems.
 
-5.1.5.  Renaming to Existing Special-Use TLD
-
-   Clients may rename host objects to a special-use TLD that cannot
-   resolve in the DNS.  Several variations have been suggested.  This
-   practice has not been observed in use.
-
-5.1.5.1.  Renaming to Reserved TLD
-
-   Clients may rename host objects to use ".invalid" or another reserved
-   special-use ([RFC6761]) TLD as suggested in [risky-bizness].
-
-5.1.5.1.1.  Practice Benefits
-
-   The primary benefit is convenience for the deleting EPP client.
-   These TLDs are already reserved and will not resolve.  The deleting
-   EPP client is not required to maintain an authoritative DNS service
-   or receive traffic.  Dependent domains cannot be hijacked.
-
-5.1.5.1.2.  Practice Detriments
-
-   These TLDs are reserved for experimentation or testing.  Their use is
-   confusing and does not signal the client's intent.  Their use may be
-   prevented by policy.
-
-5.1.6.  Renaming to "as112.arpa"
+5.1.3.3.  Renaming to "as112.arpa"
 
    Some domain registrars, acting as EPP clients, have rename host
    objects to subdomains of "as112.arpa," such as "empty.as112.arpa"
    [risky-bizness-irtf].  This practice has been observed in use.
 
-
-
-Hollenbeck, et al.      Expires 22 December 2024                [Page 8]
-
-Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
-
-
-5.1.6.1.  Practice Benefits
+5.1.3.3.1.  Practice Benefits
 
    The primary benefit is convenience for the deleting EPP client.  The
    deleting EPP client is not required to maintain an authoritative DNS
    service or receive traffic.  These subdomains are valid DNS names
    designed to sinkhole traffic.
 
-5.1.6.2.  Practice Detriments
+5.1.3.3.2.  Practice Detriments
 
    This is a misuse of AS112, which is for reverse lookups on non-unique
    IPs, primarily so local admins can sinkhole non-global traffic
@@ -466,7 +427,110 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    administrators can potentially hijack requests.  AS112 infrastructure
    must be maintained.
 
-5.1.7.  Renaming to a Special-Use Domain
+5.1.3.4.  Renaming to Non-Authoritative Hosts
+
+   Some domain registrars, acting as EPP clients, have maintained host
+   objects with glue records pointing to prominent public recursive DNS
+   services.  This practice has been observed in use.
+
+5.1.3.4.1.  Practice Benefits
+
+   The primary benefit is convenience for the deleting EPP client.  The
+   deleting EPP client is not required to maintain an authoritative DNS
+   service or receive traffic.
+
+
+
+
+
+
+
+Hollenbeck, et al.      Expires 22 December 2024                [Page 8]
+
+Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
+
+
+5.1.3.4.2.  Practice Detriments
+
+   Queries for the associated domains result in SERVFAIL or other
+   failure responses.  Some recursive name server implementations may
+   aggressively re-query for these responses, potentially resulting in
+   large numbers of queries for unresolvable domains [RFC9520].
+
+5.1.4.  Renaming Best Practices
+
+5.1.4.1.  Renaming to Sacrificial Name Server Host Objects Maintained by
+          the Client
+
+   EPP clients MAY rename the host object to be deleted to a sacrificial
+   name server host object maintained by the client.  This requires that
+   the client maintain the registration of the sacrificial name server's
+   superordinate domain.  The client may consider long registration
+   periods and the use of registrar and registry lock services to
+   maintain and protect the superordinate domain and the host object.
+   Failures to maintain these registrations have allowed domain hijacks
+   [risky-bizness].  The sacrificial name server should run a DNS
+   resolution service capable of responding with an authoritative non-
+   error, non-failure response for requests made for associated domains.
+   The service SHOULD provide responses that indicate problems with a
+   domain's delegation, such as non-existence or include controlled
+   interruption IP addresses [RFC8023].  This practice has been observed
+   in use.
+
+5.1.4.1.1.  Practice Benefits
+
+   Associated domains are not able to be hijacked, remain in the zone,
+   and have valid DNS records and a responsive DNS service.  The service
+   may provide responses that indicate problems with a domain's
+   delegation, such as non-existence or include controlled interruption
+   IP addresses [RFC8023].
+
+5.1.4.1.2.  Practice Detriments
+
+   This requires that the client maintain the registration of the
+   sacrificial name server's superordinate domain.  The client may
+   consider long registration periods and the use of registrar and
+   registry lock services to maintain and protect the superordinate
+   domain and the host object.  Failures to maintain these registrations
+   have allowed domain hijacks [risky-bizness].
+
+5.1.5.  Renaming Potential Practices
+
+
+
+
+
+
+Hollenbeck, et al.      Expires 22 December 2024                [Page 9]
+
+Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
+
+
+5.1.5.1.  Renaming to Existing Special-Use TLD
+
+   Clients may rename host objects to a special-use TLD that cannot
+   resolve in the DNS.  Several variations have been suggested.  This
+   practice has not been observed in use.
+
+5.1.5.1.1.  Renaming to Reserved TLD
+
+   Clients may rename host objects to use ".invalid" or another reserved
+   special-use ([RFC6761]) TLD as suggested in [risky-bizness].
+
+5.1.5.1.1.1.  Practice Benefits
+
+   The primary benefit is convenience for the deleting EPP client.
+   These TLDs are already reserved and will not resolve.  The deleting
+   EPP client is not required to maintain an authoritative DNS service
+   or receive traffic.  Dependent domains cannot be hijacked.
+
+5.1.5.1.1.2.  Practice Detriments
+
+   These TLDs are reserved for experimentation or testing.  Their use is
+   confusing and does not signal the client's intent.  Their use may be
+   prevented by policy.
+
+5.1.5.2.  Renaming to a Special-Use Domain
 
    Clients would rename hosts to a special-use domain or subdomain
    thereof.  The domain may be a special-use SLD (e.g.,
@@ -489,70 +553,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
        these names as special or treat them differently than other
        allowed domain names.
 
-   4.  Caching name servers are not expected to recognize these names as
-       special or treat them differently than other allowed domain
-       names.
-
-   5.  Authoritative name servers are not expected to recognize these
-       names as special or treat them differently than other allowed
-       domain names.  Requests to the root for this domain would result
-       in NXDOMAIN response [RFC8499].
-
-
-
-
-Hollenbeck, et al.      Expires 22 December 2024                [Page 9]
-
-Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
-
-
-   6.  DNS server operators will treat this domain and its subdomains as
-       they would any other allowed names in the DNS.
-
-   7.  DNS Registries/Registrars will not be able to register this
-       domain and must deny requests to register it or its subdomains.
-
-5.1.7.1.  Practice Benefits
-
-   This option would offer clarity concerning the intentions of
-   registrars that rename hosts.  It would also enable registrars of
-   affected domains ease of detection of renamed hosts.  This option is
-   also convenient for the deleting EPP client.  The deleting EPP client
-   is not required to maintain an authoritative DNS service or receive
-   traffic.  Dependent domains cannot be hijacked through the
-   registration of these identifiers and delegation in the DNS.
-
-5.1.7.2.  Practice Detriments
-
-   This would require cooperation and policy changes for registrars and
-   registries.
-
-5.1.8.  Renaming to Non-Authoritative Hosts
-
-   Some domain registrars, acting as EPP clients, have maintained host
-   objects with glue records pointing to prominent public recursive DNS
-   services.  This practice has been observed in use.
-
-5.1.8.1.  Practice Benefits
-
-   The primary benefit is convenience for the deleting EPP client.  The
-   deleting EPP client is not required to maintain an authoritative DNS
-   service or receive traffic.
-
-5.1.8.2.  Practice Detriments
-
-   Queries for the associated domains result in SERVFAIL or other
-   failure responses.  Some recursive name server implementations may
-   aggressively re-query for these responses, potentially resulting in
-   large numbers of queries for unresolvable domains [RFC9520].
-
-
-
-
-
-
-
-
 
 
 
@@ -562,42 +562,37 @@ Hollenbeck, et al.      Expires 22 December 2024               [Page 10]
 Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
 
-5.1.9.  Renaming to Sacrificial Name Server Host Objects Maintained by
-        the Client
+   4.  Caching name servers are not expected to recognize these names as
+       special or treat them differently than other allowed domain
+       names.
 
-   EPP clients MAY rename the host object to be deleted to a sacrificial
-   name server host object maintained by the client.  This requires that
-   the client maintain the registration of the sacrificial name server's
-   superordinate domain.  The client may consider long registration
-   periods and the use of registrar and registry lock services to
-   maintain and protect the superordinate domain and the host object.
-   Failures to maintain these registrations have allowed domain hijacks
-   [risky-bizness].  The sacrificial name server should run a DNS
-   resolution service capable of responding with an authoritative non-
-   error, non-failure response for requests made for associated domains.
-   The service SHOULD provide responses that indicate problems with a
-   domain's delegation, such as non-existence or include controlled
-   interruption IP addresses [RFC8023].  This practice has been observed
-   in use.
+   5.  Authoritative name servers are not expected to recognize these
+       names as special or treat them differently than other allowed
+       domain names.  Requests to the root for this domain would result
+       in NXDOMAIN response [RFC8499].
 
-5.1.9.1.  Practice Benefits
+   6.  DNS server operators will treat this domain and its subdomains as
+       they would any other allowed names in the DNS.
 
-   Associated domains are not able to be hijacked, remain in the zone,
-   and have valid DNS records and a responsive DNS service.  The service
-   may provide responses that indicate problems with a domain's
-   delegation, such as non-existence or include controlled interruption
-   IP addresses [RFC8023].
+   7.  DNS Registries/Registrars will not be able to register this
+       domain and must deny requests to register it or its subdomains.
 
-5.1.9.2.  Practice Detriments
+5.1.5.2.1.  Practice Benefits
 
-   This requires that the client maintain the registration of the
-   sacrificial name server's superordinate domain.  The client may
-   consider long registration periods and the use of registrar and
-   registry lock services to maintain and protect the superordinate
-   domain and the host object.  Failures to maintain these registrations
-   have allowed domain hijacks [risky-bizness].
+   This option would offer clarity concerning the intentions of
+   registrars that rename hosts.  It would also enable registrars of
+   affected domains ease of detection of renamed hosts.  This option is
+   also convenient for the deleting EPP client.  The deleting EPP client
+   is not required to maintain an authoritative DNS service or receive
+   traffic.  Dependent domains cannot be hijacked through the
+   registration of these identifiers and delegation in the DNS.
 
-5.1.10.  Renaming to Community Sacrificial Name Server Service
+5.1.5.2.2.  Practice Detriments
+
+   This would require cooperation and policy changes for registrars and
+   registries.
+
+5.1.5.3.  Renaming to Community Sacrificial Name Server Service
 
    A new community-wide service could be created explicitly intended for
    use for renaming host records.  This would require maintenance of
@@ -613,12 +608,17 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
 
 
+
+
+
+
+
 Hollenbeck, et al.      Expires 22 December 2024               [Page 11]
 
 Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
 
-5.1.10.1.  Practice Benefits
+5.1.5.3.1.  Practice Benefits
 
    This is convenient for the deleting EPP client.  The deleting EPP
    client is not required to maintain an authoritative DNS service or
@@ -632,7 +632,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    the industry (in contrast to each client running an independent
    service).
 
-5.1.10.2.  Practice Detriments
+5.1.5.3.2.  Practice Detriments
 
    Some entity must maintain the infrastructure for the service.
 
@@ -642,27 +642,27 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    allowing objects to be deleted even if there are existing data
    relationships.
 
-5.2.1.  Delete affected Host Objects
+5.2.1.  Deletion Practices to Avoid
+
+5.2.1.1.  Delete affected Host Objects
 
    The recommendations in RFC 5731 [RFC5731] are intended to maintain
    consistency.  However, they are not requirements.  EPP servers may
    relax their constraints and allow sponsoring clients to delete host
-   objects and disassociate them from domain objects sponsored by other
+   objects without consideration of associations with domain objects
+   sponsored by other clients.  The registry automatically disassociate
+   the deleted host objects from domain objects sponsored by other
    clients.  This practice has been observed in use.
 
-5.2.1.1.  Practice Benefits
+5.2.1.1.1.  Practice Benefits
 
    This is convenient for the deleting EPP client.  The deleting EPP
    client is not required to maintain an authoritative DNS service or
    receive traffic.  The associated domains are not vulnerable to
    hijacking.
 
-5.2.1.2.  Practice Detriments
 
-   This could result in domains with no remaining name servers being
-   removed from the zone or domains with only one remaining name server.
-   Deletions could potentially affect large numbers of associated
-   domains, placing strain on domain registries.
+
 
 
 
@@ -674,52 +674,52 @@ Hollenbeck, et al.      Expires 22 December 2024               [Page 12]
 Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
 
-5.2.2.  Allow Explicit Delete of Host Objects
-
-   Sponsoring clients may delete host objects and disassociate them from
-   domain objects sponsored by other clients.  They would be required to
-   explicitly delete these objects.  This practice has been observed in
-   use.
-
-5.2.2.1.  Practice Benefits
-
-   Registries would not be required to unilaterally take responsibility
-   for deletion.  The deleting EPP client is not required to maintain an
-   authoritative DNS service or receive traffic.  The associated domains
-   are not vulnerable to hijacking.
-
-5.2.2.2.  Practice Detriments
+5.2.1.1.2.  Practice Detriments
 
    This could result in domains with no remaining name servers being
    removed from the zone or domains with only one remaining name server.
    Deletions could potentially affect large numbers of associated
    domains, placing strain on domain registries.
 
-5.2.2.3.  Options for Allowed Delete of Associated Host Objects
+5.2.2.  Deletion Potential Practices
+
+5.2.2.1.  Allow Explicit Delete of Host Objects
+
+   Sponsoring clients may delete host objects and disassociate them from
+   domain objects sponsored by other clients.  They would be required to
+   explicitly delete these objects.  This practice has not been observed
+   in use.
+
+5.2.2.1.1.  Practice Benefits
+
+   Registries would not be required to unilaterally take responsibility
+   for deletion.  The deleting EPP client is not required to maintain an
+   authoritative DNS service or receive traffic.  The associated domains
+   are not vulnerable to hijacking.
+
+5.2.2.1.2.  Practice Detriments
+
+   This could result in domains with no remaining name servers being
+   removed from the zone or domains with only one remaining name server.
+   Deletions could potentially affect large numbers of associated
+   domains, placing strain on domain registries.
+
+5.2.2.1.3.  Options for Allowed Delete of Associated Host Objects
 
    EPP servers would allow clients to explicitly delete hosts with
    dependent domains.  Hosts would be deleted with restore capability,
-   as described in Section 5.2.2.5.  As noted previously, EPP servers
+   as described in Section 5.2.2.1.5.  As noted previously, EPP servers
    can allow clients to delete host objects and disassociate them from
    domain objects.
 
-5.2.2.3.1.  Explicit Deletion Request
+5.2.2.1.3.1.  Explicit Deletion Request
 
    EPP servers may require that the EPP client explicitly request the
    deletion of the host object before taking this action.  This practice
    has not been observed in use.
 
-5.2.2.3.1.1.  Practice Benefits
 
-   This would give EPP clients greater flexibility with respect to
-   deletion.  For example, they may choose only to exercise deletions
-   that have no impact on other clients.
 
-5.2.2.3.1.2.  Practice Detriments
-
-   This change would require additional development on the part of EPP
-   servers and clients.  It may only be relevant if the EPP client is
-   also provided additional deletion details about the affected domains.
 
 
 
@@ -730,7 +730,19 @@ Hollenbeck, et al.      Expires 22 December 2024               [Page 13]
 Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
 
-5.2.2.3.2.  Additional Deletion Details
+5.2.2.1.3.1.1.  Practice Benefits
+
+   This would give EPP clients greater flexibility with respect to
+   deletion.  For example, they may choose only to exercise deletions
+   that have no impact on other clients.
+
+5.2.2.1.3.1.2.  Practice Detriments
+
+   This change would require additional development on the part of EPP
+   servers and clients.  It may only be relevant if the EPP client is
+   also provided additional deletion details about the affected domains.
+
+5.2.2.1.3.2.  Additional Deletion Details
 
    The EPP server may provide the deleting EPP client with additional
    details of the affected objects.  The deleting EPP client may receive
@@ -740,7 +752,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    about those objects (e.g., using the EPP poll command).  This
    practice has not been observed in use.
 
-5.2.2.3.2.1.  Practice Benefits
+5.2.2.1.3.2.1.  Practice Benefits
 
    The deleting EPP client would be able to better understand and assess
    the potential harms of host object deletion.  Depending on the
@@ -749,7 +761,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    approval can be obtained, renaming the host objects, or informing
    affected EPP clients.
 
-5.2.2.3.2.2.  Practice Detriments
+5.2.2.1.3.2.2.  Practice Detriments
 
    This change would require additional development on the part of EPP
    servers and clients.  There may be scalability concerns if large
@@ -757,13 +769,24 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    EPP server must determine the relevant information to provide for the
    EPP client's assessment.
 
-5.2.2.4.  Inform Affected Clients
+5.2.2.1.4.  Inform Affected Clients
 
    The sponsoring clients of affected domain objects may also be
    informed of the change (e.g., through the EPP Change Poll extension
    [RFC8590]).  This practice has been observed in use.
 
-5.2.2.4.1.  Practice Benefits
+
+
+
+
+
+
+Hollenbeck, et al.      Expires 22 December 2024               [Page 14]
+
+Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
+
+
+5.2.2.1.4.1.  Practice Benefits
 
    Updates would help achieve the goals of client-server data
    consistency and minimal interruptions to resolution.  The sponsoring
@@ -773,20 +796,13 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    automatically update the affected domains to use another
    authoritative host.
 
-5.2.2.4.2.  Practice Detriments
+5.2.2.1.4.2.  Practice Detriments
 
    This change would require additional development on the part of EPP
    servers and clients.  There may be scalability concerns if large
    numbers of domain objects are updated in a single transaction.
 
-
-
-Hollenbeck, et al.      Expires 22 December 2024               [Page 14]
-
-Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
-
-
-5.2.2.5.  Allow Explicit Delete of Domain with Restore Capability
+5.2.2.1.5.  Allow Explicit Delete of Domain with Restore Capability
 
    EPP servers can allow for the explicit deletion of a domain with
    subordinate host objects associated with other domains as long as the
@@ -809,7 +825,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    (e.g., add and remove from DNS) and purge the associations.  This
    practice has not been observed in use.
 
-5.2.2.5.1.  Practice Benefits
+5.2.2.1.5.1.  Practice Benefits
 
    This practice enables the clients to directly delete the domains that
    they need since the server will fully support restoration of the
@@ -818,7 +834,15 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    supporting the explicit deletion of the domain with the capability of
    mitigating a destructive malicious or accidental action.
 
-5.2.2.5.2.  Practice Detriments
+
+
+
+Hollenbeck, et al.      Expires 22 December 2024               [Page 15]
+
+Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
+
+
+5.2.2.1.5.2.  Practice Detriments
 
    By making it easier for a client to explicitly delete a domain having
    subordinate hosts with associations, there is higher risk of
@@ -834,14 +858,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    or purge of the subordinate host associations into smaller
    transactions by implementing it asynchronously.
 
-
-
-
-Hollenbeck, et al.      Expires 22 December 2024               [Page 15]
-
-Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
-
-
 6.  Best Practice Recommendations
 
    The practices in this section are described as "best practices"
@@ -854,8 +870,8 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 6.1.  Best Current Practice
 
    Host objects SHOULD be renamed to a sacrificial name server host
-   object maintained by the client (see 5.1.9).  Use of
-   "sacrificial.invalid" (see 5.1.7) as the parent domain for the host
+   object maintained by the client (see 5.1.4.1).  Use of
+   "sacrificial.invalid" (see 5.1.5.2) as the parent domain for the host
    objects is RECOMMENDED to avoid the overhead of creating a new TLD
    using either IETF or ICANN processes that offers no additional
    operational benefit.
@@ -864,15 +880,23 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
 6.2.1.  Safe Host Deletion
 
-   Deletion with restore (see 5.2.2.5) SHOULD be allowed with explicit
-   client requests (see 5.2.2.3.1).  Deletion SHOULD include additional
-   deletion details to the client (see 5.2.2.3.2).  Affected clients
-   SHOULD be informed of changes (see 5.2.2.4).
+   Deletion with restore (see 5.2.2.1.5) SHOULD be allowed with explicit
+   client requests (see 5.2.2.1.3.1).  Deletion SHOULD include
+   additional deletion details to the client (see 5.2.2.1.3.2).
+   Affected clients SHOULD be informed of changes (see 5.2.2.1.4).
 
 6.2.2.  Rename to a Special-Use Domain
 
    Host objects SHOULD be renamed to a sacrificial name server host
-   object that uses a special-use domain (see 5.1.7).
+   object that uses a special-use domain (see 5.1.5.2).
+
+
+
+
+Hollenbeck, et al.      Expires 22 December 2024               [Page 16]
+
+Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
+
 
 7.  IANA Considerations
 
@@ -890,13 +914,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    operational conditions.  This document provides guidance that is
    intended to reduce the risk of DNS resolution failure or hijacking as
    part of the process of deleting EPP domain or host objects.
-
-
-
-Hollenbeck, et al.      Expires 22 December 2024               [Page 16]
-
-Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
-
 
    Child domains that depend on host objects associated with domain
    objects sponsored by another EPP client for DNS resolution may be
@@ -929,6 +946,14 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
 10.  References
 
+
+
+
+Hollenbeck, et al.      Expires 22 December 2024               [Page 17]
+
+Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
+
+
 10.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -944,15 +969,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
               Domain Name Mapping", STD 69, RFC 5731,
               DOI 10.17487/RFC5731, August 2009,
               <https://www.rfc-editor.org/info/rfc5731>.
-
-
-
-
-
-Hollenbeck, et al.      Expires 22 December 2024               [Page 17]
-
-Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
-
 
    [RFC5732]  Hollenbeck, S., "Extensible Provisioning Protocol (EPP)
               Host Mapping", STD 69, RFC 5732, DOI 10.17487/RFC5732,
@@ -986,6 +1002,14 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
               DOI 10.17487/RFC7535, May 2015,
               <https://www.rfc-editor.org/info/rfc7535>.
 
+
+
+
+Hollenbeck, et al.      Expires 22 December 2024               [Page 18]
+
+Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
+
+
    [RFC8023]  Thomas, M., Mankin, A., and L. Zhang, "Report from the
               Workshop and Prize on Root Causes and Mitigation of Name
               Collisions", RFC 8023, DOI 10.17487/RFC8023, November
@@ -999,16 +1023,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
               Extensible Provisioning Protocol (EPP)", RFC 8590,
               DOI 10.17487/RFC8590, May 2019,
               <https://www.rfc-editor.org/info/rfc8590>.
-
-
-
-
-
-
-Hollenbeck, et al.      Expires 22 December 2024               [Page 18]
-
-Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
-
 
    [RFC9520]  Wessels, D., Carroll, W., and M. Thomas, "Negative Caching
               of DNS Resolution Failures", RFC 9520,
@@ -1042,6 +1056,16 @@ Appendix A.  Change Log
 
    01:
 
+
+
+
+
+
+Hollenbeck, et al.      Expires 22 December 2024               [Page 19]
+
+Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
+
+
    1.  Addressed feedback received during the WG adoption request.  Re-
        included text to indicate if approaches have been observed in
        practice or not.
@@ -1058,14 +1082,6 @@ Appendix A.  Change Log
    3.  Section 4: Added mention of "sacrificial" hosts.
        "ns1.example.org" is a sacrificial host.
 
-
-
-
-Hollenbeck, et al.      Expires 22 December 2024               [Page 19]
-
-Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
-
-
    4.  Section 5.1: Added text to give some more context on
        "sacrificial" hosts.
 
@@ -1081,7 +1097,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
    3.  Added context to the best practice recommendations in Section 6.
 
-   4.  Added "Sacrificial Name Server" to the title of Section 5.1.9.
+   4.  Added "Sacrificial Name Server" to the title of Section 5.1.4.1.
 
    04:
 
@@ -1096,6 +1112,15 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
        Section 6.
 
 Authors' Addresses
+
+
+
+
+
+Hollenbeck, et al.      Expires 22 December 2024               [Page 20]
+
+Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
+
 
    Scott Hollenbeck
    Verisign Labs
@@ -1116,12 +1141,6 @@ Authors' Addresses
    URI:   https://verisign.com
 
 
-
-Hollenbeck, et al.      Expires 22 December 2024               [Page 20]
-
-Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
-
-
    Gautam Akiwate
    Stanford University
    450 Jane Stanford Way
@@ -1130,25 +1149,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    Phone: +1 650 723-2300
    Email: gakiwate@cs.stanford.edu
    URI:   https://cs.stanford.edu/~gakiwate/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
