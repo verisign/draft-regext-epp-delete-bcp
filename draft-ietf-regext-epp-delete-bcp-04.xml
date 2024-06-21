@@ -246,7 +246,7 @@
                 <section anchor="renaming-overall-cons" title="Practice Detriments">
                     <t>Zones are crowded with irrelevant records. Registrars and registrants of affected domains are required to clean them up.</t>
                 </section>
-                <section anchor="renaming-to-avoid" title="Renaming Practices to Avoid">
+                <section anchor="renaming-observed" title="Renaming Observed Practices">
                     <section anchor="renaming-external"
                         title="Renaming to External, Presumed Non-Existent Hosts">
                         <t>As described above, this practice renames subordinate host objects to an
@@ -270,27 +270,6 @@
                                 Associated domains may still resolve if they continue to be associated with
                                 existent hosts, in which case their partial vulnerability to hijacking is
                                 more difficult to detect.</t>
-                        </section>
-                    </section>
-                    <section anchor="renaming-pseudo-tld" title="Renaming to Pseudo-TLD">
-                        <t>Clients may rename host objects to use ".alt" or another non-DNS pseudo-TLD as suggested in <xref target="risky-bizness-irtf" />. This practice has not been observed in use.</t>
-                        <section anchor="renaming-pseudo-tld-pros" title="Practice Benefits">
-                            <t>The primary benefit is convenience for the deleting
-                                EPP client. The deleting EPP client is not required to
-                                maintain an authoritative DNS service or receive
-                                traffic. Dependent domains cannot be hijacked through
-                                the registration of these identifiers and delegation in
-                                the DNS.</t>
-                        </section>
-                        <section anchor="renaming-pseudo-tld-cons" title="Practice Detriments">
-                            <t>The ".alt" pseudo-TLD is to be used "to signify that this is an alternative
-                                (non-DNS) namespace and should not be looked up in a DNS context" <xref
-                                    target="RFC9476" />. Some EPP servers may restrict TLDs to valid
-                                IANA-delegated TLDs. These entries would mix DNS and non-DNS protocols, risk
-                                name collisions, create confusion, and potentially result in unpredictable
-                                resolver behaviors. These identifiers may be registered in non-DNS
-                                namespaces, potentially leading to hijacking vulnerabilities based in other
-                                systems. </t>
                         </section>
                     </section>
                     <section anchor="renaming-as112" title='Renaming to "as112.arpa"'>
@@ -336,44 +315,63 @@
                                 queries for unresolvable domains <xref target="RFC9520" />.</t>
                         </section>
                     </section>
-                </section>
-                <section anchor="renaming-best" title="Renaming Best Practices">
-                    <section anchor="control-rename"
-                    title="Renaming to Sacrificial Name Server Host Objects Maintained by the Client">
-                    <t>EPP clients MAY rename the host object to be deleted to a
-                    sacrificial name server host object maintained by the client.  This
-                    requires that the client maintain the registration of the sacrificial
-                    name server's superordinate domain.  The client may consider long
-                    registration periods and the use of registrar and registry lock
-                    services to maintain and protect the superordinate domain and the
-                    host object.  Failures to maintain these registrations have allowed
-                    domain hijacks [risky-bizness].
-                    The sacrificial name server should run a DNS resolution service
-                    capable of responding with an authoritative non-error, non-failure
-                    response for requests made for associated domains.  The service
-                    <bcp14>SHOULD</bcp14> provide responses that indicate problems with a domain's
-                    delegation, such as non-existence or include controlled interruption
-                    IP addresses <xref target="RFC8023" />.
-                        This practice has been observed in use.
-                    </t>
-                    <section anchor="control-rename-pros" title="Practice Benefits">
-                        <t> Associated domains are not able to be hijacked, remain in the zone, and have
-                            valid DNS records and a responsive DNS service. The service may provide
-                            responses that indicate problems with a domain's delegation, such as
-                            non-existence or include controlled interruption IP addresses <xref
-                                target="RFC8023" />. </t>
+                    <section anchor="control-rename" title="Renaming to Sacrificial Name Server Host Objects Maintained by the Client">
+                        <t>EPP clients MAY rename the host object to be deleted to a
+                        sacrificial name server host object maintained by the client.  This
+                        requires that the client maintain the registration of the sacrificial
+                        name server's superordinate domain.  The client may consider long
+                        registration periods and the use of registrar and registry lock
+                        services to maintain and protect the superordinate domain and the
+                        host object.  Failures to maintain these registrations have allowed
+                        domain hijacks [risky-bizness].
+                        The sacrificial name server should run a DNS resolution service
+                        capable of responding with an authoritative non-error, non-failure
+                        response for requests made for associated domains.  The service
+                        <bcp14>SHOULD</bcp14> provide responses that indicate problems with a domain's
+                        delegation, such as non-existence or include controlled interruption
+                        IP addresses <xref target="RFC8023" />.
+                            This practice has been observed in use.
+                        </t>
+                        <section anchor="control-rename-pros" title="Practice Benefits">
+                            <t> Associated domains are not able to be hijacked, remain in the zone, and have
+                                valid DNS records and a responsive DNS service. The service may provide
+                                responses that indicate problems with a domain's delegation, such as
+                                non-existence or include controlled interruption IP addresses <xref
+                                    target="RFC8023" />. </t>
+                        </section>
+                        <section anchor="control-rename-cons" title="Practice Detriments">
+                            <t>This requires that the client maintain the registration of the sacrificial
+                                name server's superordinate domain. The client may consider long
+                                registration periods and the use of registrar and registry lock services to
+                                maintain and protect the superordinate domain and the host object. Failures
+                                to maintain these registrations have allowed domain hijacks <xref
+                                    target="risky-bizness" />. </t>
+                        </section>
                     </section>
-                    <section anchor="control-rename-cons" title="Practice Detriments">
-                        <t>This requires that the client maintain the registration of the sacrificial
-                            name server's superordinate domain. The client may consider long
-                            registration periods and the use of registrar and registry lock services to
-                            maintain and protect the superordinate domain and the host object. Failures
-                            to maintain these registrations have allowed domain hijacks <xref
-                                target="risky-bizness" />. </t>
-                    </section>
-                </section>
                 </section>
                 <section anchor="renaming-potential" title="Renaming Potential Practices">
+                    <section anchor="renaming-pseudo-tld" title="Renaming to Pseudo-TLD">
+                        <t>Clients may rename host objects to use ".alt" or another non-DNS pseudo-TLD as suggested in <xref target="risky-bizness-irtf" />. 
+                            This practice has not been observed in use.</t>
+                        <section anchor="renaming-pseudo-tld-pros" title="Practice Benefits">
+                            <t>The primary benefit is convenience for the deleting
+                                EPP client. The deleting EPP client is not required to
+                                maintain an authoritative DNS service or receive
+                                traffic. Dependent domains cannot be hijacked through
+                                the registration of these identifiers and delegation in
+                                the DNS.</t>
+                        </section>
+                        <section anchor="renaming-pseudo-tld-cons" title="Practice Detriments">
+                            <t>The ".alt" pseudo-TLD is to be used "to signify that this is an alternative
+                                (non-DNS) namespace and should not be looked up in a DNS context" <xref
+                                    target="RFC9476" />. Some EPP servers may restrict TLDs to valid
+                                IANA-delegated TLDs. These entries would mix DNS and non-DNS protocols, risk
+                                name collisions, create confusion, and potentially result in unpredictable
+                                resolver behaviors. These identifiers may be registered in non-DNS
+                                namespaces, potentially leading to hijacking vulnerabilities based in other
+                                systems. </t>
+                        </section>
+                    </section>
                     <section anchor="renaming-existing-special-use" title="Renaming to Existing Special-Use TLD">
                         <t>Clients may rename host objects to a special-use TLD that cannot resolve in the DNS. Several variations have been suggested.
                             This practice has not been observed in use.</t>
@@ -453,40 +451,39 @@
                                 </t>
                             </section>                    
                     </section>                    
-
-                <section anchor="new-service" title="Renaming to Community Sacrificial Name Server Service">
-                    <t>A new community-wide service could be created explicitly intended for use for
-                        renaming host records. This would require maintenance of name servers capable of
-                        authoritatively responding with NXDOMAIN or a controlled interruption IP
-                        addresses <xref target="RFC8023" /> for all queries without delegating domains
-                        or records. This service could use a new special-use TLD created either through
-                        ICANN or IETF processes (e.g., ".sacrificial"), as an IAB request that IANA
-                        delegate a second-level domain (SLD) for ".arpa" (e.g.,
-                        "sacrificial-nameserver.arpa"), or as a contracted sinkhole service by ICANN or
-                        other DNS ecosystem actors. This practice has not been observed in use.</t>
-                    <section anchor="new-service-pros" title="Practice Benefits">
-                        <t>This is convenient for the deleting EPP client. The deleting EPP client is
-                            not required to
-                            maintain an authoritative DNS service or receive traffic. The associated
-                            domains are not vulnerable to hijacking.
-                            This would provide a well-understood, industry-standard solution, allowing
-                            registrars and registrants to easily identify associated domains that have
-                            been affected. Infrastructure operators could monitor traffic to identify
-                            affected associated domains that result in significant traffic and attempt
-                            to contact registrars and registrants.
-                            Economies of scale would allow reduced overall costs to the industry (in
-                            contrast to each client running an independent service).</t>
-                    </section>
-                    <section anchor="new-service-cons" title="Practice Detriments">
-                        <t>Some entity must maintain the infrastructure for the service.</t>
+                    <section anchor="new-service" title="Renaming to Community Sacrificial Name Server Service">
+                        <t>A new community-wide service could be created explicitly intended for use for
+                            renaming host records. This would require maintenance of name servers capable of
+                            authoritatively responding with NXDOMAIN or a controlled interruption IP
+                            addresses <xref target="RFC8023" /> for all queries without delegating domains
+                            or records. This service could use a new special-use TLD created either through
+                            ICANN or IETF processes (e.g., ".sacrificial"), as an IAB request that IANA
+                            delegate a second-level domain (SLD) for ".arpa" (e.g.,
+                            "sacrificial-nameserver.arpa"), or as a contracted sinkhole service by ICANN or
+                            other DNS ecosystem actors. This practice has not been observed in use.</t>
+                        <section anchor="new-service-pros" title="Practice Benefits">
+                            <t>This is convenient for the deleting EPP client. The deleting EPP client is
+                                not required to
+                                maintain an authoritative DNS service or receive traffic. The associated
+                                domains are not vulnerable to hijacking.
+                                This would provide a well-understood, industry-standard solution, allowing
+                                registrars and registrants to easily identify associated domains that have
+                                been affected. Infrastructure operators could monitor traffic to identify
+                                affected associated domains that result in significant traffic and attempt
+                                to contact registrars and registrants.
+                                Economies of scale would allow reduced overall costs to the industry (in
+                                contrast to each client running an independent service).</t>
+                        </section>
+                        <section anchor="new-service-cons" title="Practice Detriments">
+                            <t>Some entity must maintain the infrastructure for the service.</t>
+                        </section>
                     </section>
                 </section>
-            </section>
             </section>
             <section anchor="delete-overall" title="Deletion of Hosts">
                 <t>The second group of practices is based on EPP server support for allowing objects to be deleted
                 even if there are existing data relationships.</t>
-                <section anchor="delete-to-avoid" title="Deletion Practices to Avoid">
+                <section anchor="delete-observed" title="Deletion Observed Practices">
                     <section anchor="automatic-delete" title="Delete affected Host Objects">
                         <t>The recommendations in RFC 5731 <xref target="RFC5731" /> are intended to
                             maintain consistency. However, they are not requirements. EPP servers may relax
@@ -805,7 +802,7 @@
                 <li>Updated the abstract to note "new possible practices".</li>
                 <li>Split <xref target="practice-analysis"/> into two sections to better identify observed practices and possible practices.</li>
                 <li>Added a specific recommendation to use "sacrificial.invalid" in <xref target="recommendations"/>.</li>
-                <li>Reorganized practice description sections into subsections of practices to avoid, best practices, and potential practices.</li>
+                <li>Reorganized practice description sections into subsections of observed practices and potential practices.</li>
             </ol>
         </section>
     </back>
