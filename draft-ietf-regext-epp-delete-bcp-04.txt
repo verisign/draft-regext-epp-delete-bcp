@@ -26,7 +26,7 @@ Abstract
    difficult to implement.  Some EPP clients have developed operational
    practices to delete those objects that have unintended impacts on DNS
    resolution and security.  This document describes best current
-   practices and proposes new possible practices to delete domain and
+   practices and proposes new potential practices to delete domain and
    host objects that reduce the risk of DNS resolution failure and
    maintain client-server data consistency.
 
@@ -319,7 +319,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
    "Sacrificial" hosts are hosts whose name is intended to remove an
    existing relationship between domain and host objects.  To that end,
-   "sacrificial" hosts are either renamed to an external host, or
+   "sacrificial" hosts are either renamed to an external host or
    associated with a different domain object in the EPP server.  The
    first group of deletion practices use sacrificial hosts leveraging
    existing EPP server support for renaming host objects.
@@ -640,19 +640,20 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
    The second group of practices is based on EPP server support for
    allowing objects to be deleted even if there are existing data
-   relationships.
+   relationships.  The recommendations in RFC 5731 [RFC5731] are
+   intended to maintain consistency.  However, they are not
+   requirements.
 
 5.2.1.  Deletion Observed Practices
 
-5.2.1.1.  Delete affected Host Objects
+5.2.1.1.  Delete Affected Host Objects
 
-   The recommendations in RFC 5731 [RFC5731] are intended to maintain
-   consistency.  However, they are not requirements.  EPP servers may
-   relax their constraints and allow sponsoring clients to delete host
-   objects without consideration of associations with domain objects
-   sponsored by other clients.  The registry automatically disassociate
-   the deleted host objects from domain objects sponsored by other
-   clients.  This practice has been observed in use.
+   EPP servers may relax their constraints and allow sponsoring clients
+   to delete host objects without consideration of associations with
+   domain objects sponsored by other clients.  The registry
+   automatically disassociates the deleted host objects from domain
+   objects sponsored by other clients.  This practice has been observed
+   in use.
 
 5.2.1.1.1.  Practice Benefits
 
@@ -660,7 +661,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
    client is not required to maintain an authoritative DNS service or
    receive traffic.  The associated domains are not vulnerable to
    hijacking.
-
 
 
 
@@ -687,8 +687,8 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 
    Sponsoring clients may delete host objects and disassociate them from
    domain objects sponsored by other clients.  They would be required to
-   explicitly delete these objects.  This practice has not been observed
-   in use.
+   explicitly request deletion of these objects.  This practice has not
+   been observed in use.
 
 5.2.2.1.1.  Practice Benefits
 

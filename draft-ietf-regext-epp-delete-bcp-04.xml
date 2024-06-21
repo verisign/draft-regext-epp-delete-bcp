@@ -235,7 +235,7 @@
             <section anchor="renaming-overall" title="Renaming to Sacrificial Hosts">
                 <t>"Sacrificial" hosts are hosts whose name is intended to remove an existing relationship
                 between domain and host objects. To that end, "sacrificial" hosts are either renamed to an
-                external host, or associated with a different domain object in the EPP server.
+                external host or associated with a different domain object in the EPP server.
                 The first group of deletion practices use sacrificial
                 hosts leveraging existing  EPP server support for renaming host objects.</t>
                 <section anchor="renaming-overall-pros" title="Practice Benefits">
@@ -323,7 +323,8 @@
                         registration periods and the use of registrar and registry lock
                         services to maintain and protect the superordinate domain and the
                         host object.  Failures to maintain these registrations have allowed
-                        domain hijacks [risky-bizness].
+                        domain hijacks <xref
+                        target="risky-bizness" />.
                         The sacrificial name server should run a DNS resolution service
                         capable of responding with an authoritative non-error, non-failure
                         response for requests made for associated domains.  The service
@@ -482,14 +483,14 @@
             </section>
             <section anchor="delete-overall" title="Deletion of Hosts">
                 <t>The second group of practices is based on EPP server support for allowing objects to be deleted
-                even if there are existing data relationships.</t>
+                even if there are existing data relationships. The recommendations in RFC 5731 <xref target="RFC5731" /> are intended to
+                maintain consistency. However, they are not requirements. </t>
                 <section anchor="delete-observed" title="Deletion Observed Practices">
-                    <section anchor="automatic-delete" title="Delete affected Host Objects">
-                        <t>The recommendations in RFC 5731 <xref target="RFC5731" /> are intended to
-                            maintain consistency. However, they are not requirements. EPP servers may relax
+                    <section anchor="automatic-delete" title="Delete Affected Host Objects">
+                        <t> EPP servers may relax
                             their constraints and allow sponsoring clients to delete host objects without consideration of 
                             associations with domain objects sponsored by other clients. The registry automatically
-                            disassociate the deleted host objects from domain objects sponsored by other clients.
+                            disassociates the deleted host objects from domain objects sponsored by other clients.
                             This practice has been observed in use.
                         </t>
                         <section anchor="automatic-delete-pros" title="Practice Benefits">
@@ -514,7 +515,7 @@
                 <section anchor="delete-potential" title="Deletion Potential Practices">
                     <section anchor="explicit-delete" title="Allow Explicit Delete of Host Objects">
                         <t>Sponsoring clients may delete host objects and disassociate them from domain objects sponsored by other clients. 
-                        They would be required to explicitly delete these objects. This practice has not been observed in use.
+                        They would be required to explicitly request deletion of these objects. This practice has not been observed in use.
                         </t>
                         <section anchor="explicit-delete-pros" title="Practice Benefits">
                             <t>
