@@ -89,7 +89,7 @@
                 operational relationships between objects can make that guidance difficult to
                 implement. Some EPP clients have developed operational practices to delete those
                 objects that have unintended impacts on DNS resolution and security. This document
-				describes best current practices and proposes new possible practices to delete
+				describes best current practices and proposes new potential practices to delete
 				domain and host objects that reduce the risk of DNS resolution failure and maintain
 				client-server data consistency.</t>
         </abstract>
