@@ -870,11 +870,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 6.1.  Best Current Practice
 
    Host objects SHOULD be renamed to a sacrificial name server host
-   object maintained by the client (see 5.1.3.4).  Use of
-   "sacrificial.invalid" (see 5.1.4.3) as the parent domain for the host
-   objects is RECOMMENDED to avoid the overhead of creating a new TLD
-   using either IETF or ICANN processes that offers no additional
-   operational benefit.
+   object maintained by the client (see 5.1.3.4).
 
 6.2.  Best Proposed Practices
 
@@ -888,7 +884,11 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
 6.2.2.  Rename to a Special-Use Domain
 
    Host objects SHOULD be renamed to a sacrificial name server host
-   object that uses a special-use domain (see 5.1.4.3).
+   object that uses a special-use domain (see 5.1.4.3).  Use of
+   "sacrificial.invalid" (see 5.1.4.3) as the parent domain for the host
+   objects is RECOMMENDED to avoid the overhead of creating a new TLD
+   using either IETF or ICANN processes that offers no additional
+   operational benefit.
 
 
 
@@ -1112,7 +1112,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP        June 2024
        Section 6.
 
    5.  Reorganized practice description sections into subsections of
-       practices to avoid, best practices, and potential practices.
+       observed practices and potential practices.
 
 
 

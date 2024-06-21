@@ -664,10 +664,7 @@
 			if deployed.</t>
             <section anchor="recommendations-current" title="Best Current Practice">
                 <t>Host objects <bcp14>SHOULD</bcp14> be renamed to a sacrificial name server host object maintained by the client
-				(see <xref target="control-rename" format="counter" />). Use of "sacrificial.invalid" (see <xref
-				target="renaming-new-special-use" format="counter" />) as the parent domain for the host objects is
-				<bcp14>RECOMMENDED</bcp14> to avoid the overhead of creating a new TLD using either IETF or ICANN processes
-				that offers no additional operational benefit.</t>
+				(see <xref target="control-rename" format="counter" />).</t>
             </section>
             <section anchor="recommendations-proposed" title="Best Proposed Practices">
                 <section anchor="recommendations-proposed-delete-safely" title="Safe Host Deletion">
@@ -681,6 +678,10 @@
                 <section anchor="recommendations-proposed-rename-reserved" title="Rename to a Special-Use Domain">
                     <t>
                         Host objects <bcp14>SHOULD</bcp14> be renamed to a sacrificial name server host object that uses a special-use domain (see <xref target="renaming-new-special-use" format="counter" />).
+                        Use of "sacrificial.invalid" (see <xref
+                        target="renaming-new-special-use" format="counter" />) as the parent domain for the host objects is
+                        <bcp14>RECOMMENDED</bcp14> to avoid the overhead of creating a new TLD using either IETF or ICANN processes
+                        that offers no additional operational benefit.
                     </t>
                 </section>
             </section>
