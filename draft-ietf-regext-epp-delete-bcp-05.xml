@@ -18,7 +18,7 @@
 <rfc
     xmlns:xi="http://www.w3.org/2001/XInclude"
     category="bcp"
-    docName="draft-ietf-regext-epp-delete-bcp-04"
+    docName="draft-ietf-regext-epp-delete-bcp-05"
     ipr="trust200902"
     obsoletes=""
     updates=""
@@ -26,6 +26,8 @@
     xml:lang="en"
     version="4"
     consensus="true"
+    tocInclude="true"
+    tocDepth="5"
 >
     <front>
         <title abbrev="Domain and Host Object Deletion in EPP">Best Practices for Deletion of Domain
@@ -224,7 +226,8 @@
                 potentially malicious ways.</t>
         </section>
         <section anchor="practice-analysis"
-            title="Analysis of Practices for Domain and Host Object Deletion">
+            title="Analysis of Practices for Domain and Host Object Deletion"
+            >
             <t>EPP servers can employ a range of practices for domain
                 and host object deletion. Notably, the scope of any practice
                 discussed here is the EPP server that adopts the practice and the
