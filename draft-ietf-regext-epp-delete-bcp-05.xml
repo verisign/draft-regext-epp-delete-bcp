@@ -257,7 +257,7 @@
                             The
                             external host is presumed to be non-existent by the deleting EPP client but
                             no check for existence is typically performed.
-                            This practice has been observed in use.
+                            This practice has been observed in use. This practice <bcp14>MUST NOT</bcp14> be used.
                         </t>
                         <section anchor="renaming-external-pros" title="Practice Benefits">
                             <t>The primary benefit is convenience for the deleting EPP client. The deleting
@@ -303,7 +303,7 @@
                     <section anchor="renaming-non-provisioned" title="Renaming to Non-Authoritative Hosts">
                         <t>Some domain registrars, acting as EPP clients, have maintained host objects
                             with glue records pointing to prominent public recursive DNS services.
-                            This practice has been observed in use.
+                            This practice has been observed in use. This practice <bcp14>MUST NOT</bcp14> be used.
                         </t>
                         <section anchor="renaming-non-provisioned-pros" title="Practice Benefits">
                             <t>The primary benefit is convenience for the deleting EPP client. The deleting
@@ -356,7 +356,8 @@
                 <section anchor="renaming-potential" title="Potential Practices for Renaming to Sacrificial Hosts">
                     <section anchor="renaming-pseudo-tld" title="Renaming to Pseudo-TLD">
                         <t>Clients may rename host objects to use ".alt" or another non-DNS pseudo-TLD as suggested in <xref target="risky-bizness-irtf" />. 
-                            This practice has not been observed in use.</t>
+                            This practice has not been observed in use. This practice <bcp14>MUST NOT</bcp14> be used.
+                        </t>
                         <section anchor="renaming-pseudo-tld-pros" title="Practice Benefits">
                             <t>The primary benefit is convenience for the deleting
                                 EPP client. The deleting EPP client is not required to
@@ -489,7 +490,7 @@
                 even if there are existing data relationships. The recommendations in RFC 5731 <xref target="RFC5731" /> are intended to
                 maintain consistency. However, they are not requirements. </t>
                 <section anchor="delete-observed" title="Observed Practices for Deletion of Hosts">
-                    <section anchor="automatic-delete" title="Delete Affected Host Objects">
+                    <section anchor="automatic-delete" title="Implicit Delete of Affected Host Objects">
                         <t> EPP servers may relax
                             their constraints and allow sponsoring clients to delete host objects without consideration of 
                             associations with domain objects sponsored by other clients. The registry automatically
@@ -516,9 +517,10 @@
                     </section>    
                 </section>
                 <section anchor="delete-potential" title="Potential Practices for Deletion of Hosts">
-                    <section anchor="explicit-delete" title="Allow Explicit Delete of Host Objects">
-                        <t>Sponsoring clients may delete host objects and disassociate them from domain objects sponsored by other clients. 
-                        They would be required to explicitly request deletion of these objects. This practice has not been observed in use.
+                    <section anchor="explicit-delete" title="Request Explicit Delete of Affected Host Objects">
+                        <t>Sponsoring clients requesting the deletion of host objects must explicitly request 
+                            their disassociation from domain objects sponsored by other clients. 
+                            This practice has not been observed in use.
                         </t>
                         <section anchor="explicit-delete-pros" title="Practice Benefits">
                             <t>
