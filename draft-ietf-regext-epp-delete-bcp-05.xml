@@ -515,10 +515,32 @@
                             </t>
                         </section>
                     </section>    
+                    <section anchor="inform-affected-client" title="Inform Affected Clients">
+                        <t> The sponsoring clients of affected domain objects may also be informed of
+                            the change (e.g., through the EPP Change Poll extension <xref target="RFC8590" />).
+                            This practice has been observed in use.
+                        </t>
+                        <section anchor="inform-affected-client-pros" title="Practice Benefits">
+                            <t>Updates help achieve the goals of client-server data consistency
+                                and minimal interruptions to resolution.
+                                The sponsoring clients of affected domain objects are able to
+                                update their database to reflect the change and would be able to inform
+                                the domain's registrant.
+                                The sponsoring clients can automatically update the
+                                affected domains to use another authoritative host. </t>
+                        </section>
+                        <section anchor="inform-affected-client-cons" title="Practice Detriments">
+                            <t>
+                                This change requires additional development on the part of EPP
+                                servers and clients. There may be scalability concerns if large numbers
+                                of domain objects are updated in a single transaction.
+                            </t>
+                        </section>
+                    </section>
                 </section>
                 <section anchor="delete-potential" title="Potential Practices for Deletion of Hosts">
                     <section anchor="explicit-delete" title="Request Explicit Delete of Affected Host Objects">
-                        <t>Sponsoring clients requesting the deletion of host objects must explicitly request 
+                        <t>Sponsoring clients requesting the deletion of host objects would explicitly request 
                             their disassociation from domain objects sponsored by other clients. 
                             This practice has not been observed in use.
                         </t>
@@ -535,131 +557,85 @@
                                 placing strain on domain registries.
                             </t>
                         </section>
-                        <section anchor="options-allow-delete"
-                            title="Options for Allowed Delete of Associated Host Objects">
-                            <t>EPP servers would allow clients to explicitly delete hosts with dependent domains.
-                            Hosts would be deleted with restore capability, as described in <xref target="delete-with-restore" />.
-                            As noted previously, EPP servers can allow clients to delete host objects and
-                                disassociate them from domain objects. </t>
-                            <section anchor="explicit-deletion-request" title="Explicit Deletion Request">
-                                <t>EPP servers may require that the EPP client explicitly request
-                                    the deletion of the host object before taking this action.
-                                    This practice has not been observed in use.
-                                </t>
-                                <section anchor="explicit-deletion-request-pros" title="Practice Benefits">
-                                    <t>
-                                        This would give EPP clients greater flexibility with respect to
-                                        deletion. For example, they may choose only to exercise deletions that
-                                        have no impact on other clients.
-                                    </t>
-                                </section>
-                                <section anchor="explicit-deletion-request-cons" title="Practice Detriments">
-                                    <t>
-                                        This change would require additional development on the part of EPP
-                                        servers and clients. It may only be relevant if the EPP client is also
-                                        provided additional deletion details about the affected domains.
-                                    </t>
-                                </section>
-                            </section>
-                            <section anchor="additional-deletion-details" title="Additional Deletion Details">
-                                <t>The EPP server may provide the deleting EPP client with additional details of the affected
-                                    objects. The deleting EPP client may receive a response (e.g., using msg, reason, msgQ elements of the EPP response <xref target="RFC5730" />)
-                                    that deletion of the host object would affect
-                                    domain objects sponsored by another client and may receive details about those objects (e.g., using the EPP poll command).
-                                    This practice has not been observed in use.
-                                </t>
-                                <section anchor="additional-deletion-details-pros" title="Practice Benefits">
-                                    <t>
-                                        The deleting EPP client would be able to better understand and assess
-                                        the potential harms of host object deletion.
-                                        Depending on the content of the message, the deleting EPP client might
-                                        choose additional actions, such as delaying the deletion until manual
-                                        approval can be obtained, renaming the host objects, or informing
-                                        affected EPP clients.
-                                    </t>
-                                </section>
-                                <section anchor="additional-deletion-details-cons" title="Practice Detriments">
-                                    <t>
-                                        This change would require additional development on the part of EPP
-                                        servers and clients. There may be scalability concerns if large numbers
-                                        of domain objects are updated in a single transaction. The EPP server
-                                        must
-                                        determine the relevant information to provide for the EPP client's
-                                        assessment.
-                                    </t>
-                                </section>
-                            </section>
-                        </section>
-                        <section anchor="inform-affected-client" title="Inform Affected Clients">
-                            <t> The sponsoring clients of affected domain objects may also be informed of
-                                the change (e.g., through the EPP Change Poll extension <xref target="RFC8590" />).
-                                This practice has been observed in use.
-                            </t>
-                            <section anchor="inform-affected-client-pros" title="Practice Benefits">
-                                <t>Updates would help achieve the goals of client-server data consistency
-                                    and minimal interruptions to resolution.
-                                    The sponsoring clients of affected domain objects would be able to
-                                    update their database to reflect the change and would be able to inform
-                                    the domain's registrant.
-                                    The sponsoring clients could also quickly or automatically update the
-                                    affected domains to use another authoritative host. </t>
-                            </section>
-                            <section anchor="inform-affected-client-cons" title="Practice Detriments">
-                                <t>
-                                    This change would require additional development on the part of EPP
-                                    servers and clients. There may be scalability concerns if large numbers
-                                    of domain objects are updated in a single transaction.
-                                </t>
-                            </section>
-                        </section>
-                        <section anchor="delete-with-restore" title="Allow Explicit Delete of Domain with Restore Capability">
+                    </section>
+                    <section anchor="additional-deletion-details" title="Provide Additional Deletion Details">
+                        <t>The EPP server may provide the deleting EPP client with additional details of the affected
+                            objects. The deleting EPP client may receive a response (e.g., using msg, reason, msgQ elements of the EPP response <xref target="RFC5730" />)
+                            that deletion of the host object would affect
+                            domain objects sponsored by another client and may receive details about those objects (e.g., using the EPP poll command).
+                            This practice has not been observed in use.
+                        </t>
+                        <section anchor="additional-deletion-details-pros" title="Practice Benefits">
                             <t>
-                                EPP servers can allow for the explicit deletion of a domain with
-                                subordinate host objects associated with other domains as long as the
-                                associations can be restored by the &lt;restore&gt; operation described in RFC 3915 <xref target="RFC3915" />.
-                                Allowing for the explicit deletion of a domain name that performs a
-                                cascade purge of the subordinate host objects and the association
-                                with other domains is unrecoverable and would be a risk to malicious
-                                or accidental actions.  Instead of purging the subordinate host
-                                objects, the server can keep them with the "pendingDelete" status and
-                                keep the associations with other domains, but they will not be
-                                available in DNS.  This will provide for a preview of the operation
-                                that is restorable.  If the action was malicious, accidental, or had
-                                negative side effects, the domain, its subordinate host objects, and
-                                the associations with other domains can be restored with the
-                                &lt;restore&gt; operation in RFC 3915 during the redemption period.  The
-                                purge of the domain will correspond with the purging of the
-                                subordinate hosts objects and the associations at the end of the
-                                pending delete period in RFC 3915.  Due to the potential large
-                                number of associations, the server can asynchronously update (e.g.,
-                                add and remove from DNS) and purge the associations.
-                                This practice has not been observed in use.
+                                The deleting EPP client would be able to better understand and assess
+                                the potential harms of host object deletion.
+                                Depending on the content of the message, the deleting EPP client might
+                                choose additional actions, such as delaying the deletion until manual
+                                approval can be obtained, renaming the host objects, or informing
+                                affected EPP clients.
+                                This would give EPP clients greater flexibility with respect to
+                                deletion. For example, they may choose only to exercise deletions that
+                                have no impact on other clients.
                             </t>
-                            <section anchor="delete-with-restore-pros" title="Practice Benefits">
-                                <t>
-                                    This practice enables the clients to directly delete the domains that
-                                    they need since the server will fully support restoration of the
-                                    associations during the redemption period.  The management of the
-                                    domain and the subordinate hosts will be simplified for the client by
-                                    supporting the explicit deletion of the domain with the capability of
-                                    mitigating a destructive malicious or accidental action.
-                                </t>
-                            </section>
-                            <section anchor="delete-with-restore-cons" title="Practice Detriments">
-                                <t>
-                                    By making it easier for a client to explicitly delete a domain having subordinate hosts
-                                    with associations, there is higher risk of inadvertent side effects in a single delete command.
-                                    There is existing risk in EPP of inadvertent side effects, such as adding the "clientHold"
-                                    status to the domain that will impact the DNS resolution of the subordinate hosts and the
-                                    associated delegations. The ability to easily rollback the command is key to minimize the
-                                    impact of the side effects. Another issue is the potential size of the database transaction to
-                                    disable, re-enable, or purge the subordinate host associations, since there is no limit to the
-                                    number of associations to delegated domains. Servers can break-up the disable, re-enable, or purge
-                                    of the subordinate host associations into smaller transactions by implementing it asynchronously.
-                                    </t>
-                            </section>
                         </section>
-                    </section>                
+                        <section anchor="additional-deletion-details-cons" title="Practice Detriments">
+                            <t>
+                                This change would require additional development on the part of EPP
+                                servers and clients. There may be scalability concerns if large numbers
+                                of domain objects are updated in a single transaction. The EPP server
+                                must
+                                determine the relevant information to provide for the EPP client's
+                                assessment.
+                            </t>
+                        </section>
+                    </section>
+                    <section anchor="delete-with-restore" title="Allow Explicit Delete of Domain with Restore Capability">
+                        <t>
+                            EPP servers can allow for the explicit deletion of a domain with
+                            subordinate host objects associated with other domains as long as the
+                            associations can be restored by the &lt;restore&gt; operation described in RFC 3915 <xref target="RFC3915" />.
+                            Allowing for the explicit deletion of a domain name that performs a
+                            cascade purge of the subordinate host objects and the association
+                            with other domains is unrecoverable and would be a risk to malicious
+                            or accidental actions.  Instead of purging the subordinate host
+                            objects, the server can keep them with the "pendingDelete" status and
+                            keep the associations with other domains, but they will not be
+                            available in DNS.  This will provide for a preview of the operation
+                            that is restorable.  If the action was malicious, accidental, or had
+                            negative side effects, the domain, its subordinate host objects, and
+                            the associations with other domains can be restored with the
+                            &lt;restore&gt; operation in RFC 3915 during the redemption period.  The
+                            purge of the domain will correspond with the purging of the
+                            subordinate hosts objects and the associations at the end of the
+                            pending delete period in RFC 3915.  Due to the potential large
+                            number of associations, the server can asynchronously update (e.g.,
+                            add and remove from DNS) and purge the associations.
+                            This practice has not been observed in use.
+                        </t>
+                        <section anchor="delete-with-restore-pros" title="Practice Benefits">
+                            <t>
+                                This practice enables the clients to directly delete the domains that
+                                they need since the server will fully support restoration of the
+                                associations during the redemption period.  The management of the
+                                domain and the subordinate hosts will be simplified for the client by
+                                supporting the explicit deletion of the domain with the capability of
+                                mitigating a destructive malicious or accidental action.
+                            </t>
+                        </section>
+                        <section anchor="delete-with-restore-cons" title="Practice Detriments">
+                            <t>
+                                By making it easier for a client to explicitly delete a domain having subordinate hosts
+                                with associations, there is higher risk of inadvertent side effects in a single delete command.
+                                There is existing risk in EPP of inadvertent side effects, such as adding the "clientHold"
+                                status to the domain that will impact the DNS resolution of the subordinate hosts and the
+                                associated delegations. The ability to easily rollback the command is key to minimize the
+                                impact of the side effects. Another issue is the potential size of the database transaction to
+                                disable, re-enable, or purge the subordinate host associations, since there is no limit to the
+                                number of associations to delegated domains. Servers can break-up the disable, re-enable, or purge
+                                of the subordinate host associations into smaller transactions by implementing it asynchronously.
+                                </t>
+                        </section>
+                    </section>
 				</section>
             </section>
         </section>
@@ -676,7 +652,7 @@
                 <section anchor="recommendations-proposed-delete-safely" title="Safe Host Deletion">
                     <t>
                         Deletion with restore (see <xref target="delete-with-restore" format="counter" />) 
-                        <bcp14>SHOULD</bcp14> be allowed with explicit client requests (see <xref target="explicit-deletion-request" format="counter" />). 
+                        <bcp14>SHOULD</bcp14> be allowed with explicit client requests (see <xref target="explicit-delete" format="counter" />). 
                         Deletion <bcp14>SHOULD</bcp14> include additional deletion details to the client (see <xref target="additional-deletion-details" format="counter" />). 
                         Affected clients <bcp14>SHOULD</bcp14> be informed of changes (see <xref target="inform-affected-client" format="counter" />).
                     </t>
@@ -810,6 +786,15 @@
                 <li>Split <xref target="practice-analysis"/> into two sections to better identify observed practices and possible practices.</li>
                 <li>Added a specific recommendation to use "sacrificial.invalid" in <xref target="recommendations"/>.</li>
                 <li>Reorganized practice description sections into subsections of observed practices and potential practices.</li>
+            </ol>
+            <t>05:</t>
+            <ol>
+                <li>Move <xref target="inform-affected-client"/> into observed practices.</li>
+                <li>Add clearer MUST NOT guidance on <xref target="renaming-external"/>, <xref target="renaming-non-provisioned"/>, and <xref target="renaming-pseudo-tld" />. </li>
+                <li>Promoted subsection of potential options to potential practices.</li>
+                <li>Removed redundant explicit delete section.</li>
+                <li>Increased TOC depth.</li>
+                <li>Made section headers clearer, changing "Deletion Observed Practices" and similar to "Observed Practices for Deletion of Hosts," etc.</li>
             </ol>
         </section>
     </back>
