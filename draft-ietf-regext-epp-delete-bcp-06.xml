@@ -595,25 +595,36 @@
                     </section>
                     <section anchor="delete-with-restore" title="Allow Explicit Delete of Domain with Restore Capability">
                         <t>
-                            EPP servers can allow for the explicit deletion of a domain with
-                            subordinate host objects associated with other domains as long as the
+                            Explicit deletion of a domain name with a
+                            cascade purge of subordinate host objects and associations
+                            with other domains may be an unrecoverable operation, increasing
+                            the potential negative effects of malicious or accidental actions. 
+                        </t>
+                        <t>
+                            To mitigate this risk, EPP servers can allow for the explicit deletion of a domain with
+                            subordinate host objects associated with other domains only when the
                             associations can be restored by the &lt;restore&gt; operation described in RFC 3915 <xref target="RFC3915" />.
-                            Allowing for the explicit deletion of a domain name that performs a
-                            cascade purge of the subordinate host objects and the association
-                            with other domains is unrecoverable and would be a risk to malicious
-                            or accidental actions.  Instead of purging the subordinate host
-                            objects, the server can keep them with the "pendingDelete" status and
-                            keep the associations with other domains, but they will not be
-                            available in DNS.  This will provide for a preview of the operation
-                            that is restorable.  If the action was malicious, accidental, or had
+                        </t>
+                        <t>
+                            In order to allow restore, EPP servers may keep the subordinate host objects with a "pendingDelete" status 
+                            and keep associations with other domains. This makes the objects unavailable to the DNS service and
+                            provides a preview of the deletion.
+                        </t>
+                        <t>
+                            If the action was malicious, accidental, or had
                             negative side effects, the domain, its subordinate host objects, and
                             the associations with other domains can be restored with the
                             &lt;restore&gt; operation in RFC 3915 during the redemption period.  The
                             purge of the domain will correspond with the purging of the
                             subordinate hosts objects and the associations at the end of the
-                            pending delete period in RFC 3915.  Due to the potential large
+                            pending delete period in RFC 3915.  
+                        </t>
+                        <t>
+                            Due to the potential large
                             number of associations, the server can asynchronously update (e.g.,
                             add and remove from DNS) and purge the associations.
+                        </t>
+                        <t>
                             This practice has not been observed in use.
                         </t>
                         <section anchor="delete-with-restore-pros" title="Practice Benefits">
@@ -817,6 +828,7 @@
             <ol>
                 <li>Add reference to SSAC125 complementary document</li>
                 <li>Change recommendations to use MUST language and reference to RFC8244.</li>
+                <li>Rewrite "Allow Explicit Delete of Domain with Restore Capability" text for greater clarity.</li>
             </ol>
         </section>
     </back>
