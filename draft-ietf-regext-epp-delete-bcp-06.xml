@@ -607,7 +607,7 @@
                         </t>
                         <t>
                             In order to allow restore, EPP servers may keep the subordinate host objects with a "pendingDelete" status 
-                            and keep associations with other domains. This makes the objects unavailable to the DNS service and
+                            and keep associations with other domains. This makes the objects unavailable in the DNS and
                             provides a preview of the deletion.
                         </t>
                         <t>
@@ -620,7 +620,7 @@
                             pending delete period in RFC 3915.  
                         </t>
                         <t>
-                            Due to the potential large
+                            Due to the potentially large
                             number of associations, the server can asynchronously update (e.g.,
                             add and remove from DNS) and purge the associations.
                         </t>
