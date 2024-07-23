@@ -234,7 +234,11 @@
                 domains managed by it. The practices described in this document fall into two broad
                 categories: renaming objects to use "sacrificial" hosts, and allowing objects to be
                 deleted even if there are existing data relationships. These practice categories are
-                described in the following sections.</t>
+                described in the following sections. 
+                For a broader consideration of practices and potential impacts on registries and registrars, 
+                <xref target="sac125" /> 
+                offers some complementary insight.
+            </t>
             <section anchor="renaming-overall" title="Renaming to Sacrificial Hosts">
                 <t>"Sacrificial" hosts are hosts whose name is intended to remove an existing relationship
                 between domain and host objects. To that end, "sacrificial" hosts are either renamed to an
@@ -753,6 +757,17 @@
                         <date year="2022" month="Nov" />
                     </front>
                 </reference>
+                <reference anchor="sac125"
+                    target="https://itp.cdn.icann.org/en/files/security-and-stability-advisory-committee-ssac-reports/sac-125-09-05-2024-en.pdf">
+                    <front>
+                        <title>SSAC Report on Registrar Nameserver Management</title>
+                        <author>
+                            <organization>ICANN Security and Stability Advisory Committee</organization>
+                        </author>
+                        <date year="2024" month="May" day="9" />
+                    </front>
+                    <seriesInfo name="SAC" value="125"/>
+                </reference>
             </references>
         </references>
         <section title="Change Log" removeInRFC="true">
@@ -797,6 +812,11 @@
                 <li>Removed redundant explicit delete section.</li>
                 <li>Increased TOC depth.</li>
                 <li>Made section headers clearer, changing "Deletion Observed Practices" and similar to "Observed Practices for Deletion of Hosts," etc.</li>
+            </ol>
+            <t>06:</t>
+            <ol>
+                <li>Add reference to SSAC125 complementary document</li>
+                <li>Change recommendations to use MUST language and reference to RFC8244.</li>
             </ol>
         </section>
     </back>
