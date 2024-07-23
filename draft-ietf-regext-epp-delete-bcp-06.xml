@@ -236,7 +236,7 @@
                 deleted even if there are existing data relationships. These practice categories are
                 described in the following sections. 
                 For a broader consideration of practices and potential impacts on registries and registrars, 
-                <xref target="sac125" /> 
+                <xref target="SAC125" /> 
                 offers some complementary insight.
             </t>
             <section anchor="renaming-overall" title="Renaming to Sacrificial Hosts">
@@ -768,7 +768,7 @@
                         <date year="2022" month="Nov" />
                     </front>
                 </reference>
-                <reference anchor="sac125"
+                <reference anchor="SAC125"
                     target="https://itp.cdn.icann.org/en/files/security-and-stability-advisory-committee-ssac-reports/sac-125-09-05-2024-en.pdf">
                     <front>
                         <title>SSAC Report on Registrar Nameserver Management</title>
