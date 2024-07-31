@@ -655,15 +655,13 @@
             </section>
         </section>
         <section anchor="recommendations" title="Recommendations">
-            <t>The practices in this section address operational risks with minimal undesired side effects. 
-            </t>
-            <t>EPP Servers <bcp14>MUST</bcp14> implement one of the following practices as detailed above.</t>
+            <t>AN EPP server <bcp14>MUST</bcp14> implement one of the following practices to delete domain and host objects with minimal undesired side effects:</t>
             <ul>
                 <li>Rename host objects to a sacrificial name server host object maintained by the client
                     (see <xref target="control-rename" format="counter" />).
                 </li>
                 <li> 
-                     Delete host objects and associations with restore option (see <xref target="delete-with-restore" format="counter" />)
+                     Delete host objects and associations with the restore option (see <xref target="delete-with-restore" format="counter" />)
                      based on explicit client requests (see <xref target="explicit-delete" format="counter" />). 
                      Provide requesting clients additional deletion details (see <xref target="additional-deletion-details" format="counter" />)
                      and inform affected clients of changes (see <xref target="inform-affected-client" format="counter" />).
