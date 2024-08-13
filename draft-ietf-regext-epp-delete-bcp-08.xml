@@ -18,7 +18,7 @@
 <rfc
     xmlns:xi="http://www.w3.org/2001/XInclude"
     category="bcp"
-    docName="draft-ietf-regext-epp-delete-bcp-07"
+    docName="draft-ietf-regext-epp-delete-bcp-08"
     ipr="trust200902"
     obsoletes=""
     updates=""
@@ -655,7 +655,7 @@
             </section>
         </section>
         <section anchor="recommendations" title="Recommendations">
-            <t>An EPP server <bcp14>MUST</bcp14> implement one of the following practices to delete domain and host objects with minimal undesired side effects:</t>
+            <t>EPP servers and clients <bcp14>MUST</bcp14> implement one of the following practices to delete domain and host objects with minimal undesired side effects:</t>
             <ul>
                 <li>Rename host objects to a sacrificial name server host object maintained by the client
                     (see <xref target="control-rename" format="counter" />).
@@ -825,6 +825,10 @@
             <ol>
                 <li>Consolidate Best Practice Recommendations <xref target="recommendations" /></li>
                 <li>Make RFC 3915 normative.</li>
+            </ol>
+            <t>08:</t>
+            <ol>
+                <li>Changed subject of <xref target="recommendations" /> recommendations from "An EPP server" to "EPP servers and clients."</li>
             </ol>
         </section>
     </back>
