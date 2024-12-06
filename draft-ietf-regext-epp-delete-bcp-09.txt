@@ -237,8 +237,10 @@ Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
    of an external host cannot be reversed by the EPP client.
 
    This document describes the rationale for the "SHOULD NOT be deleted"
-   text, the risk associated with host object renaming, and the best
-   practices that can be used to mitigate that risk.
+   text and the risk associated with host object renaming.  Section 5
+   includes a detailed analysis of the practices that have been and can
+   be used to mitigate that risk.  Section 6 includes specific
+   recommendations for the best practices.
 
 2.  Conventions Used in This Document
 
@@ -267,8 +269,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
    also creates orphan glue as described in SAC048
    (https://itp.cdn.icann.org/en/files/security-and-stability-advisory-
    committee-ssac-reports/sac-048-en.pdf).
-
-
 
 
 
@@ -1205,6 +1205,8 @@ Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
        remove confusing/incorrect claim around "valid" DNS name, and to
        add DNAME mention.
 
+   2.  Added explanatory sentences to Section 1.
+
 Authors' Addresses
 
    Scott Hollenbeck
@@ -1224,8 +1226,6 @@ Authors' Addresses
    Phone: +1 703 948-3200
    Email: wicarroll@verisign.com
    URI:   https://verisign.com
-
-
 
 
 

@@ -97,7 +97,7 @@
         </abstract>
     </front>
     <middle>
-        <section title="Introduction">
+        <section anchor="introduction" title="Introduction">
             <t>Section 3.2.2 of RFC 5731 <xref target="RFC5731" /> contains text that has led some
                 domain name registrars (acting as EPP clients) to adopt an operational practice of
                 re-naming name server host objects so that they can delete domain objects:</t>
@@ -146,9 +146,10 @@
                 resolvers may then create large numbers of spurious DNS queries for an unresolvable
                 domain. Note that renaming a host object to a name of an external host cannot be
                 reversed by the EPP client.</t>
-            <t>This document describes the rationale for the "<bcp14>SHOULD NOT</bcp14> be deleted" text, the risk
-                associated with host object renaming, and the best practices that can be used to
-                mitigate that risk.</t>
+            <t>This document describes the rationale for the "<bcp14>SHOULD NOT</bcp14> be deleted" text and the risk 
+                associated with host object renaming. <xref target="practice-analysis" /> includes a detailed analysis 
+                of the practices that have been and can be used to mitigate that risk. 
+                <xref target="recommendations" /> includes specific recommendations for the best practices.</t>
         </section>
         <section title="Conventions Used in This Document">
             <t>The key words "<bcp14>MUST</bcp14>", "<bcp14>MUST NOT</bcp14>", "<bcp14>REQUIRED</bcp14>", "<bcp14>SHALL</bcp14>", "<bcp14>SHALL NOT</bcp14>", "<bcp14>SHOULD</bcp14>", "<bcp14>SHOULD
@@ -834,6 +835,7 @@
             <t>09:</t>
             <ol>
                 <li>Updated <xref target="renaming-as112" /> for clarity around empty subdomain, to remove confusing/incorrect claim around "valid" DNS name, and to add DNAME mention.</li>
+                <li>Added explanatory sentences to <xref target="introduction" />.</li>
             </ol>
         </section>
     </back>
