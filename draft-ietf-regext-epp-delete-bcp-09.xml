@@ -334,13 +334,11 @@
                         host object.  Failures to maintain these registrations have allowed
                         domain hijacks <xref
                         target="risky-bizness" />.
-                        The sacrificial name server should run a DNS resolution service
-                        capable of responding with an authoritative non-error, non-failure
-                        response for requests made for associated domains.  The service
-                        <bcp14>SHOULD</bcp14> provide responses that indicate problems with a domain's
-                        delegation, such as non-existence or include controlled interruption
-                        IP addresses <xref target="RFC8023" />.
-                            This practice has been observed in use.
+                        The sacrificial name server should resolve to one or more IP addresses 
+                        and the client should operate an authoritative DNS name server on those addresses.  
+                        The name server <bcp14>SHOULD</bcp14> provide responses that indicate problems with a domain's 
+                        delegation, such as non-existence or controlled interruption IP addresses <xref target="RFC8023" />.
+                        This practice has been observed in use.
                         </t>
                         <section anchor="control-rename-pros" title="Practice Benefits">
                             <t> Associated domains are not able to be hijacked, remain in the zone, and have
@@ -836,6 +834,7 @@
             <ol>
                 <li>Updated <xref target="renaming-as112" /> for clarity around empty subdomain, to remove confusing/incorrect claim around "valid" DNS name, and to add DNAME mention.</li>
                 <li>Added explanatory sentences to <xref target="introduction" />.</li>
+                <li>Clarified sacrificial name server requirements in <xref target="control-rename" />.</li>
             </ol>
         </section>
     </back>
