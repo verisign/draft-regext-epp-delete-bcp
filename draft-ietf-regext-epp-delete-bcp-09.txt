@@ -920,6 +920,8 @@ Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
       new TLD using either IETF or ICANN processes that offers no
       additional operational benefit.
 
+   Other practices in Section 5 are NOT RECOMMENDED.
+
 7.  IANA Considerations
 
    This document does not contain any instructions for IANA.
@@ -937,6 +939,21 @@ Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
    intended to reduce the risk of DNS resolution failure or hijacking as
    part of the process of deleting EPP domain or host objects.
 
+
+
+
+
+
+
+
+
+
+
+Hollenbeck, et al.         Expires 9 June 2025                 [Page 17]
+
+Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
+
+
    Child domains that depend on host objects associated with domain
    objects sponsored by another EPP client for DNS resolution may be
    protected from hijacking through the use of DNSSEC.  Their resolution
@@ -946,13 +963,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
    addresses to alert registrants to DNS changes.  EPP clients can
    periodically scan sponsored domains for association with sacrificial
    name servers and alert end users concerning those domains.
-
-
-
-Hollenbeck, et al.         Expires 9 June 2025                 [Page 17]
-
-Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
-
 
    In absence of DNSSEC use by the victim, an attacker who gains control
    of a single nameserver can use DNSSEC to instead take over the victim
@@ -991,16 +1001,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
               STD 69, RFC 5730, DOI 10.17487/RFC5730, August 2009,
               <https://www.rfc-editor.org/info/rfc5730>.
 
-   [RFC5731]  Hollenbeck, S., "Extensible Provisioning Protocol (EPP)
-              Domain Name Mapping", STD 69, RFC 5731,
-              DOI 10.17487/RFC5731, August 2009,
-              <https://www.rfc-editor.org/info/rfc5731>.
-
-   [RFC5732]  Hollenbeck, S., "Extensible Provisioning Protocol (EPP)
-              Host Mapping", STD 69, RFC 5732, DOI 10.17487/RFC5732,
-              August 2009, <https://www.rfc-editor.org/info/rfc5732>.
-
-
 
 
 
@@ -1009,6 +1009,15 @@ Hollenbeck, et al.         Expires 9 June 2025                 [Page 18]
 
 Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
 
+
+   [RFC5731]  Hollenbeck, S., "Extensible Provisioning Protocol (EPP)
+              Domain Name Mapping", STD 69, RFC 5731,
+              DOI 10.17487/RFC5731, August 2009,
+              <https://www.rfc-editor.org/info/rfc5731>.
+
+   [RFC5732]  Hollenbeck, S., "Extensible Provisioning Protocol (EPP)
+              Host Mapping", STD 69, RFC 5732, DOI 10.17487/RFC5732,
+              August 2009, <https://www.rfc-editor.org/info/rfc5732>.
 
    [RFC6761]  Cheshire, S. and M. Krochmal, "Special-Use Domain Names",
               RFC 6761, DOI 10.17487/RFC6761, February 2013,
@@ -1046,15 +1055,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
               Terminology", RFC 8499, DOI 10.17487/RFC8499, January
               2019, <https://www.rfc-editor.org/info/rfc8499>.
 
-   [RFC8590]  Gould, J. and K. Feher, "Change Poll Extension for the
-              Extensible Provisioning Protocol (EPP)", RFC 8590,
-              DOI 10.17487/RFC8590, May 2019,
-              <https://www.rfc-editor.org/info/rfc8590>.
-
-   [RFC9520]  Wessels, D., Carroll, W., and M. Thomas, "Negative Caching
-              of DNS Resolution Failures", RFC 9520,
-              DOI 10.17487/RFC9520, December 2023,
-              <https://www.rfc-editor.org/info/rfc9520>.
 
 
 
@@ -1065,6 +1065,16 @@ Hollenbeck, et al.         Expires 9 June 2025                 [Page 19]
 
 Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
 
+
+   [RFC8590]  Gould, J. and K. Feher, "Change Poll Extension for the
+              Extensible Provisioning Protocol (EPP)", RFC 8590,
+              DOI 10.17487/RFC8590, May 2019,
+              <https://www.rfc-editor.org/info/rfc8590>.
+
+   [RFC9520]  Wessels, D., Carroll, W., and M. Thomas, "Negative Caching
+              of DNS Resolution Failures", RFC 9520,
+              DOI 10.17487/RFC9520, December 2023,
+              <https://www.rfc-editor.org/info/rfc9520>.
 
    [risky-bizness]
               Akiwate, G., Savage, S., Voelker, G., and K. Claffy,
@@ -1105,6 +1115,13 @@ Appendix A.  Change Log
 
    02:
 
+
+
+Hollenbeck, et al.         Expires 9 June 2025                 [Page 20]
+
+Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
+
+
    1.  Section 1: Added sentence to bridge between renaming host objects
        and deletion dilemma.
 
@@ -1114,13 +1131,6 @@ Appendix A.  Change Log
 
    3.  Section 4: Added mention of "sacrificial" hosts.
        "ns1.example.org" is a sacrificial host.
-
-
-
-Hollenbeck, et al.         Expires 9 June 2025                 [Page 20]
-
-Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
-
 
    4.  Section 5.1: Added text to give some more context on
        "sacrificial" hosts.
@@ -1161,6 +1171,13 @@ Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
    2.  Add clearer MUST NOT guidance on Section 5.1.3.1,
        Section 5.1.3.3, and Section 5.1.4.1.
 
+
+
+Hollenbeck, et al.         Expires 9 June 2025                 [Page 21]
+
+Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
+
+
    3.  Promoted subsection of potential options to potential practices.
 
    4.  Removed redundant explicit delete section.
@@ -1170,13 +1187,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
    6.  Made section headers clearer, changing "Deletion Observed
        Practices" and similar to "Observed Practices for Deletion of
        Hosts," etc.
-
-
-
-Hollenbeck, et al.         Expires 9 June 2025                 [Page 21]
-
-Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
-
 
    06:
 
@@ -1207,10 +1217,22 @@ Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
 
    2.  Added explanatory sentences to Section 1.
 
-   3.  Clarified sacrificial name server requirements in
+   3.  Explicitly state that other practices in analysis section are not
+       recommended in Section 6.
+
+   4.  Clarified sacrificial name server requirements in
        Section 5.1.3.4.
 
 Authors' Addresses
+
+
+
+
+
+Hollenbeck, et al.         Expires 9 June 2025                 [Page 22]
+
+Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
+
 
    Scott Hollenbeck
    Verisign Labs
@@ -1226,14 +1248,6 @@ Authors' Addresses
    12061 Bluemont Way
    Reston, VA 20190
    United States of America
-
-
-
-Hollenbeck, et al.         Expires 9 June 2025                 [Page 22]
-
-Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
-
-
    Phone: +1 703 948-3200
    Email: wicarroll@verisign.com
    URI:   https://verisign.com
@@ -1247,20 +1261,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
    Phone: +1 650 723-2300
    Email: gakiwate@cs.stanford.edu
    URI:   https://cs.stanford.edu/~gakiwate/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

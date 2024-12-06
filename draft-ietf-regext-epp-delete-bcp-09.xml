@@ -674,6 +674,7 @@
                     that offers no additional operational benefit.
                 </li>
               </ul>
+              <t>Other practices in <xref target="practice-analysis" /> are <bcp14>NOT RECOMMENDED</bcp14>.</t>
         </section>
 
         <section anchor="IANA" title="IANA Considerations">
@@ -834,6 +835,7 @@
             <ol>
                 <li>Updated <xref target="renaming-as112" /> for clarity around empty subdomain, to remove confusing/incorrect claim around "valid" DNS name, and to add DNAME mention.</li>
                 <li>Added explanatory sentences to <xref target="introduction" />.</li>
+                <li>Explicitly state that other practices in analysis section are not recommended in <xref target="recommendations" />.</li>
                 <li>Clarified sacrificial name server requirements in <xref target="control-rename" />.</li>
             </ol>
         </section>
