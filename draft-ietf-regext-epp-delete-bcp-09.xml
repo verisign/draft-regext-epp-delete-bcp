@@ -18,7 +18,7 @@
 <rfc
     xmlns:xi="http://www.w3.org/2001/XInclude"
     category="bcp"
-    docName="draft-ietf-regext-epp-delete-bcp-08"
+    docName="draft-ietf-regext-epp-delete-bcp-09"
     ipr="trust200902"
     obsoletes=""
     updates=""
@@ -281,7 +281,7 @@
                     </section>
                     <section anchor="renaming-as112" title='Renaming to "as112.arpa"'>
                         <t>Some domain registrars, acting as EPP clients, have renamed host objects
-                            to subdomains of "as112.arpa", such as "empty.as112.arpa" <xref
+                            to subdomains of "as112.arpa" or "empty.as112.arpa" <xref
                                 target="risky-bizness-irtf" />.
                             This practice has been observed in use.
                         </t>
@@ -290,15 +290,16 @@
                                 The primary benefit is convenience for the deleting EPP client. The deleting
                                 EPP client is
                                 not required to
-                                maintain an authoritative DNS service or receive traffic. These subdomains
-                                are
-                                valid DNS names designed to sinkhole traffic.
+                                maintain an authoritative DNS service or receive traffic.
                             </t>
                         </section>
                         <section anchor="renaming-as112-cons" title="Practice Detriments">
                             <t> This is a misuse of AS112, which is for reverse lookups on non-unique IPs,
                                 primarily so local admins can sinkhole non-global traffic <xref
-                                    target="RFC7535" />. Unexpected AS112 traffic has previously caused
+                                    target="RFC7535" />. 
+                                The "empty.as112.arpa" is designed to be used with DNAME aliasing, not as a parent domain for sacrificial name servers (see section 3 of <xref
+                                    target="RFC7535" />).
+                                    Unexpected AS112 traffic has previously caused
                                 problems with intrusion detection systems and firewalls <xref
                                     target="RFC6305" />. Local administrators can potentially hijack
                                 requests. AS112 infrastructure must be maintained. </t>
@@ -829,6 +830,10 @@
             <t>08:</t>
             <ol>
                 <li>Changed subject of <xref target="recommendations" /> recommendations from "An EPP server" to "EPP servers and clients."</li>
+            </ol>
+            <t>09:</t>
+            <ol>
+                <li>Updated <xref target="renaming-as112" /> for clarity around empty subdomain, to remove confusing/incorrect claim around "valid" DNS name, and to add DNAME mention.</li>
             </ol>
         </section>
     </back>
