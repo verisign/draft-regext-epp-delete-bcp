@@ -338,16 +338,7 @@
                         <t>
                         The sacrificial name server <bcp14>SHOULD</bcp14> resolve to one or more IP addresses 
                         and the client <bcp14>SHOULD</bcp14> operate an authoritative DNS name server on those addresses.  
-                        The name server <bcp14>MAY</bcp14> provide any valid response, for example:
-                        </t>
-                        <ul>
-                        <li>Result code NXDOMAIN</li>
-                        <li>Result code NOERROR with no answer data</li>
-                        <li>Result code NOERROR with controlled interruption IP addresses <xref target="RFC8023" /> in answer data</li>
-                        <li>Result code REFUSED</li>
-                        </ul>
-						<t>
-						The name server SHOULD NOT answer with response code SERVFAIL due to potential aggressive requerying (see <xref target="renaming-non-provisioned-cons" />).                         
+                        The name server <bcp14>MAY</bcp14> provide any valid response.
                         </t>
                         <t>
                         This practice has been observed in use.
@@ -365,7 +356,9 @@
                                 registration periods and the use of registrar and registry lock services to
                                 maintain and protect the superordinate domain and the host object. Failures
                                 to maintain these registrations have allowed domain hijacks <xref
-                                    target="risky-bizness" />. </t>
+                                    target="risky-bizness" />. 
+                            </t>
+                            <t>Failure responses may cause aggressive requerying (see <xref target="renaming-non-provisioned-cons" />).</t>
                         </section>
                     </section>
                 </section>
