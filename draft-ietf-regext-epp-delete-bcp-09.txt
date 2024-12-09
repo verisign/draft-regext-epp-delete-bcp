@@ -975,7 +975,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP    December 2024
    The authors would like to thank the following people for their
    contributions to this document: Brian Dickson, James Gould, Pawel
    Kowalik, Mario Loffredo, James Mitchell, Matthew Thomas, Peter
-   Thomassen, Duane Wessels.
+   Thomassen, Duane Wessels, David Blacka.
 
 10.  References
 
