@@ -674,7 +674,7 @@
                     that offers no additional operational benefit.
                 </li>
               </ul>
-              <t>Other practices in <xref target="practice-analysis" /> are <bcp14>NOT RECOMMENDED</bcp14>.</t>
+              <t>All other practices described in <xref target="practice-analysis" /> are <bcp14>NOT RECOMMENDED</bcp14> due to undesired side effects.</t>
         </section>
 
         <section anchor="IANA" title="IANA Considerations">
