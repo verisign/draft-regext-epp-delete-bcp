@@ -1875,12 +1875,25 @@ li > p:last-of-type:only-child {
                         registration periods and the use of registrar and registry lock
                         services to maintain and protect the superordinate domain and the
                         host object.  Failures to maintain these registrations have allowed
-                        domain hijacks <span>[<a href="#risky-bizness" class="cite xref">risky-bizness</a>]</span>.
-                        The sacrificial name server should resolve to one or more IP addresses 
-                        and the client should operate an authoritative DNS name server on those addresses.  
-                        The name server <span class="bcp14">SHOULD</span> provide responses that indicate problems with a domain's 
-                        delegation, such as non-existence or controlled interruption IP addresses <span>[<a href="#RFC8023" class="cite xref">RFC8023</a>]</span>.
-                        This practice has been observed in use.<a href="#section-5.1.3.4-1" class="pilcrow">¶</a></p>
+                        domain hijacks <span>[<a href="#risky-bizness" class="cite xref">risky-bizness</a>]</span>.<a href="#section-5.1.3.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.3.4-2">
+                        The sacrificial name server <span class="bcp14">SHOULD</span> resolve to one or more IP addresses 
+                        and the client <span class="bcp14">SHOULD</span> operate an authoritative DNS name server on those addresses.  
+                        The name server <span class="bcp14">MAY</span> provide any valid response, for example:<a href="#section-5.1.3.4-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.1.3.4-3.1">Result code NXDOMAIN<a href="#section-5.1.3.4-3.1" class="pilcrow">¶</a>
+</li>
+              <li class="normal" id="section-5.1.3.4-3.2">Result code NOERROR with no answer data<a href="#section-5.1.3.4-3.2" class="pilcrow">¶</a>
+</li>
+              <li class="normal" id="section-5.1.3.4-3.3">Result code NOERROR with controlled interruption IP addresses <span>[<a href="#RFC8023" class="cite xref">RFC8023</a>]</span> in answer data<a href="#section-5.1.3.4-3.3" class="pilcrow">¶</a>
+</li>
+              <li class="normal" id="section-5.1.3.4-3.4">Result code REFUSED<a href="#section-5.1.3.4-3.4" class="pilcrow">¶</a>
+</li>
+            </ul>
+<p id="section-5.1.3.4-4">
+ The name server SHOULD NOT answer with response code SERVFAIL due to potential aggressive requerying (see <a href="#renaming-non-provisioned-cons" class="auto internal xref">Section 5.1.3.3.2</a>).<a href="#section-5.1.3.4-4" class="pilcrow">¶</a></p>
+<p id="section-5.1.3.4-5">
+                        This practice has been observed in use.<a href="#section-5.1.3.4-5" class="pilcrow">¶</a></p>
 <div id="control-rename-pros">
 <section id="section-5.1.3.4.1">
               <h6 id="name-practice-benefits-19">
