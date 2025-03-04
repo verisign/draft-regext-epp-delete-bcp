@@ -18,7 +18,7 @@
 <rfc
     xmlns:xi="http://www.w3.org/2001/XInclude"
     category="bcp"
-    docName="draft-ietf-regext-epp-delete-bcp-07"
+    docName="draft-ietf-regext-epp-delete-bcp-10"
     ipr="trust200902"
     obsoletes=""
     updates=""
@@ -97,7 +97,7 @@
         </abstract>
     </front>
     <middle>
-        <section title="Introduction">
+        <section anchor="introduction" title="Introduction">
             <t>Section 3.2.2 of RFC 5731 <xref target="RFC5731" /> contains text that has led some
                 domain name registrars (acting as EPP clients) to adopt an operational practice of
                 re-naming name server host objects so that they can delete domain objects:</t>
@@ -146,9 +146,10 @@
                 resolvers may then create large numbers of spurious DNS queries for an unresolvable
                 domain. Note that renaming a host object to a name of an external host cannot be
                 reversed by the EPP client.</t>
-            <t>This document describes the rationale for the "<bcp14>SHOULD NOT</bcp14> be deleted" text, the risk
-                associated with host object renaming, and the best practices that can be used to
-                mitigate that risk.</t>
+            <t>This document describes the rationale for the "<bcp14>SHOULD NOT</bcp14> be deleted" text and the risk 
+                associated with host object renaming. <xref target="practice-analysis" /> includes a detailed analysis 
+                of the practices that have been and can be used to mitigate that risk. 
+                <xref target="recommendations" /> includes specific recommendations for the best practices.</t>
         </section>
         <section title="Conventions Used in This Document">
             <t>The key words "<bcp14>MUST</bcp14>", "<bcp14>MUST NOT</bcp14>", "<bcp14>REQUIRED</bcp14>", "<bcp14>SHALL</bcp14>", "<bcp14>SHALL NOT</bcp14>", "<bcp14>SHOULD</bcp14>", "<bcp14>SHOULD
@@ -169,8 +170,7 @@
                     objects to exist after deletion of their superordinate domain object invites
                     hijacking, as a malicious actor may re-register the domain object, potentially
                     controlling resolution for the host objects and for their associated domain
-                    objects. It also creates orphan glue as described in SAC048
-					(<eref target="https://itp.cdn.icann.org/en/files/security-and-stability-advisory-committee-ssac-reports/sac-048-en.pdf"/>).</t>
+                    objects. It also creates orphan glue as described in SAC048 (<xref target="SAC048" />).</t>
             </section>
             <section anchor="client-server-cons" title="Client-Server Consistency Considerations">
                 <t>A server that implicitly deletes subordinate host objects in response to a
@@ -281,7 +281,7 @@
                     </section>
                     <section anchor="renaming-as112" title='Renaming to "as112.arpa"'>
                         <t>Some domain registrars, acting as EPP clients, have renamed host objects
-                            to subdomains of "as112.arpa", such as "empty.as112.arpa" <xref
+                            to subdomains of "as112.arpa" or "empty.as112.arpa" <xref
                                 target="risky-bizness-irtf" />.
                             This practice has been observed in use.
                         </t>
@@ -290,15 +290,16 @@
                                 The primary benefit is convenience for the deleting EPP client. The deleting
                                 EPP client is
                                 not required to
-                                maintain an authoritative DNS service or receive traffic. These subdomains
-                                are
-                                valid DNS names designed to sinkhole traffic.
+                                maintain an authoritative DNS service or receive traffic.
                             </t>
                         </section>
                         <section anchor="renaming-as112-cons" title="Practice Detriments">
                             <t> This is a misuse of AS112, which is for reverse lookups on non-unique IPs,
                                 primarily so local admins can sinkhole non-global traffic <xref
-                                    target="RFC7535" />. Unexpected AS112 traffic has previously caused
+                                    target="RFC7535" />. 
+                                The "empty.as112.arpa" is designed to be used with DNAME aliasing, not as a parent domain for sacrificial name servers (see section 3 of <xref
+                                    target="RFC7535" />).
+                                    Unexpected AS112 traffic has previously caused
                                 problems with intrusion detection systems and firewalls <xref
                                     target="RFC6305" />. Local administrators can potentially hijack
                                 requests. AS112 infrastructure must be maintained. </t>
@@ -322,7 +323,7 @@
                                 queries for unresolvable domains <xref target="RFC9520" />.</t>
                         </section>
                     </section>
-                    <section anchor="control-rename" title="Renaming to Sacrificial Name Server Host Objects Maintained by the Client">
+                    <section anchor="control-rename" title="Renaming to Client-Maintained Dedicated Sacrificial Name Server Host Objects">
                         <t>EPP clients MAY rename the host object to be deleted to a
                         sacrificial name server host object maintained by the client.  This
                         requires that the client maintain the registration of the sacrificial
@@ -332,13 +333,14 @@
                         host object.  Failures to maintain these registrations have allowed
                         domain hijacks <xref
                         target="risky-bizness" />.
-                        The sacrificial name server should run a DNS resolution service
-                        capable of responding with an authoritative non-error, non-failure
-                        response for requests made for associated domains.  The service
-                        <bcp14>SHOULD</bcp14> provide responses that indicate problems with a domain's
-                        delegation, such as non-existence or include controlled interruption
-                        IP addresses <xref target="RFC8023" />.
-                            This practice has been observed in use.
+                        </t>
+                        <t>
+                        The sacrificial name server <bcp14>SHOULD</bcp14> resolve to one or more IP addresses 
+                        and the client <bcp14>SHOULD</bcp14> operate an authoritative DNS name server on those addresses.  
+                        The name server <bcp14>MAY</bcp14> provide any valid response.
+                        </t>
+                        <t>
+                        This practice has been observed in use.
                         </t>
                         <section anchor="control-rename-pros" title="Practice Benefits">
                             <t> Associated domains are not able to be hijacked, remain in the zone, and have
@@ -353,7 +355,9 @@
                                 registration periods and the use of registrar and registry lock services to
                                 maintain and protect the superordinate domain and the host object. Failures
                                 to maintain these registrations have allowed domain hijacks <xref
-                                    target="risky-bizness" />. </t>
+                                    target="risky-bizness" />. 
+                            </t>
+                            <t>Failure responses may cause aggressive requerying (see <xref target="renaming-non-provisioned-cons" />).</t>
                         </section>
                     </section>
                 </section>
@@ -385,8 +389,7 @@
                         <t>Clients may rename host objects to a special-use TLD that cannot resolve in the DNS. Several variations have been suggested.
                             This practice has not been observed in use.</t>
                         <section anchor="renaming-existing-special-use-reserved" title="Renaming to Reserved TLD">
-                            <t>Clients may rename host objects to use ".invalid" or
-                                another reserved special-use (<xref target="RFC6761" />) TLD
+                            <t>Clients may rename host objects to use a reserved special-use (<xref target="RFC6761" />) TLD
                                 as suggested in <xref target="risky-bizness" />.</t>
                             <section anchor="renaming-existing-special-use-pros" title="Practice Benefits">
                                 <t>The primary benefit is convenience for the deleting
@@ -396,10 +399,10 @@
                                     traffic. Dependent domains cannot be hijacked.</t>
                             </section>
                             <section anchor="renaming-existing-special-use-cons" title="Practice Detriments">
-                                <t>These TLDs are reserved for experimentation or
-                                    testing. Their use is confusing and does not signal the
-                                    client's intent. Their use may be prevented by
-                                    policy.</t>
+                                <t>The use of TLDs reserved for special purposes (<xref target="RFC6761" />) may be confusing without a 
+                                domain designated by the community for this purpose 
+                                (see "sacrificial.invalid" in <xref target="renaming-new-special-use" /> and <xref target="recommendations" />). 
+                                In addition, their use may be prevented by EPP server policy.</t>
                             </section>
                         </section>
                     </section>    
@@ -655,7 +658,7 @@
             </section>
         </section>
         <section anchor="recommendations" title="Recommendations">
-            <t>An EPP server <bcp14>MUST</bcp14> implement one of the following practices to delete domain and host objects with minimal undesired side effects:</t>
+            <t>EPP servers and clients <bcp14>MUST</bcp14> implement one of the following practices to delete domain and host objects with minimal undesired side effects:</t>
             <ul>
                 <li>Rename host objects to a sacrificial name server host object maintained by the client
                     (see <xref target="control-rename" format="counter" />).
@@ -674,6 +677,7 @@
                     that offers no additional operational benefit.
                 </li>
               </ul>
+              <t>All other practices described in <xref target="practice-analysis" /> are <bcp14>NOT RECOMMENDED</bcp14> due to undesired side effects.</t>
         </section>
 
         <section anchor="IANA" title="IANA Considerations">
@@ -712,7 +716,7 @@
         <section anchor="acks" title="Acknowledgments">
             <t>The authors would like to thank the following people for their contributions to this
                 document: Brian Dickson, James Gould, Pawel Kowalik, Mario Loffredo, James Mitchell, Matthew Thomas, Peter
-                Thomassen.</t>
+                Thomassen, Duane Wessels, David Blacka.</t>
         </section>
     </middle>
     <back>
@@ -758,6 +762,17 @@
                         <author fullname="KC Claffy" initials="K." surname="Claffy" />
                         <date year="2022" month="Nov" />
                     </front>
+                </reference>
+                <reference anchor="SAC048"
+                    target="https://itp.cdn.icann.org/en/files/security-and-stability-advisory-committee-ssac-reports/sac-048-en.pdf">
+                    <front>
+                        <title>SSAC Comment on Orphan Glue Records in the Draft Applicant Guidebook</title>
+                        <author>
+                            <organization>ICANN Security and Stability Advisory Committee</organization>
+                        </author>
+                        <date year="2011" month="May" day="12" />
+                    </front>
+                    <seriesInfo name="SAC" value="48"/>
                 </reference>
                 <reference anchor="SAC125"
                     target="https://itp.cdn.icann.org/en/files/security-and-stability-advisory-committee-ssac-reports/sac-125-09-05-2024-en.pdf">
@@ -825,6 +840,23 @@
             <ol>
                 <li>Consolidate Best Practice Recommendations <xref target="recommendations" /></li>
                 <li>Make RFC 3915 normative.</li>
+            </ol>
+            <t>08:</t>
+            <ol>
+                <li>Changed subject of <xref target="recommendations" /> recommendations from "An EPP server" to "EPP servers and clients."</li>
+            </ol>
+            <t>09:</t>
+            <ol>
+                <li>Updated <xref target="renaming-as112" /> for clarity around empty subdomain, to remove confusing/incorrect claim around "valid" DNS name, and to add DNAME mention.</li>
+                <li>Added explanatory sentences to <xref target="introduction" />.</li>
+                <li>Explicitly state that other practices in analysis section are not recommended in <xref target="recommendations" />.</li>
+                <li>Clarified sacrificial name server requirements in <xref target="control-rename" />.</li>
+            </ol>
+            <t>10:</t>
+            <ol>
+                <li>Move SAC048 URL from text to references.</li>
+                <li>Rename <xref target="control-rename" /> to explicitly say "dedicated."</li>
+                <li>Remove test/experiment in <xref target="renaming-existing-special-use-reserved" />.</li>
             </ol>
         </section>
     </back>

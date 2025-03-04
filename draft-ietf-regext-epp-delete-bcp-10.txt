@@ -5,15 +5,15 @@
 REGEXT Working Group                                       S. Hollenbeck
 Internet-Draft                                             Verisign Labs
 Intended status: Best Current Practice                        W. Carroll
-Expires: 1 February 2025                                        Verisign
+Expires: 5 September 2025                                       Verisign
                                                               G. Akiwate
                                                      Stanford University
-                                                            31 July 2024
+                                                            4 March 2025
 
 
 Best Practices for Deletion of Domain and Host Objects in the Extensible
                       Provisioning Protocol (EPP)
-                  draft-ietf-regext-epp-delete-bcp-07
+                  draft-ietf-regext-epp-delete-bcp-10
 
 Abstract
 
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 February 2025.
+   This Internet-Draft will expire on 5 September 2025.
 
 
 
@@ -53,14 +53,14 @@ Status of This Memo
 
 
 
-Hollenbeck, et al.       Expires 1 February 2025                [Page 1]
+Hollenbeck, et al.      Expires 5 September 2025                [Page 1]
 
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -97,8 +97,8 @@ Table of Contents
          5.1.3.3.  Renaming to Non-Authoritative Hosts . . . . . . .   9
            5.1.3.3.1.  Practice Benefits . . . . . . . . . . . . . .   9
            5.1.3.3.2.  Practice Detriments . . . . . . . . . . . . .   9
-         5.1.3.4.  Renaming to Sacrificial Name Server Host Objects
-                 Maintained by the Client  . . . . . . . . . . . . .   9
+         5.1.3.4.  Renaming to Client-Maintained Dedicated Sacrificial
+                 Name Server Host Objects  . . . . . . . . . . . . .   9
            5.1.3.4.1.  Practice Benefits . . . . . . . . . . . . . .  10
            5.1.3.4.2.  Practice Detriments . . . . . . . . . . . . .  10
        5.1.4.  Potential Practices for Renaming to Sacrificial
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Hollenbeck, et al.       Expires 1 February 2025                [Page 2]
+Hollenbeck, et al.      Expires 5 September 2025                [Page 2]
 
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
          5.1.4.2.  Renaming to Existing Special-Use TLD  . . . . . .  11
@@ -143,7 +143,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
                  Capability  . . . . . . . . . . . . . . . . . . . .  15
            5.2.2.3.1.  Practice Benefits . . . . . . . . . . . . . .  16
            5.2.2.3.2.  Practice Detriments . . . . . . . . . . . . .  16
-   6.  Recommendations . . . . . . . . . . . . . . . . . . . . . . .  16
+   6.  Recommendations . . . . . . . . . . . . . . . . . . . . . . .  17
    7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  17
    8.  Security Considerations . . . . . . . . . . . . . . . . . . .  17
    9.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  18
@@ -151,7 +151,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
      10.1.  Normative References . . . . . . . . . . . . . . . . . .  18
      10.2.  Informative References . . . . . . . . . . . . . . . . .  19
    Appendix A.  Change Log . . . . . . . . . . . . . . . . . . . . .  20
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  22
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  23
 
 1.  Introduction
 
@@ -165,9 +165,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
 
 
 
-Hollenbeck, et al.       Expires 1 February 2025                [Page 3]
+Hollenbeck, et al.      Expires 5 September 2025                [Page 3]
 
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
    "A domain object SHOULD NOT be deleted if subordinate host objects
@@ -221,9 +221,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
 
 
 
-Hollenbeck, et al.       Expires 1 February 2025                [Page 4]
+Hollenbeck, et al.      Expires 5 September 2025                [Page 4]
 
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
    external host offers an authoritative DNS service but the domain is
@@ -237,8 +237,10 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
    of an external host cannot be reversed by the EPP client.
 
    This document describes the rationale for the "SHOULD NOT be deleted"
-   text, the risk associated with host object renaming, and the best
-   practices that can be used to mitigate that risk.
+   text and the risk associated with host object renaming.  Section 5
+   includes a detailed analysis of the practices that have been and can
+   be used to mitigate that risk.  Section 6 includes specific
+   recommendations for the best practices.
 
 2.  Conventions Used in This Document
 
@@ -264,9 +266,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
    superordinate domain object invites hijacking, as a malicious actor
    may re-register the domain object, potentially controlling resolution
    for the host objects and for their associated domain objects.  It
-   also creates orphan glue as described in SAC048
-   (https://itp.cdn.icann.org/en/files/security-and-stability-advisory-
-   committee-ssac-reports/sac-048-en.pdf).
+   also creates orphan glue as described in SAC048 ([SAC048]).
 
 
 
@@ -277,9 +277,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
 
 
 
-Hollenbeck, et al.       Expires 1 February 2025                [Page 5]
+Hollenbeck, et al.      Expires 5 September 2025                [Page 5]
 
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 3.2.  Client-Server Consistency Considerations
@@ -333,9 +333,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
 
 
 
-Hollenbeck, et al.       Expires 1 February 2025                [Page 6]
+Hollenbeck, et al.      Expires 5 September 2025                [Page 6]
 
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
    and ClientX is unable to determine that relationship.  Only ClientY
@@ -389,9 +389,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
 
 
 
-Hollenbeck, et al.       Expires 1 February 2025                [Page 7]
+Hollenbeck, et al.      Expires 5 September 2025                [Page 7]
 
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 5.1.2.  Practice Detriments
@@ -431,33 +431,35 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
 5.1.3.2.  Renaming to "as112.arpa"
 
    Some domain registrars, acting as EPP clients, have renamed host
-   objects to subdomains of "as112.arpa", such as "empty.as112.arpa"
+   objects to subdomains of "as112.arpa" or "empty.as112.arpa"
    [risky-bizness-irtf].  This practice has been observed in use.
 
 5.1.3.2.1.  Practice Benefits
 
    The primary benefit is convenience for the deleting EPP client.  The
    deleting EPP client is not required to maintain an authoritative DNS
-   service or receive traffic.  These subdomains are valid DNS names
-   designed to sinkhole traffic.
+   service or receive traffic.
 
 
 
 
 
-Hollenbeck, et al.       Expires 1 February 2025                [Page 8]
+
+Hollenbeck, et al.      Expires 5 September 2025                [Page 8]
 
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 5.1.3.2.2.  Practice Detriments
 
    This is a misuse of AS112, which is for reverse lookups on non-unique
    IPs, primarily so local admins can sinkhole non-global traffic
-   [RFC7535].  Unexpected AS112 traffic has previously caused problems
-   with intrusion detection systems and firewalls [RFC6305].  Local
-   administrators can potentially hijack requests.  AS112 infrastructure
-   must be maintained.
+   [RFC7535].  The "empty.as112.arpa" is designed to be used with DNAME
+   aliasing, not as a parent domain for sacrificial name servers (see
+   section 3 of [RFC7535]).  Unexpected AS112 traffic has previously
+   caused problems with intrusion detection systems and firewalls
+   [RFC6305].  Local administrators can potentially hijack requests.
+   AS112 infrastructure must be maintained.
 
 5.1.3.3.  Renaming to Non-Authoritative Hosts
 
@@ -479,8 +481,8 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
    aggressively re-query for these responses, potentially resulting in
    large numbers of queries for unresolvable domains [RFC9520].
 
-5.1.3.4.  Renaming to Sacrificial Name Server Host Objects Maintained by
-          the Client
+5.1.3.4.  Renaming to Client-Maintained Dedicated Sacrificial Name
+          Server Host Objects
 
    EPP clients MAY rename the host object to be deleted to a sacrificial
    name server host object maintained by the client.  This requires that
@@ -489,22 +491,22 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
    periods and the use of registrar and registry lock services to
    maintain and protect the superordinate domain and the host object.
    Failures to maintain these registrations have allowed domain hijacks
-   [risky-bizness].  The sacrificial name server should run a DNS
-   resolution service capable of responding with an authoritative non-
-   error, non-failure response for requests made for associated domains.
-   The service SHOULD provide responses that indicate problems with a
-   domain's delegation, such as non-existence or include controlled
-   interruption IP addresses [RFC8023].  This practice has been observed
-   in use.
+   [risky-bizness].
+
+   The sacrificial name server SHOULD resolve to one or more IP
+   addresses and the client SHOULD operate an authoritative DNS name
+   server on those addresses.  The name server MAY provide any valid
+   response.
 
 
 
 
-
-Hollenbeck, et al.       Expires 1 February 2025                [Page 9]
+Hollenbeck, et al.      Expires 5 September 2025                [Page 9]
 
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
+
+   This practice has been observed in use.
 
 5.1.3.4.1.  Practice Benefits
 
@@ -522,6 +524,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
    registry lock services to maintain and protect the superordinate
    domain and the host object.  Failures to maintain these registrations
    have allowed domain hijacks [risky-bizness].
+
+   Failure responses may cause aggressive requerying (see
+   Section 5.1.3.3.2).
 
 5.1.4.  Potential Practices for Renaming to Sacrificial Hosts
 
@@ -552,14 +557,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
 
 
 
-
-
-
-
-
-Hollenbeck, et al.       Expires 1 February 2025               [Page 10]
+Hollenbeck, et al.      Expires 5 September 2025               [Page 10]
 
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 5.1.4.2.  Renaming to Existing Special-Use TLD
@@ -570,8 +570,8 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
 
 5.1.4.2.1.  Renaming to Reserved TLD
 
-   Clients may rename host objects to use ".invalid" or another reserved
-   special-use ([RFC6761]) TLD as suggested in [risky-bizness].
+   Clients may rename host objects to use a reserved special-use
+   ([RFC6761]) TLD as suggested in [risky-bizness].
 
 5.1.4.2.1.1.  Practice Benefits
 
@@ -582,9 +582,10 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
 
 5.1.4.2.1.2.  Practice Detriments
 
-   These TLDs are reserved for experimentation or testing.  Their use is
-   confusing and does not signal the client's intent.  Their use may be
-   prevented by policy.
+   The use of TLDs reserved for special purposes ([RFC6761]) may be
+   confusing without a domain designated by the community for this
+   purpose (see "sacrificial.invalid" in Section 5.1.4.3 and Section 6).
+   In addition, their use may be prevented by EPP server policy.
 
 5.1.4.3.  Renaming to a Special-Use Domain
 
@@ -612,10 +613,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
 
 
 
-
-Hollenbeck, et al.       Expires 1 February 2025               [Page 11]
+Hollenbeck, et al.      Expires 5 September 2025               [Page 11]
 
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
    4.  Caching name servers are not expected to recognize these names as
@@ -669,9 +669,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
 
 
 
-Hollenbeck, et al.       Expires 1 February 2025               [Page 12]
+Hollenbeck, et al.      Expires 5 September 2025               [Page 12]
 
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 5.1.4.4.1.  Practice Benefits
@@ -725,9 +725,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
 
 
 
-Hollenbeck, et al.       Expires 1 February 2025               [Page 13]
+Hollenbeck, et al.      Expires 5 September 2025               [Page 13]
 
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 5.2.1.1.2.  Practice Detriments
@@ -781,9 +781,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
 
 
 
-Hollenbeck, et al.       Expires 1 February 2025               [Page 14]
+Hollenbeck, et al.      Expires 5 September 2025               [Page 14]
 
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 5.2.2.1.2.  Practice Detriments
@@ -837,9 +837,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
 
 
 
-Hollenbeck, et al.       Expires 1 February 2025               [Page 15]
+Hollenbeck, et al.      Expires 5 September 2025               [Page 15]
 
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
    In order to allow restore, EPP servers may keep the subordinate host
@@ -886,17 +886,23 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
    or purge of the subordinate host associations into smaller
    transactions by implementing it asynchronously.
 
+
+
+
+
+
+
+
+Hollenbeck, et al.      Expires 5 September 2025               [Page 16]
+
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
+
+
 6.  Recommendations
 
-   An EPP server MUST implement one of the following practices to delete
-   domain and host objects with minimal undesired side effects:
-
-
-
-Hollenbeck, et al.       Expires 1 February 2025               [Page 16]
-
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
-
+   EPP servers and clients MUST implement one of the following practices
+   to delete domain and host objects with minimal undesired side
+   effects:
 
    *  Rename host objects to a sacrificial name server host object
       maintained by the client (see 5.1.3.4).
@@ -913,6 +919,9 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
       host objects is RECOMMENDED to avoid the overhead of creating a
       new TLD using either IETF or ICANN processes that offers no
       additional operational benefit.
+
+   All other practices described in Section 5 are NOT RECOMMENDED due to
+   undesired side effects.
 
 7.  IANA Considerations
 
@@ -937,6 +946,14 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
    may be protected from the effects of deletion by using host objects
    associated with multiple domain objects.  DNSSEC and multiple host
    objects may interfere with the use of controlled interruption IP
+
+
+
+Hollenbeck, et al.      Expires 5 September 2025               [Page 17]
+
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
+
+
    addresses to alert registrants to DNS changes.  EPP clients can
    periodically scan sponsored domains for association with sacrificial
    name servers and alert end users concerning those domains.
@@ -946,14 +963,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
    domain completely if the registry operator and registrar process for
    automated DS maintenance neglects to check all nameservers for
    consistency in CDS/CDNSKEY records.  In this scenario, the domain
-
-
-
-Hollenbeck, et al.       Expires 1 February 2025               [Page 17]
-
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
-
-
    will end up with DS records derived from the attacker CDS/CDNSKEY
    records if, by chance, the queries happen to hit the attacker
    controlled nameserver.  Subsequently, validating resolvers will no
@@ -966,7 +975,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
    The authors would like to thank the following people for their
    contributions to this document: Brian Dickson, James Gould, Pawel
    Kowalik, Mario Loffredo, James Mitchell, Matthew Thomas, Peter
-   Thomassen.
+   Thomassen, Duane Wessels, David Blacka.
 
 10.  References
 
@@ -991,6 +1000,16 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
               DOI 10.17487/RFC5731, August 2009,
               <https://www.rfc-editor.org/info/rfc5731>.
 
+
+
+
+
+
+Hollenbeck, et al.      Expires 5 September 2025               [Page 18]
+
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
+
+
    [RFC5732]  Hollenbeck, S., "Extensible Provisioning Protocol (EPP)
               Host Mapping", STD 69, RFC 5732, DOI 10.17487/RFC5732,
               August 2009, <https://www.rfc-editor.org/info/rfc5732>.
@@ -1002,13 +1021,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
-
-
-
-Hollenbeck, et al.       Expires 1 February 2025               [Page 18]
-
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
-
 
    [RFC8244]  Lemon, T., Droms, R., and W. Kumari, "Special-Use Domain
               Names Problem Statement", RFC 8244, DOI 10.17487/RFC8244,
@@ -1043,6 +1055,17 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
               DOI 10.17487/RFC8590, May 2019,
               <https://www.rfc-editor.org/info/rfc8590>.
 
+
+
+
+
+
+
+Hollenbeck, et al.      Expires 5 September 2025               [Page 19]
+
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
+
+
    [RFC9520]  Wessels, D., Carroll, W., and M. Thomas, "Negative Caching
               of DNS Resolution Failures", RFC 9520,
               DOI 10.17487/RFC9520, December 2023,
@@ -1058,17 +1081,15 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
               Akiwate, G., Savage, S., Voelker, G., and K. Claffy,
               "Risky BIZness: Risks Derived from Registrar Name
               Management", November 2022,
-
-
-
-Hollenbeck, et al.       Expires 1 February 2025               [Page 19]
-
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
-
-
               <https://datatracker.ietf.org/doc/slides-115-irtfopen-
               risky-bizness-risks-derived-from-registrar-name-
               management/>.
+
+   [SAC048]   ICANN Security and Stability Advisory Committee, "SSAC
+              Comment on Orphan Glue Records in the Draft Applicant
+              Guidebook", SAC 48, 12 May 2011,
+              <https://itp.cdn.icann.org/en/files/security-and-
+              stability-advisory-committee-ssac-reports/sac-048-en.pdf>.
 
    [SAC125]   ICANN Security and Stability Advisory Committee, "SSAC
               Report on Registrar Nameserver Management", SAC 125, 9 May
@@ -1093,6 +1114,14 @@ Appendix A.  Change Log
        included text to indicate if approaches have been observed in
        practice or not.
 
+
+
+
+Hollenbeck, et al.      Expires 5 September 2025               [Page 20]
+
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
+
+
    02:
 
    1.  Section 1: Added sentence to bridge between renaming host objects
@@ -1113,14 +1142,6 @@ Appendix A.  Change Log
    6.  Acknowledged Brian Dickson.
 
    03:
-
-
-
-
-Hollenbeck, et al.       Expires 1 February 2025               [Page 20]
-
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
-
 
    1.  Added reference to SAC048 in Section 3.1.
 
@@ -1149,6 +1170,14 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
 
    1.  Move Section 5.2.1.2 into observed practices.
 
+
+
+
+Hollenbeck, et al.      Expires 5 September 2025               [Page 21]
+
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
+
+
    2.  Add clearer MUST NOT guidance on Section 5.1.3.1,
        Section 5.1.3.3, and Section 5.1.4.1.
 
@@ -1169,15 +1198,6 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
    2.  Change recommendations to use MUST language and reference to
        RFC8244.
 
-
-
-
-
-Hollenbeck, et al.       Expires 1 February 2025               [Page 21]
-
-Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
-
-
    3.  Rewrite "Allow Explicit Delete of Domain with Restore Capability"
        text for greater clarity.
 
@@ -1186,6 +1206,41 @@ Internet-Draft   Domain and Host Object Deletion in EPP        July 2024
    1.  Consolidate Best Practice Recommendations Section 6
 
    2.  Make RFC 3915 normative.
+
+   08:
+
+   1.  Changed subject of Section 6 recommendations from "An EPP server"
+       to "EPP servers and clients."
+
+   09:
+
+   1.  Updated Section 5.1.3.2 for clarity around empty subdomain, to
+       remove confusing/incorrect claim around "valid" DNS name, and to
+       add DNAME mention.
+
+   2.  Added explanatory sentences to Section 1.
+
+   3.  Explicitly state that other practices in analysis section are not
+       recommended in Section 6.
+
+   4.  Clarified sacrificial name server requirements in
+       Section 5.1.3.4.
+
+
+
+
+Hollenbeck, et al.      Expires 5 September 2025               [Page 22]
+
+Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
+
+
+   10:
+
+   1.  Move SAC048 URL from text to references.
+
+   2.  Rename Section 5.1.3.4 to explicitly say "dedicated."
+
+   3.  Remove test/experiment in Section 5.1.4.2.1.
 
 Authors' Addresses
 
@@ -1229,4 +1284,5 @@ Authors' Addresses
 
 
 
-Hollenbeck, et al.       Expires 1 February 2025               [Page 22]
+
+Hollenbeck, et al.      Expires 5 September 2025               [Page 23]
