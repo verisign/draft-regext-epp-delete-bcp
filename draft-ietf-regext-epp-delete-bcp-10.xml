@@ -18,7 +18,7 @@
 <rfc
     xmlns:xi="http://www.w3.org/2001/XInclude"
     category="bcp"
-    docName="draft-ietf-regext-epp-delete-bcp-09"
+    docName="draft-ietf-regext-epp-delete-bcp-10"
     ipr="trust200902"
     obsoletes=""
     updates=""
@@ -170,8 +170,7 @@
                     objects to exist after deletion of their superordinate domain object invites
                     hijacking, as a malicious actor may re-register the domain object, potentially
                     controlling resolution for the host objects and for their associated domain
-                    objects. It also creates orphan glue as described in SAC048
-					(<eref target="https://itp.cdn.icann.org/en/files/security-and-stability-advisory-committee-ssac-reports/sac-048-en.pdf"/>).</t>
+                    objects. It also creates orphan glue as described in SAC048 (<xref target="SAC048" />).</t>
             </section>
             <section anchor="client-server-cons" title="Client-Server Consistency Considerations">
                 <t>A server that implicitly deletes subordinate host objects in response to a
@@ -324,7 +323,7 @@
                                 queries for unresolvable domains <xref target="RFC9520" />.</t>
                         </section>
                     </section>
-                    <section anchor="control-rename" title="Renaming to Sacrificial Name Server Host Objects Maintained by the Client">
+                    <section anchor="control-rename" title="Renaming to Client-Maintained Dedicated Sacrificial Name Server Host Objects">
                         <t>EPP clients MAY rename the host object to be deleted to a
                         sacrificial name server host object maintained by the client.  This
                         requires that the client maintain the registration of the sacrificial
@@ -390,8 +389,7 @@
                         <t>Clients may rename host objects to a special-use TLD that cannot resolve in the DNS. Several variations have been suggested.
                             This practice has not been observed in use.</t>
                         <section anchor="renaming-existing-special-use-reserved" title="Renaming to Reserved TLD">
-                            <t>Clients may rename host objects to use ".invalid" or
-                                another reserved special-use (<xref target="RFC6761" />) TLD
+                            <t>Clients may rename host objects to use a reserved special-use (<xref target="RFC6761" />) TLD
                                 as suggested in <xref target="risky-bizness" />.</t>
                             <section anchor="renaming-existing-special-use-pros" title="Practice Benefits">
                                 <t>The primary benefit is convenience for the deleting
@@ -401,10 +399,10 @@
                                     traffic. Dependent domains cannot be hijacked.</t>
                             </section>
                             <section anchor="renaming-existing-special-use-cons" title="Practice Detriments">
-                                <t>These TLDs are reserved for experimentation or
-                                    testing. Their use is confusing and does not signal the
-                                    client's intent. Their use may be prevented by
-                                    policy.</t>
+                                <t>The use of TLDs reserved for special purposes (<xref target="RFC6761" />) may be confusing without a 
+                                domain designated by the community for this purpose 
+                                (see "sacrificial.invalid" in <xref target="renaming-new-special-use" /> and <xref target="recommendations" />). 
+                                In addition, their use may be prevented by EPP server policy.</t>
                             </section>
                         </section>
                     </section>    
@@ -765,6 +763,17 @@
                         <date year="2022" month="Nov" />
                     </front>
                 </reference>
+                <reference anchor="SAC048"
+                    target="https://itp.cdn.icann.org/en/files/security-and-stability-advisory-committee-ssac-reports/sac-048-en.pdf">
+                    <front>
+                        <title>SSAC Comment on Orphan Glue Records in the Draft Applicant Guidebook</title>
+                        <author>
+                            <organization>ICANN Security and Stability Advisory Committee</organization>
+                        </author>
+                        <date year="2011" month="May" day="12" />
+                    </front>
+                    <seriesInfo name="SAC" value="48"/>
+                </reference>
                 <reference anchor="SAC125"
                     target="https://itp.cdn.icann.org/en/files/security-and-stability-advisory-committee-ssac-reports/sac-125-09-05-2024-en.pdf">
                     <front>
@@ -842,6 +851,12 @@
                 <li>Added explanatory sentences to <xref target="introduction" />.</li>
                 <li>Explicitly state that other practices in analysis section are not recommended in <xref target="recommendations" />.</li>
                 <li>Clarified sacrificial name server requirements in <xref target="control-rename" />.</li>
+            </ol>
+            <t>10:</t>
+            <ol>
+                <li>Move SAC048 URL from text to references.</li>
+                <li>Rename <xref target="control-rename" /> to explicitly say "dedicated."</li>
+                <li>Remove test/experiment in <xref target="renaming-existing-special-use-reserved" />.</li>
             </ol>
         </section>
     </back>
