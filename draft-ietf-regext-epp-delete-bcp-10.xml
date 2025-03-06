@@ -857,6 +857,7 @@
                 <li>Move SAC048 URL from text to references.</li>
                 <li>Rename <xref target="control-rename" /> to explicitly say "dedicated."</li>
                 <li>Remove test/experiment in <xref target="renaming-existing-special-use-reserved" />.</li>
+                <li>Change <xref target="control-rename" /> to require authoritative DNS service (previous SHOULD changed to MUST).</li>
             </ol>
         </section>
     </back>
