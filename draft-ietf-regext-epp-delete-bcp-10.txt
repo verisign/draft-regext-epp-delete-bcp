@@ -5,10 +5,10 @@
 REGEXT Working Group                                       S. Hollenbeck
 Internet-Draft                                             Verisign Labs
 Intended status: Best Current Practice                        W. Carroll
-Expires: 5 September 2025                                       Verisign
+Expires: 7 September 2025                                       Verisign
                                                               G. Akiwate
                                                      Stanford University
-                                                            4 March 2025
+                                                            6 March 2025
 
 
 Best Practices for Deletion of Domain and Host Objects in the Extensible
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 September 2025.
+   This Internet-Draft will expire on 7 September 2025.
 
 
 
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025                [Page 1]
+Hollenbeck, et al.      Expires 7 September 2025                [Page 1]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025                [Page 2]
+Hollenbeck, et al.      Expires 7 September 2025                [Page 2]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -165,7 +165,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025                [Page 3]
+Hollenbeck, et al.      Expires 7 September 2025                [Page 3]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -221,7 +221,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025                [Page 4]
+Hollenbeck, et al.      Expires 7 September 2025                [Page 4]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -277,7 +277,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025                [Page 5]
+Hollenbeck, et al.      Expires 7 September 2025                [Page 5]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -333,7 +333,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025                [Page 6]
+Hollenbeck, et al.      Expires 7 September 2025                [Page 6]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -389,7 +389,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025                [Page 7]
+Hollenbeck, et al.      Expires 7 September 2025                [Page 7]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -445,7 +445,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025                [Page 8]
+Hollenbeck, et al.      Expires 7 September 2025                [Page 8]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -493,15 +493,15 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
    Failures to maintain these registrations have allowed domain hijacks
    [risky-bizness].
 
-   The sacrificial name server SHOULD resolve to one or more IP
-   addresses and the client SHOULD operate an authoritative DNS name
-   server on those addresses.  The name server MAY provide any valid
-   response.
+   The client-maintained dedicated sacrificial name server MUST resolve
+   to one or more IP addresses and the client MUST operate an
+   authoritative DNS name server on those addresses.  The name server
+   MAY provide any valid response.
 
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025                [Page 9]
+Hollenbeck, et al.      Expires 7 September 2025                [Page 9]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -557,7 +557,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025               [Page 10]
+Hollenbeck, et al.      Expires 7 September 2025               [Page 10]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -613,7 +613,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025               [Page 11]
+Hollenbeck, et al.      Expires 7 September 2025               [Page 11]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -669,7 +669,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025               [Page 12]
+Hollenbeck, et al.      Expires 7 September 2025               [Page 12]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -725,7 +725,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025               [Page 13]
+Hollenbeck, et al.      Expires 7 September 2025               [Page 13]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -781,7 +781,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025               [Page 14]
+Hollenbeck, et al.      Expires 7 September 2025               [Page 14]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -837,7 +837,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025               [Page 15]
+Hollenbeck, et al.      Expires 7 September 2025               [Page 15]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -893,7 +893,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025               [Page 16]
+Hollenbeck, et al.      Expires 7 September 2025               [Page 16]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -949,7 +949,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025               [Page 17]
+Hollenbeck, et al.      Expires 7 September 2025               [Page 17]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -1005,7 +1005,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025               [Page 18]
+Hollenbeck, et al.      Expires 7 September 2025               [Page 18]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -1061,7 +1061,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025               [Page 19]
+Hollenbeck, et al.      Expires 7 September 2025               [Page 19]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -1117,7 +1117,7 @@ Appendix A.  Change Log
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025               [Page 20]
+Hollenbeck, et al.      Expires 7 September 2025               [Page 20]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -1173,7 +1173,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025               [Page 21]
+Hollenbeck, et al.      Expires 7 September 2025               [Page 21]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -1229,7 +1229,7 @@ Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025               [Page 22]
+Hollenbeck, et al.      Expires 7 September 2025               [Page 22]
 
 Internet-Draft   Domain and Host Object Deletion in EPP       March 2025
 
@@ -1285,4 +1285,4 @@ Authors' Addresses
 
 
 
-Hollenbeck, et al.      Expires 5 September 2025               [Page 23]
+Hollenbeck, et al.      Expires 7 September 2025               [Page 23]
