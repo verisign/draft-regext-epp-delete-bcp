@@ -335,8 +335,8 @@
                         target="risky-bizness" />.
                         </t>
                         <t>
-                        The sacrificial name server <bcp14>SHOULD</bcp14> resolve to one or more IP addresses 
-                        and the client <bcp14>SHOULD</bcp14> operate an authoritative DNS name server on those addresses.  
+                        The client-maintained dedicated sacrificial name server <bcp14>MUST</bcp14> resolve to one or more IP addresses 
+                        and the client <bcp14>MUST</bcp14> operate an authoritative DNS name server on those addresses.  
                         The name server <bcp14>MAY</bcp14> provide any valid response.
                         </t>
                         <t>
